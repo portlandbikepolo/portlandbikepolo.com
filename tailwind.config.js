@@ -1,8 +1,14 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['.src/css/*.css', './src/*.html'],
+  content: ["./src/**/*.{html,js}", "./node_modules/preline/dist/*.js"],
   theme: {
-    extend: {},
+    fontFamily: {
+      brand: ["Urbanist", "system-ui", "sans-serif"],
+    },
   },
-  plugins: [],
-}
+  plugins: [
+    require("@tailwindcss/typography"),
+    require("@tailwindcss/forms"),
+    require("preline/plugin"),
+  ],
+};
