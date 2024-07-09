@@ -3,10 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Portland Bike Polo, a 501(c)(3) organization, is one of the oldest and most competitive bike polo clubs in the world. Portland Bike Polo strives to be one of the best and most inclusive bike polo communities in the Pacific Northwest region.">
+    <meta
+      name="description"
+      content="Portland Bike Polo, a 501(c)(3) organization, is one of the oldest and most competitive bike polo clubs in the world. Portland Bike Polo strives to be one of the best and most inclusive bike polo communities in the Pacific Northwest region."
+    />
     <title>Portland Bike Polo</title>
     <link rel="stylesheet" href="/css/tailwind.css" />
   </head>
+
   <body class="bg-black text-white">
     <header
       class="bg-neutral-9 mb-auto flex w-full flex-wrap bg-neutral-950 py-4 text-sm sm:flex-nowrap sm:justify-start"
@@ -78,6 +82,11 @@
               href="#new-players"
               class="p text-neutral font-bold hover:text-neutral-500"
               >New Players</a
+            >
+            <a
+              href="#about"
+              class="p text-neutral font-bold hover:text-neutral-500"
+              >About</a
             >
           </div>
         </div>
@@ -494,6 +503,24 @@
       </div>
 
       <!-- about -->
+      <div id="about" class="bg-[#3F4588]">
+        <!-- section container -->
+        <div
+          class="max-w-screen-xl px-8 py-12 md:mx-auto md:flex md:items-center md:justify-around md:py-16"
+        >
+          <div class="mt-5 space-y-5 md:px-10">
+            <h2 class="text-2xl font-bold md:text-3xl">About</h2>
+            <p class="text-xl text-neutral-200">
+              Portland Bike Polo is a non-profit 501(c)(3) organization,
+              focusing on building a competitive, diverse and inclusive bike
+              polo community in the Pacific Northwest.
+            </p>
+            <p class="text-xl text-neutral-200">
+              Portland Bike Polo's Federal Tax ID is <code>#83-3435866</code>
+            </p>
+          </div>
+        </div>
+      </div>
     </main>
 
     <!-- footer -->
@@ -638,13 +665,13 @@
       id="top"
       onclick="goToTop()"
       title="Go To Top"
-      class="duration-30 0 fixed bottom-10 right-10 z-50 hidden h-14 w-14 rounded-full border border-white/30 bg-black/70 p-4 text-lg font-semibold text-white shadow-md transition-colors hover:bg-black/90"
+      class="duration-30 fixed bottom-5 right-5 z-50 hidden  rounded-full border border-white/30 bg-black/70 p-4 text-lg font-semibold text-white shadow-md transition-colors hover:bg-black/90"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         fill="currentColor"
-        class="h-6 w-6"
+        class="w-5"
       >
         <path d="M12 4l8 8h-6v8h-4v-8H4l8-8z" />
       </svg>
