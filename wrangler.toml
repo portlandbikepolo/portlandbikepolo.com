@@ -1,0 +1,5 @@
+name = "portlandbikepolo-com"
+compatibility_date = "2026-01-30"
+
+[assets]
+directory = "./src/dist"
