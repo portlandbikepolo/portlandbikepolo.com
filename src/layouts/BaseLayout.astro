@@ -2,7 +2,9 @@
 import "@/styles/starwind.css";
 import "@styles/starwind.css";
 
+import SiteHeader from "@components/SiteHeader.astro";
 import SiteFooter from "@components/SiteFooter.astro";
+import SiteNavbar from "@components/SiteNavbar.astro";
 
 interface Props {
   title: string;
@@ -17,8 +19,49 @@ const { title } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title} | Portland Bike Polo</title>
+    <script is:inline>
+      function initTheme() {
+        const colorTheme = localStorage.getItem("colorTheme");
+        if (!colorTheme) {
+          // if no color theme yet, use the users preferences
+          if (
+            window.matchMedia &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches
+          ) {
+            document.documentElement.classList.add("dark");
+            localStorage.setItem("colorTheme", "dark");
+          } else {
+            document.documentElement.classList.remove("dark");
+            localStorage.setItem("colorTheme", "light");
+          }
+        } else {
+          // assign the theme based on the value in local storage
+          if (colorTheme === "dark") {
+            document.documentElement.classList.add("dark");
+          } else if (colorTheme === "light") {
+            document.documentElement.classList.remove("dark");
+          } else if (colorTheme === "system") {
+            // use system preference
+            const prefersDark = window.matchMedia(
+              "(prefers-color-scheme: dark)",
+            ).matches;
+            document.documentElement.classList.toggle("dark", prefersDark);
+          }
+        }
+      }
+
+      // runs on initial page load
+      initTheme();
+
+      // runs on view transitions navigation
+      document.addEventListener("astro:after-swap", initTheme);
+    </script>
   </head>
   <body>
+    <header class="sticky inset-x-0 top-0">
+      <SiteNavbar />
+    </header>
+
     <main class="mx-auto max-w-7xl px-4 py-6">
       <slot />
     </main>

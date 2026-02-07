@@ -1,0 +1,14 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { tv } from "tailwind-variants";
+
+interface Props extends HTMLAttributes<"header"> {}
+
+const headerStyles = tv({
+  base: "@container w-full",
+});
+
+const { class: className, ...rest } = Astro.props;
+---
+
+<header class={headerStyles({ class: className })}></header>
