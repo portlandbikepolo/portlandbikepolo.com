@@ -80,16 +80,6 @@ const {
 
     <!-- Desktop Navigation -->
     <div class="ml-6 hidden items-center gap-1 @2xl:flex">
-      {
-        links.map((link) => (
-          <a
-            class="hover:text-foreground rounded-md px-3 py-2 text-sm font-medium transition-colors"
-            href={link.href}
-          >
-            {link.label}
-          </a>
-        ))
-      }
       <ThemeToggle size="sm" variant="default">
         <Moon
           slot="light-icon"
@@ -102,9 +92,33 @@ const {
           data-theme-icon
         />
       </ThemeToggle>
+      {
+        links.map((link) => (
+          <a
+            class="hover:text-foreground rounded-md px-3 py-2 text-sm font-medium transition-colors"
+            href={link.href}
+          >
+            {link.label}
+          </a>
+        ))
+      }
     </div>
     <!-- Mobile navigation -->
-    <div class="@2xl:hidden">
+    <div class="flex items-center gap-2 @2xl:hidden">
+      <div>
+        <ThemeToggle size="sm" variant="default">
+          <Moon
+            slot="light-icon"
+            class="hidden size-5 group-data-[state=off]:data-ready:block"
+            data-theme-icon
+          />
+          <Sun
+            slot="dark-icon"
+            class="hidden size-5 group-data-[state=on]:data-ready:block"
+            data-theme-icon
+          />
+        </ThemeToggle>
+      </div>
       <Sheet>
         <SheetTrigger asChild>
           <Button
