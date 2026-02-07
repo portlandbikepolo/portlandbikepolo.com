@@ -1,0 +1,21 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+import { render } from "astro:content";
+
+export async function getStaticPaths() {
+  const tournaments = await getCollection("tournaments");
+  return tournaments.map((tournament) => {
+    return {
+      params: { id: tournament.id },
+      props: { tournament },
+    };
+  });
+}
+
+const { tournament } = Astro.props;
+const { Content } = await render(tournament);
+---
+
+<Content />

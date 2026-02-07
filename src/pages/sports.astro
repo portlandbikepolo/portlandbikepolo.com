@@ -1,0 +1,377 @@
+---
+import "@styles/starwind.css";
+---
+
+<!-- 1-page simple sports club site (Tailwind v4) -->
+<div class="min-h-screen bg-slate-50 text-slate-900">
+  <!-- Header -->
+  <header class="sticky top-0 z-30 border-b bg-white/80 backdrop-blur">
+    <div class="mx-auto flex h-14 max-w-7xl items-center justify-between px-4">
+      <a
+        href="#top"
+        class="flex items-center gap-2 font-semibold tracking-tight"
+      >
+        <span
+          class="inline-flex size-8 items-center justify-center rounded-lg bg-slate-900 text-sm text-white"
+          >SC</span
+        >
+        <span>Sunset Sports Club</span>
+      </a>
+
+      <nav class="hidden items-center gap-6 text-sm md:flex">
+        <a class="hover:text-slate-600" href="#about">About</a>
+        <a class="hover:text-slate-600" href="#teams">Teams</a>
+        <a class="hover:text-slate-600" href="#schedule">Schedule</a>
+        <a class="hover:text-slate-600" href="#gallery">Gallery</a>
+        <a class="hover:text-slate-600" href="#contact">Contact</a>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <a
+          href="#join"
+          class="hidden rounded-md bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800 md:inline-block"
+        >
+          Join
+        </a>
+        <a
+          href="#join"
+          class="rounded-md border px-3 py-2 text-sm hover:bg-slate-100 md:hidden"
+          >Join</a
+        >
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section id="top" class="border-b bg-white">
+    <div
+      class="mx-auto grid max-w-7xl gap-8 px-4 py-10 lg:grid-cols-2 lg:items-center"
+    >
+      <div>
+        <div
+          class="inline-flex items-center gap-2 rounded-full border bg-slate-50 px-3 py-1 text-xs text-slate-600"
+        >
+          <span class="size-1.5 rounded-full bg-green-500"></span>
+          Registrations open
+        </div>
+
+        <h1 class="mt-4 text-4xl font-semibold tracking-tight sm:text-5xl">
+          Play. Compete. Belong.
+        </h1>
+        <p class="mt-3 max-w-[52ch] text-base text-slate-600">
+          A local club for players of all levels—youth programs, adult leagues,
+          and weekend training. Come for the sport, stay for the community.
+        </p>
+
+        <div class="mt-6 flex flex-col gap-3 sm:flex-row">
+          <a
+            href="#join"
+            class="inline-flex items-center justify-center rounded-md bg-slate-900 px-5 py-3 text-sm font-medium text-white hover:bg-slate-800"
+          >
+            Join the Club
+          </a>
+          <a
+            href="#schedule"
+            class="inline-flex items-center justify-center rounded-md border bg-white px-5 py-3 text-sm font-medium hover:bg-slate-100"
+          >
+            View Schedule
+          </a>
+        </div>
+
+        <div class="mt-6 flex flex-wrap gap-4 text-sm text-slate-600">
+          <div class="flex items-center gap-2">
+            <span class="size-2 rounded-full bg-slate-400"></span>
+            All skill levels
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="size-2 rounded-full bg-slate-400"></span>
+            Family-friendly
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="size-2 rounded-full bg-slate-400"></span>
+            Weekly games
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero media -->
+      <div class="overflow-hidden rounded-2xl border bg-slate-100">
+        <div class="aspect-[16/10] bg-slate-200"></div>
+        <div class="p-4 text-sm text-slate-600">
+          Replace with a team photo, highlight reel, or an image carousel.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="mx-auto max-w-7xl px-4 py-12">
+    <div class="grid gap-8 lg:grid-cols-2">
+      <div>
+        <h2 class="text-2xl font-semibold tracking-tight">About the club</h2>
+        <p class="mt-3 text-slate-600">
+          Sunset Sports Club is a community-first program built around skill
+          development, sportsmanship, and fun. We host training, leagues, and
+          events year-round.
+        </p>
+
+        <dl class="mt-6 grid gap-4 sm:grid-cols-3">
+          <div class="rounded-xl border bg-white p-4">
+            <dt class="text-xs font-semibold text-slate-500">Founded</dt>
+            <dd class="mt-1 text-lg font-semibold">2012</dd>
+          </div>
+          <div class="rounded-xl border bg-white p-4">
+            <dt class="text-xs font-semibold text-slate-500">Programs</dt>
+            <dd class="mt-1 text-lg font-semibold">3+</dd>
+          </div>
+          <div class="rounded-xl border bg-white p-4">
+            <dt class="text-xs font-semibold text-slate-500">Members</dt>
+            <dd class="mt-1 text-lg font-semibold">250+</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="rounded-2xl border bg-white p-6">
+        <h3 class="text-lg font-semibold">What you get</h3>
+        <ul class="mt-4 space-y-3 text-sm text-slate-600">
+          <li class="flex gap-3">
+            <span class="mt-1 size-2 shrink-0 rounded-full bg-slate-900"></span>
+            Weekly practices led by experienced coaches
+          </li>
+          <li class="flex gap-3">
+            <span class="mt-1 size-2 shrink-0 rounded-full bg-slate-900"></span>
+            League games, tournaments, and community events
+          </li>
+          <li class="flex gap-3">
+            <span class="mt-1 size-2 shrink-0 rounded-full bg-slate-900"></span>
+            Club kit discounts and sponsor perks
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Teams -->
+  <section id="teams" class="border-y bg-white">
+    <div class="mx-auto max-w-7xl px-4 py-12">
+      <div class="flex items-end justify-between gap-4">
+        <div>
+          <h2 class="text-2xl font-semibold tracking-tight">
+            Teams & programs
+          </h2>
+          <p class="mt-2 text-slate-600">
+            Pick the program that fits your age and goals.
+          </p>
+        </div>
+        <a
+          href="#join"
+          class="hidden text-sm font-medium hover:underline sm:inline-block"
+          >Register →</a
+        >
+      </div>
+
+      <div class="mt-6 grid gap-4 md:grid-cols-3">
+        <div class="rounded-2xl border bg-slate-50 p-5">
+          <div class="text-xs font-semibold text-slate-500">YOUTH</div>
+          <h3 class="mt-2 text-lg font-semibold">U10–U14</h3>
+          <p class="mt-2 text-sm text-slate-600">
+            Skill building, confidence, and teamwork.
+          </p>
+          <ul class="mt-4 space-y-2 text-sm text-slate-600">
+            <li>• 2 practices/week</li>
+            <li>• Weekend matches</li>
+            <li>• Seasonal tournaments</li>
+          </ul>
+        </div>
+
+        <div class="rounded-2xl border bg-slate-50 p-5">
+          <div class="text-xs font-semibold text-slate-500">TEENS</div>
+          <h3 class="mt-2 text-lg font-semibold">High School</h3>
+          <p class="mt-2 text-sm text-slate-600">
+            Competitive training + match readiness.
+          </p>
+          <ul class="mt-4 space-y-2 text-sm text-slate-600">
+            <li>• 2–3 practices/week</li>
+            <li>• Film + drills</li>
+            <li>• League play</li>
+          </ul>
+        </div>
+
+        <div class="rounded-2xl border bg-slate-50 p-5">
+          <div class="text-xs font-semibold text-slate-500">ADULTS</div>
+          <h3 class="mt-2 text-lg font-semibold">Open League</h3>
+          <p class="mt-2 text-sm text-slate-600">
+            Casual-to-competitive, all levels welcome.
+          </p>
+          <ul class="mt-4 space-y-2 text-sm text-slate-600">
+            <li>• Weekly matches</li>
+            <li>• Drop-in trainings</li>
+            <li>• Social events</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Schedule -->
+  <section id="schedule" class="mx-auto max-w-7xl px-4 py-12">
+    <div class="flex items-end justify-between gap-4">
+      <div>
+        <h2 class="text-2xl font-semibold tracking-tight">Next games</h2>
+        <p class="mt-2 text-slate-600">Upcoming fixtures and trainings.</p>
+      </div>
+      <a class="text-sm font-medium hover:underline" href="#contact"
+        >Get directions →</a
+      >
+    </div>
+
+    <div class="mt-6 overflow-hidden rounded-2xl border bg-white">
+      <div
+        class="grid grid-cols-[1fr_auto] gap-2 bg-slate-50 px-4 py-3 text-xs font-semibold text-slate-600"
+      >
+        <div>Event</div>
+        <div>Time</div>
+      </div>
+
+      <div class="divide-y">
+        <div class="grid grid-cols-[1fr_auto] items-center gap-2 px-4 py-4">
+          <div>
+            <div class="text-sm font-medium">Club A vs Rivals FC</div>
+            <div class="text-xs text-slate-500">Field 2 • 123 Park Ave</div>
+          </div>
+          <div class="text-sm text-slate-700">Sat 10:00 AM</div>
+        </div>
+
+        <div class="grid grid-cols-[1fr_auto] items-center gap-2 px-4 py-4">
+          <div>
+            <div class="text-sm font-medium">U14 Training</div>
+            <div class="text-xs text-slate-500">Main Field • Coach Patel</div>
+          </div>
+          <div class="text-sm text-slate-700">Tue 6:30 PM</div>
+        </div>
+
+        <div class="grid grid-cols-[1fr_auto] items-center gap-2 px-4 py-4">
+          <div>
+            <div class="text-sm font-medium">Adult League Night</div>
+            <div class="text-xs text-slate-500">Field 1 • Lights on</div>
+          </div>
+          <div class="text-sm text-slate-700">Thu 8:00 PM</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery" class="border-y bg-white">
+    <div class="mx-auto max-w-7xl px-4 py-12">
+      <div class="flex items-end justify-between gap-4">
+        <div>
+          <h2 class="text-2xl font-semibold tracking-tight">Gallery</h2>
+          <p class="mt-2 text-slate-600">
+            Moments from matches, training, and events.
+          </p>
+        </div>
+        <a class="text-sm font-medium hover:underline" href="#join">Join us →</a
+        >
+      </div>
+
+      <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="aspect-[4/3] rounded-2xl bg-slate-200"></div>
+        <div class="aspect-[4/3] rounded-2xl bg-slate-200"></div>
+        <div class="aspect-[4/3] rounded-2xl bg-slate-200"></div>
+        <div class="aspect-[4/3] rounded-2xl bg-slate-200"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Join CTA -->
+  <section id="join" class="mx-auto max-w-7xl px-4 py-12">
+    <div class="rounded-3xl border bg-slate-900 p-6 text-white sm:p-10">
+      <div class="grid gap-6 lg:grid-cols-[1.2fr_1fr] lg:items-center">
+        <div>
+          <h2 class="text-2xl font-semibold tracking-tight">Join the club</h2>
+          <p class="mt-2 text-white/80">
+            Register in minutes. We’ll follow up with practice times, fees, and
+            your team placement.
+          </p>
+          <div class="mt-4 flex flex-wrap gap-2 text-sm text-white/80">
+            <span class="rounded-full bg-white/10 px-3 py-1"
+              >Tryouts available</span
+            >
+            <span class="rounded-full bg-white/10 px-3 py-1">Scholarships</span>
+            <span class="rounded-full bg-white/10 px-3 py-1"
+              >Beginner-friendly</span
+            >
+          </div>
+        </div>
+
+        <form class="rounded-2xl bg-white/5 p-5">
+          <label class="text-sm font-medium">Name</label>
+          <input
+            class="mt-2 h-10 w-full rounded-md bg-white/10 px-3 text-sm outline-none placeholder:text-white/60"
+            placeholder="Your name"
+          />
+
+          <label class="mt-4 block text-sm font-medium">Email</label>
+          <input
+            class="mt-2 h-10 w-full rounded-md bg-white/10 px-3 text-sm outline-none placeholder:text-white/60"
+            placeholder="you@email.com"
+          />
+
+          <button
+            type="button"
+            class="mt-4 w-full rounded-md bg-white px-4 py-2.5 text-sm font-medium text-slate-900 hover:bg-white/90"
+          >
+            Request registration info
+          </button>
+
+          <p class="mt-3 text-xs text-white/70">
+            By submitting, you agree to be contacted about club registration.
+          </p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact / Footer -->
+  <footer id="contact" class="border-t bg-white">
+    <div class="mx-auto grid max-w-7xl gap-8 px-4 py-10 md:grid-cols-3">
+      <div>
+        <div class="font-semibold">Sunset Sports Club</div>
+        <p class="mt-2 text-sm text-slate-600">
+          Home field: 123 Park Ave, Your City<br />
+          Practices: Tue & Thu evenings
+        </p>
+      </div>
+
+      <div>
+        <div class="text-sm font-semibold">Contact</div>
+        <div class="mt-2 space-y-2 text-sm text-slate-600">
+          <div>Email: hello@sunsetsports.club</div>
+          <div>Phone: (555) 123-4567</div>
+        </div>
+      </div>
+
+      <div>
+        <div class="text-sm font-semibold">Links</div>
+        <div class="mt-2 space-y-2 text-sm text-slate-600">
+          <a class="block hover:underline" href="#schedule">Schedule</a>
+          <a class="block hover:underline" href="#teams">Teams</a>
+          <a class="block hover:underline" href="#join">Join</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-t">
+      <div
+        class="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-6 text-sm text-slate-600 sm:flex-row sm:items-center sm:justify-between"
+      >
+        <div>© 2026 Sunset Sports Club</div>
+        <div class="flex gap-4">
+          <a class="hover:underline" href="#">Privacy</a>
+          <a class="hover:underline" href="#">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>

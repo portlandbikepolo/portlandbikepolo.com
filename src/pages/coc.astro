@@ -1,0 +1,11 @@
+---
+import { render, getEntry } from "astro:content";
+
+const codeOfConduct = await getEntry("keystatic", "code-of-conduct");
+
+if (!codeOfConduct) {
+  throw new Error("can't find code-of-conduct");
+}
+
+const { Content } = await render(codeOfConduct);
+---

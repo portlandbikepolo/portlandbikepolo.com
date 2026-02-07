@@ -1,0 +1,363 @@
+---
+
+---
+
+<div class="min-h-screen bg-slate-50 text-slate-900">
+  <!-- Top Bar -->
+  <header class="sticky top-0 z-30 border-b bg-white">
+    <div class="mx-auto flex h-14 max-w-7xl items-center justify-between px-4">
+      <div class="flex items-center gap-3">
+        <div class="text-lg font-semibold tracking-tight">SPORTS</div>
+
+        <!-- Desktop nav -->
+        <nav class="hidden items-center gap-5 text-sm md:flex">
+          <a class="hover:text-slate-600" href="#">NFL</a>
+          <a class="hover:text-slate-600" href="#">NBA</a>
+          <a class="hover:text-slate-600" href="#">MLB</a>
+          <a class="hover:text-slate-600" href="#">NHL</a>
+          <a class="hover:text-slate-600" href="#">Soccer</a>
+        </nav>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <div class="hidden md:block">
+          <input
+            class="h-9 w-[260px] rounded-md border bg-white px-3 text-sm outline-none placeholder:text-slate-400 focus:ring-2 focus:ring-slate-200"
+            placeholder="Search teams, players, news…"
+          />
+        </div>
+        <button class="rounded-md border px-3 py-2 text-sm md:hidden"
+          >Menu</button
+        >
+        <div class="size-8 rounded-full bg-slate-200"></div>
+      </div>
+    </div>
+
+    <!-- Scores Ticker -->
+    <div class="border-t bg-white">
+      <div class="mx-auto max-w-7xl overflow-x-auto px-4">
+        <div class="flex gap-3 py-2">
+          <!-- Score pill -->
+          <a
+            class="shrink-0 rounded-full border bg-slate-50 px-3 py-1 text-xs hover:bg-white"
+            href="#"
+          >
+            <span class="font-medium">LAL</span> 102 — <span class="font-medium"
+              >BOS</span
+            > 99
+            <span class="ml-2 text-slate-500">Final</span>
+          </a>
+          <a
+            class="shrink-0 rounded-full border bg-slate-50 px-3 py-1 text-xs hover:bg-white"
+            href="#"
+          >
+            <span class="font-medium">KC</span> 17 — <span class="font-medium"
+              >BUF</span
+            > 14
+            <span class="ml-2 text-slate-500">Q3</span>
+          </a>
+          <a
+            class="shrink-0 rounded-full border bg-slate-50 px-3 py-1 text-xs hover:bg-white"
+            href="#"
+          >
+            <span class="font-medium">NYM</span> 3 — <span class="font-medium"
+              >LAD</span
+            > 2
+            <span class="ml-2 text-slate-500">Top 7</span>
+          </a>
+          <a
+            class="shrink-0 rounded-full border bg-slate-50 px-3 py-1 text-xs hover:bg-white"
+            href="#"
+          >
+            <span class="font-medium">ARS</span> 1 — <span class="font-medium"
+              >MCI</span
+            > 1
+            <span class="ml-2 text-slate-500">FT</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="mx-auto max-w-7xl px-4 py-6">
+    <!-- Hero -->
+    <section class="grid gap-4 lg:grid-cols-[1.6fr_1fr]">
+      <article class="overflow-hidden rounded-2xl border bg-white">
+        <div class="aspect-[16/9] bg-slate-200"></div>
+        <div class="p-5">
+          <div class="text-xs font-semibold text-slate-500">TOP STORY</div>
+          <h1 class="mt-2 text-2xl font-semibold tracking-tight">
+            Big matchup tonight: what to watch, key injuries, and predictions
+          </h1>
+          <p class="mt-2 text-sm text-slate-600">
+            A quick dek that explains the stakes and why it matters, written
+            like a real homepage lead.
+          </p>
+          <div class="mt-4 flex items-center gap-3 text-xs text-slate-500">
+            <span>2h ago</span>
+            <span>•</span>
+            <span>By Staff Writer</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Right hero stack -->
+      <div class="grid gap-4">
+        <article class="rounded-2xl border bg-white p-5">
+          <div class="text-xs font-semibold text-slate-500">LIVE</div>
+          <div class="mt-2 flex items-center justify-between">
+            <div class="text-sm">
+              <div class="font-medium">Team A vs Team B</div>
+              <div class="text-slate-500">Q4 • 6:21</div>
+            </div>
+            <div class="text-right text-sm">
+              <div class="font-semibold">98–96</div>
+              <div class="text-slate-500">Home leads</div>
+            </div>
+          </div>
+          <button
+            class="mt-4 w-full rounded-md bg-black px-4 py-2 text-sm text-white"
+          >
+            Watch / Play-by-play
+          </button>
+        </article>
+
+        <article class="rounded-2xl border bg-white p-5">
+          <div class="text-xs font-semibold text-slate-500">FEATURED</div>
+          <h2 class="mt-2 text-lg font-semibold">
+            Power rankings: biggest movers this week
+          </h2>
+          <p class="mt-2 text-sm text-slate-600">
+            Fast summary with a link to the full list.
+          </p>
+          <a
+            class="mt-3 inline-block text-sm font-medium hover:underline"
+            href="#">Read more →</a
+          >
+        </article>
+      </div>
+    </section>
+
+    <!-- Content grid -->
+    <section class="mt-6 grid gap-6 lg:grid-cols-[1fr_360px]">
+      <!-- Left column -->
+      <div class="space-y-6">
+        <!-- Latest News -->
+        <section class="rounded-2xl border bg-white p-5">
+          <div class="flex items-center justify-between">
+            <h2 class="text-lg font-semibold">Latest</h2>
+            <a class="text-sm text-slate-600 hover:underline" href="#"
+              >View all</a
+            >
+          </div>
+
+          <div class="mt-4 grid gap-4 md:grid-cols-2">
+            <!-- News card -->
+            <a class="group rounded-xl border p-4 hover:bg-slate-50" href="#">
+              <div class="text-xs font-semibold text-slate-500">NBA</div>
+              <div class="mt-1 font-medium group-hover:underline">
+                Star returns; minutes restriction expected
+              </div>
+              <p class="mt-1 line-clamp-2 text-sm text-slate-600">
+                Short preview line that truncates cleanly.
+              </p>
+              <div class="mt-3 text-xs text-slate-500">45m ago</div>
+            </a>
+
+            <a class="group rounded-xl border p-4 hover:bg-slate-50" href="#">
+              <div class="text-xs font-semibold text-slate-500">NFL</div>
+              <div class="mt-1 font-medium group-hover:underline">
+                Trade buzz: three teams reportedly involved
+              </div>
+              <p class="mt-1 line-clamp-2 text-sm text-slate-600">
+                Another short dek that looks like a real feed item.
+              </p>
+              <div class="mt-3 text-xs text-slate-500">1h ago</div>
+            </a>
+
+            <a class="group rounded-xl border p-4 hover:bg-slate-50" href="#">
+              <div class="text-xs font-semibold text-slate-500">SOCCER</div>
+              <div class="mt-1 font-medium group-hover:underline">
+                Manager press conference: key takeaways
+              </div>
+              <p class="mt-1 line-clamp-2 text-sm text-slate-600">
+                Great place for quick quotes and context.
+              </p>
+              <div class="mt-3 text-xs text-slate-500">3h ago</div>
+            </a>
+
+            <a class="group rounded-xl border p-4 hover:bg-slate-50" href="#">
+              <div class="text-xs font-semibold text-slate-500">MLB</div>
+              <div class="mt-1 font-medium group-hover:underline">
+                Prospect call-up watch: who’s next
+              </div>
+              <p class="mt-1 line-clamp-2 text-sm text-slate-600">
+                Clean, scannable summaries are the vibe.
+              </p>
+              <div class="mt-3 text-xs text-slate-500">5h ago</div>
+            </a>
+          </div>
+        </section>
+
+        <!-- Games / Schedule module -->
+        <section class="rounded-2xl border bg-white p-5">
+          <div class="flex items-center justify-between">
+            <h2 class="text-lg font-semibold">Today’s Games</h2>
+            <div class="flex gap-2 text-sm">
+              <button class="rounded-md border px-3 py-1.5 hover:bg-slate-50"
+                >All</button
+              >
+              <button class="rounded-md border px-3 py-1.5 hover:bg-slate-50"
+                >Live</button
+              >
+              <button class="rounded-md border px-3 py-1.5 hover:bg-slate-50"
+                >Upcoming</button
+              >
+            </div>
+          </div>
+
+          <div class="mt-4 divide-y rounded-xl border">
+            <!-- Row -->
+            <div class="flex items-center justify-between p-4">
+              <div class="flex items-center gap-3">
+                <div class="size-9 rounded-md bg-slate-200"></div>
+                <div>
+                  <div class="text-sm font-medium">Team A @ Team B</div>
+                  <div class="text-xs text-slate-500">7:30 PM • ABC</div>
+                </div>
+              </div>
+              <button
+                class="rounded-md border px-3 py-1.5 text-sm hover:bg-slate-50"
+                >Details</button
+              >
+            </div>
+
+            <div class="flex items-center justify-between p-4">
+              <div class="flex items-center gap-3">
+                <div class="size-9 rounded-md bg-slate-200"></div>
+                <div>
+                  <div class="text-sm font-medium">Team C vs Team D</div>
+                  <div class="text-xs text-slate-500">Live • Q2 3:11</div>
+                </div>
+              </div>
+              <div class="text-right">
+                <div class="text-sm font-semibold">54–48</div>
+                <div class="text-xs text-slate-500">Team C</div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Right rail -->
+      <aside class="space-y-6">
+        <!-- Standings -->
+        <section class="rounded-2xl border bg-white p-5">
+          <div class="flex items-center justify-between">
+            <h2 class="text-lg font-semibold">Standings</h2>
+            <select class="rounded-md border bg-white px-2 py-1 text-sm">
+              <option>NBA East</option>
+              <option>NBA West</option>
+              <option>NFL AFC</option>
+              <option>NFL NFC</option>
+            </select>
+          </div>
+
+          <div class="mt-4 overflow-hidden rounded-xl border">
+            <div
+              class="grid grid-cols-[1fr_40px_40px] bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-600"
+            >
+              <div>Team</div><div class="text-right">W</div><div
+                class="text-right"
+              >
+                L
+              </div>
+            </div>
+            <div class="divide-y text-sm">
+              <div class="grid grid-cols-[1fr_40px_40px] px-3 py-2">
+                <div class="font-medium">Team 1</div><div class="text-right">
+                  34
+                </div><div class="text-right">18</div>
+              </div>
+              <div class="grid grid-cols-[1fr_40px_40px] px-3 py-2">
+                <div class="font-medium">Team 2</div><div class="text-right">
+                  33
+                </div><div class="text-right">19</div>
+              </div>
+              <div class="grid grid-cols-[1fr_40px_40px] px-3 py-2">
+                <div class="font-medium">Team 3</div><div class="text-right">
+                  31
+                </div><div class="text-right">21</div>
+              </div>
+              <div class="grid grid-cols-[1fr_40px_40px] px-3 py-2">
+                <div class="font-medium">Team 4</div><div class="text-right">
+                  29
+                </div><div class="text-right">23</div>
+              </div>
+            </div>
+          </div>
+
+          <a
+            class="mt-4 inline-block text-sm font-medium hover:underline"
+            href="#">Full standings →</a
+          >
+        </section>
+
+        <!-- Trending -->
+        <section class="rounded-2xl border bg-white p-5">
+          <h2 class="text-lg font-semibold">Trending</h2>
+          <div class="mt-4 space-y-3 text-sm">
+            <a class="block rounded-xl border p-3 hover:bg-slate-50" href="#">
+              <div class="font-medium">
+                Injury update: key starter questionable
+              </div>
+              <div class="mt-1 text-xs text-slate-500">2.1k comments</div>
+            </a>
+            <a class="block rounded-xl border p-3 hover:bg-slate-50" href="#">
+              <div class="font-medium">Trade rumor tracker: latest updates</div>
+              <div class="mt-1 text-xs text-slate-500">Updated 10m ago</div>
+            </a>
+            <a class="block rounded-xl border p-3 hover:bg-slate-50" href="#">
+              <div class="font-medium">Top plays: nightly highlights reel</div>
+              <div class="mt-1 text-xs text-slate-500">Watch now</div>
+            </a>
+          </div>
+        </section>
+
+        <!-- Newsletter / CTA -->
+        <section class="rounded-2xl border bg-white p-5">
+          <h2 class="text-lg font-semibold">Get the daily rundown</h2>
+          <p class="mt-2 text-sm text-slate-600">
+            Scores, news, and the best takes—delivered.
+          </p>
+          <div class="mt-4 flex gap-2">
+            <input
+              class="h-10 flex-1 rounded-md border px-3 text-sm"
+              placeholder="Email"
+            />
+            <button class="h-10 rounded-md bg-black px-4 text-sm text-white"
+              >Join</button
+            >
+          </div>
+        </section>
+      </aside>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t bg-white">
+    <div class="mx-auto max-w-7xl px-4 py-8">
+      <div
+        class="flex flex-col gap-3 text-sm text-slate-600 md:flex-row md:items-center md:justify-between"
+      >
+        <div>© 2026 SPORTS</div>
+        <div class="flex gap-4">
+          <a class="hover:underline" href="#">Terms</a>
+          <a class="hover:underline" href="#">Privacy</a>
+          <a class="hover:underline" href="#">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>

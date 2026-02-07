@@ -1,0 +1,13 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+
+import { render, getEntry } from "astro:content";
+
+const about = await getEntry("keystatic", "about");
+
+if (!about) {
+  throw new Error("can't find about page");
+}
+
+const { Content } = await render(about);
+---
