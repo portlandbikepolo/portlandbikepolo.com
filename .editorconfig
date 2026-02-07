@@ -1,6 +1,5 @@
-# EditorConfig is awesome: https://EditorConfig.org
+; https://editorconfig.org
 
-# top-most EditorConfig file
 root = true
 
 [*]
@@ -10,7 +9,9 @@ end_of_line = lf
 charset = utf-8
 trim_trailing_whitespace = true
 insert_final_newline = true
+block_comment_start = /**
+block_comment = *
+block_comment_end = */
 
-[Makefile]
+[*.md]
 indent_size = 4
-indent_style = tab
