@@ -4,4 +4,51 @@ import IconMenu from "@tabler/icons/outline/menu-deep.svg";
 import IconX from "@tabler/icons/outline/x.svg";
 import type { HTMLAttributes } from "astro/types";
 import { tv } from "tailwind-variants";
+
+import { Button } from "@/components/starwind/button";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/starwind/collapsible";
+import {
+  Dropdown,
+  DropdownContent,
+  DropdownItem,
+  DropdownTrigger,
+} from "@/components/starwind/dropdown";
+import { Separator } from "@/components/starwind/separator";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/starwind/sheet";
+
+export interface NavLink {
+  label: string;
+  href?: string;
+  children?: NavLink[];
+}
+
+interface Props extends HTMLAttributes<"nav"> {
+  links?: NavLink[];
+}
+
+const navStyles = tv({
+  base: "@container sticky inset-x-0 top-0 z-50",
+});
+
+const { links = [], class: className, ...rest } = Astro.props;
 ---
+
+<nav class={navStyles({ class: className })}>
+  <!-- Logo / Site name -->
+
+  <!-- Desktop Navigation -->
+
+  <!-- Mobile navigation -->
+</nav>
