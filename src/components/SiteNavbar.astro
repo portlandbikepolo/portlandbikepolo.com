@@ -75,7 +75,7 @@ const {
   <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
     <!-- Logo / Site name -->
     <div class="flex shrink-0 items-baseline">
-      <a href="/">{siteName}</a>
+      <a href="/" class="text-lg font-bold tracking-tight">{siteName}</a>
     </div>
 
     <!-- Desktop Navigation -->
@@ -103,6 +103,7 @@ const {
         ))
       }
     </div>
+
     <!-- Mobile navigation -->
     <div class="flex items-center gap-2 @2xl:hidden">
       <div>
@@ -133,7 +134,7 @@ const {
         <SheetContent side="right" class="max-w-70 sm:max-w-75">
           <SheetHeader>
             <SheetTitle>
-              <span class="text-xl font-semibold">{siteName}</span>
+              <span class="text-xl font-bold tracking-tight">{siteName}</span>
             </SheetTitle>
             <Separator class="mt-2" />
           </SheetHeader>
