@@ -1,0 +1,266 @@
+---
+import "@styles/starwind.css";
+---
+
+<header class="relative bg-zinc-950 text-white">
+  <div
+    class="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.18),transparent_55%)] opacity-30"
+  >
+  </div>
+
+  <div class="relative mx-auto max-w-6xl px-4 py-16 sm:py-20">
+    <div class="grid gap-10 lg:grid-cols-12 lg:items-end">
+      <div class="lg:col-span-7">
+        <p class="text-sm tracking-widest text-white/70 uppercase">
+          Portland Bike Club
+        </p>
+        <h1 class="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">
+          Weekly rides. Good people. No egos.
+        </h1>
+        <p class="mt-4 max-w-prose text-base text-white/80 sm:text-lg">
+          Social pace, fast pace, and everything between. Show up, roll out,
+          grab coffee after.
+        </p>
+
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a
+            href="#rides"
+            class="rounded-full bg-white px-5 py-2.5 text-sm font-medium text-zinc-950 hover:bg-white/90"
+          >
+            Ride schedule
+          </a>
+          <a
+            href="#join"
+            class="rounded-full border border-white/25 px-5 py-2.5 text-sm font-medium hover:bg-white/10"
+          >
+            Join the group
+          </a>
+        </div>
+
+        <dl class="mt-10 grid max-w-lg grid-cols-3 gap-6">
+          <div>
+            <dt class="text-xs text-white/60">Meet</dt>
+            <dd class="mt-1 font-medium">Alberta Park</dd>
+          </div>
+          <div>
+            <dt class="text-xs text-white/60">When</dt>
+            <dd class="mt-1 font-medium">Fri + Sun</dd>
+          </div>
+          <div>
+            <dt class="text-xs text-white/60">Vibe</dt>
+            <dd class="mt-1 font-medium">Friendly</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="lg:col-span-5">
+        <div
+          class="rounded-3xl border border-white/10 bg-white/5 p-4 backdrop-blur"
+        >
+          <div
+            class="grid aspect-[4/3] place-items-center rounded-2xl bg-white/10 text-white/60"
+          >
+            Drop a photo here
+          </div>
+          <div class="mt-4 grid grid-cols-2 gap-3 text-sm">
+            <div class="rounded-2xl bg-white/5 p-3">
+              <div class="text-xs text-white/60">Next ride</div>
+              <div class="mt-1 font-medium">Sunday 9:00am</div>
+            </div>
+            <div class="rounded-2xl bg-white/5 p-3">
+              <div class="text-xs text-white/60">Distance</div>
+              <div class="mt-1 font-medium">20–35 mi</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="rides" class="mx-auto max-w-6xl px-4 py-14">
+  <div class="flex flex-wrap items-end justify-between gap-6">
+    <div>
+      <h2 class="text-2xl font-semibold tracking-tight">Weekly rides</h2>
+      <p class="mt-2 max-w-prose text-zinc-600">
+        Show up a few minutes early. Helmets required. Nobody gets left behind
+        (unless it’s explicitly a drop ride).
+      </p>
+    </div>
+    <a
+      class="text-sm font-medium underline underline-offset-4 hover:opacity-80"
+      href="#join"
+    >
+      Get updates
+    </a>
+  </div>
+
+  <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-12">
+    <article class="rounded-3xl border p-6 lg:col-span-7">
+      <div class="flex items-start justify-between gap-4">
+        <div>
+          <h3 class="text-lg font-semibold">Sunday Social</h3>
+          <p class="mt-1 text-sm text-zinc-600">
+            All levels • regroups • coffee after
+          </p>
+        </div>
+        <span class="rounded-full bg-zinc-100 px-3 py-1 text-xs font-medium"
+          >9:00am</span
+        >
+      </div>
+
+      <dl class="mt-6 grid grid-cols-3 gap-4 text-sm">
+        <div>
+          <dt class="text-xs text-zinc-500">Meet</dt>
+          <dd class="mt-1 font-medium">Alberta Park</dd>
+        </div>
+        <div>
+          <dt class="text-xs text-zinc-500">Miles</dt>
+          <dd class="mt-1 font-medium">20–30</dd>
+        </div>
+        <div>
+          <dt class="text-xs text-zinc-500">Pace</dt>
+          <dd class="mt-1 font-medium">Chill</dd>
+        </div>
+      </dl>
+
+      <div class="mt-6 flex flex-wrap gap-2">
+        <span class="rounded-full border px-3 py-1 text-xs"
+          >Beginner-friendly</span
+        >
+        <span class="rounded-full border px-3 py-1 text-xs">No-drop</span>
+        <span class="rounded-full border px-3 py-1 text-xs">Road/Gravel</span>
+      </div>
+    </article>
+
+    <article class="rounded-3xl border p-6 lg:col-span-5">
+      <div class="flex items-start justify-between gap-4">
+        <div>
+          <h3 class="text-lg font-semibold">Friday Fast</h3>
+          <p class="mt-1 text-sm text-zinc-600">Drop ride • strong group</p>
+        </div>
+        <span class="rounded-full bg-zinc-100 px-3 py-1 text-xs font-medium"
+          >6:00pm</span
+        >
+      </div>
+
+      <dl class="mt-6 grid grid-cols-2 gap-4 text-sm">
+        <div>
+          <dt class="text-xs text-zinc-500">Meet</dt>
+          <dd class="mt-1 font-medium">Alberta Park</dd>
+        </div>
+        <div>
+          <dt class="text-xs text-zinc-500">Miles</dt>
+          <dd class="mt-1 font-medium">25–40</dd>
+        </div>
+      </dl>
+
+      <div class="mt-6 flex flex-wrap gap-2">
+        <span class="rounded-full border px-3 py-1 text-xs">Drop</span>
+        <span class="rounded-full border px-3 py-1 text-xs"
+          >Lights required</span
+        >
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="mx-auto max-w-6xl px-4 pb-16">
+  <div class="flex flex-wrap items-end justify-between gap-6">
+    <div>
+      <h2 class="text-2xl font-semibold tracking-tight">Recent rides</h2>
+      <p class="mt-2 text-zinc-600">Photos from the crew.</p>
+    </div>
+    <a
+      class="text-sm font-medium underline underline-offset-4 hover:opacity-80"
+      href="#"
+    >
+      Follow on Instagram
+    </a>
+  </div>
+
+  <div class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+    <div class="aspect-square rounded-2xl bg-zinc-100"></div>
+    <div class="aspect-square rounded-2xl bg-zinc-100"></div>
+    <div class="aspect-square rounded-2xl bg-zinc-100"></div>
+    <div class="hidden aspect-square rounded-2xl bg-zinc-100 lg:block"></div>
+
+    <div class="aspect-square rounded-2xl bg-zinc-100"></div>
+    <div class="aspect-square rounded-2xl bg-zinc-100"></div>
+    <div class="aspect-square rounded-2xl bg-zinc-100"></div>
+    <div class="hidden aspect-square rounded-2xl bg-zinc-100 lg:block"></div>
+  </div>
+</section>
+
+<footer id="join" class="border-t bg-zinc-950 text-white">
+  <div class="mx-auto max-w-6xl px-4 py-14">
+    <div class="grid gap-10 md:grid-cols-4">
+      <!-- Club info -->
+      <div class="md:col-span-2">
+        <h3 class="text-lg font-semibold">Portland Bike Club</h3>
+        <p class="mt-3 max-w-sm text-sm text-white/70">
+          Community-focused cycling in Portland. All riders welcome. Show up,
+          ride hard (or chill), grab coffee after.
+        </p>
+
+        <div class="mt-5 flex gap-3">
+          <a
+            href="#"
+            class="rounded-full bg-white/10 px-4 py-2 text-sm hover:bg-white/20"
+          >
+            Instagram
+          </a>
+          <a
+            href="#"
+            class="rounded-full bg-white/10 px-4 py-2 text-sm hover:bg-white/20"
+          >
+            Strava
+          </a>
+          <a
+            href="#"
+            class="rounded-full bg-white/10 px-4 py-2 text-sm hover:bg-white/20"
+          >
+            Email
+          </a>
+        </div>
+      </div>
+
+      <!-- Rides -->
+      <div>
+        <h4 class="font-medium">Rides</h4>
+        <ul class="mt-4 space-y-2 text-sm text-white/70">
+          <li>Sunday Social — 9:00am</li>
+          <li>Friday Fast — 6:00pm</li>
+          <li>Meet: Alberta Park</li>
+        </ul>
+      </div>
+
+      <!-- Join -->
+      <div>
+        <h4 class="font-medium">Join Us</h4>
+        <p class="mt-4 text-sm text-white/70">
+          Want ride updates? Join the group chat or follow along.
+        </p>
+
+        <a
+          href="#"
+          class="mt-4 inline-block rounded-full bg-white px-5 py-2.5 text-sm font-medium text-zinc-950 hover:bg-white/90"
+        >
+          Join the crew
+        </a>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div
+      class="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 text-sm text-white/60 sm:flex-row"
+    >
+      <p>© 2026 Portland Bike Club</p>
+      <div class="flex gap-5">
+        <a href="#" class="hover:text-white">Code of conduct</a>
+        <a href="#" class="hover:text-white">Safety</a>
+        <a href="#" class="hover:text-white">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>

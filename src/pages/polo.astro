@@ -1,0 +1,1001 @@
+---
+import "@styles/starwind.css";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bike Polo Team</title>
+  </head>
+
+  <body class="min-h-screen bg-zinc-950 text-zinc-100">
+    <!-- Sticky Header -->
+    <header
+      class="sticky top-0 z-50 border-b border-zinc-800 bg-zinc-950/80 backdrop-blur"
+    >
+      <div
+        class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3"
+      >
+        <a href="#" class="flex items-center gap-3">
+          <div
+            class="grid h-9 w-9 place-items-center rounded-xl bg-zinc-800 font-black"
+          >
+            BP
+          </div>
+          <div class="leading-tight">
+            <div class="text-sm font-semibold">Portland Bike Polo</div>
+            <div class="text-xs text-zinc-400">Pickup • Events • Community</div>
+          </div>
+        </a>
+
+        <nav class="hidden items-center gap-6 text-sm md:flex">
+          <a class="text-zinc-300 hover:text-white" href="#pickup">Pickup</a>
+          <a class="text-zinc-300 hover:text-white" href="#new">New Players</a>
+          <a class="text-zinc-300 hover:text-white" href="#events">Events</a>
+          <a class="text-zinc-300 hover:text-white" href="#gallery">Gallery</a>
+          <a class="text-zinc-300 hover:text-white" href="#sponsors">Sponsors</a
+          >
+          <a class="text-zinc-300 hover:text-white" href="#contact">Contact</a>
+        </nav>
+
+        <div class="flex items-center gap-2">
+          <a
+            href="#pickup"
+            class="inline-flex items-center justify-center rounded-xl bg-white px-4 py-2 text-sm font-semibold text-zinc-950 hover:bg-zinc-200"
+          >
+            Play With Us
+          </a>
+
+          <!-- Mobile menu button (no JS; optional) -->
+          <a
+            href="#nav"
+            class="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-zinc-800 hover:bg-zinc-900 md:hidden"
+            aria-label="Open menu"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M3 5h14a1 1 0 010 2H3a1 1 0 010-2zm0 6h14a1 1 0 010 2H3a1 1 0 010-2zm0 6h14a1 1 0 010 2H3a1 1 0 010-2z"
+                clip-rule="evenodd"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Mobile nav (simple anchor jump) -->
+      <div id="nav" class="border-t border-zinc-800 md:hidden">
+        <div class="mx-auto grid max-w-6xl grid-cols-2 gap-2 px-4 py-3 text-sm">
+          <a
+            class="rounded-lg px-3 py-2 text-zinc-300 hover:bg-zinc-900 hover:text-white"
+            href="#pickup">Pickup</a
+          >
+          <a
+            class="rounded-lg px-3 py-2 text-zinc-300 hover:bg-zinc-900 hover:text-white"
+            href="#new">New Players</a
+          >
+          <a
+            class="rounded-lg px-3 py-2 text-zinc-300 hover:bg-zinc-900 hover:text-white"
+            href="#events">Events</a
+          >
+          <a
+            class="rounded-lg px-3 py-2 text-zinc-300 hover:bg-zinc-900 hover:text-white"
+            href="#gallery">Gallery</a
+          >
+          <a
+            class="rounded-lg px-3 py-2 text-zinc-300 hover:bg-zinc-900 hover:text-white"
+            href="#sponsors">Sponsors</a
+          >
+          <a
+            class="rounded-lg px-3 py-2 text-zinc-300 hover:bg-zinc-900 hover:text-white"
+            href="#contact">Contact</a
+          >
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="relative overflow-hidden">
+      <!-- Background -->
+      <div class="absolute inset-0">
+        <div
+          class="h-full w-full bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.12),rgba(0,0,0,0))]"
+        >
+        </div>
+        <div
+          class="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(0,0,0,0.2),rgba(0,0,0,0.9))]"
+        >
+        </div>
+      </div>
+
+      <div class="relative mx-auto max-w-6xl px-4 py-16 sm:py-20">
+        <div class="grid gap-10 lg:grid-cols-2 lg:items-center">
+          <div>
+            <p
+              class="inline-flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900/50 px-3 py-1 text-xs text-zinc-300"
+            >
+              <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
+              Next pickup posted below
+            </p>
+
+            <h1 class="mt-4 text-4xl font-black tracking-tight sm:text-5xl">
+              Portland Bike Polo
+              <span class="block text-zinc-400">Fast. Fun. Community.</span>
+            </h1>
+
+            <p class="mt-4 max-w-xl text-base text-zinc-300 sm:text-lg">
+              Hardcourt 3v3. All skill levels. Loaner gear often available. Show
+              up and play.
+            </p>
+
+            <div class="mt-6 flex flex-wrap gap-3">
+              <a
+                href="#pickup"
+                class="inline-flex items-center justify-center rounded-xl bg-white px-5 py-3 text-sm font-semibold text-zinc-950 hover:bg-zinc-200"
+              >
+                Join a Pickup
+              </a>
+              <a
+                href="#new"
+                class="inline-flex items-center justify-center rounded-xl border border-zinc-800 bg-zinc-900/40 px-5 py-3 text-sm font-semibold text-white hover:bg-zinc-900"
+              >
+                New Player Info
+              </a>
+            </div>
+
+            <div
+              class="mt-8 flex flex-wrap gap-x-8 gap-y-3 text-sm text-zinc-300"
+            >
+              <div class="flex items-center gap-2">
+                <span
+                  class="grid h-8 w-8 place-items-center rounded-lg bg-zinc-900 ring-1 ring-zinc-800"
+                  >🥅</span
+                >
+                <span>3v3 hardcourt</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span
+                  class="grid h-8 w-8 place-items-center rounded-lg bg-zinc-900 ring-1 ring-zinc-800"
+                  >🛡️</span
+                >
+                <span>Safety-first vibes</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span
+                  class="grid h-8 w-8 place-items-center rounded-lg bg-zinc-900 ring-1 ring-zinc-800"
+                  >🧰</span
+                >
+                <span>Loaner gear</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Next Pickup Card -->
+          <div
+            class="rounded-2xl border border-zinc-800 bg-zinc-900/40 p-6 shadow-2xl shadow-black/30"
+          >
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <h2 class="text-lg font-semibold">Next Pickup</h2>
+                <p class="mt-1 text-sm text-zinc-400">
+                  Show up, roll in, make teams.
+                </p>
+              </div>
+              <span
+                class="rounded-full border border-zinc-800 bg-zinc-950/50 px-3 py-1 text-xs text-zinc-300"
+                >Weekly</span
+              >
+            </div>
+
+            <dl class="mt-6 grid gap-4 sm:grid-cols-2">
+              <div class="rounded-xl border border-zinc-800 bg-zinc-950/40 p-4">
+                <dt class="text-xs text-zinc-400">When</dt>
+                <dd class="mt-1 text-sm font-semibold">Sat 1–4pm</dd>
+              </div>
+              <div class="rounded-xl border border-zinc-800 bg-zinc-950/40 p-4">
+                <dt class="text-xs text-zinc-400">Where</dt>
+                <dd class="mt-1 text-sm font-semibold">Alberta Court</dd>
+              </div>
+              <div class="rounded-xl border border-zinc-800 bg-zinc-950/40 p-4">
+                <dt class="text-xs text-zinc-400">Skill level</dt>
+                <dd class="mt-1 text-sm font-semibold">All welcome</dd>
+              </div>
+              <div class="rounded-xl border border-zinc-800 bg-zinc-950/40 p-4">
+                <dt class="text-xs text-zinc-400">Weather</dt>
+                <dd class="mt-1 text-sm font-semibold">Rain cancels</dd>
+              </div>
+            </dl>
+
+            <div class="mt-6 flex flex-wrap gap-3">
+              <a
+                href="#events"
+                class="inline-flex flex-1 items-center justify-center rounded-xl bg-white px-4 py-3 text-sm font-semibold text-zinc-950 hover:bg-zinc-200"
+              >
+                View Calendar
+              </a>
+              <a
+                href="#contact"
+                class="inline-flex flex-1 items-center justify-center rounded-xl border border-zinc-800 bg-zinc-900/50 px-4 py-3 text-sm font-semibold text-white hover:bg-zinc-900"
+              >
+                Ask a Question
+              </a>
+            </div>
+
+            <p class="mt-4 text-xs text-zinc-400">
+              Tip: Bring a helmet + closed-toe shoes. If you’re new, arrive
+              10–15 minutes early.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Upcoming Pickup / Quick Info -->
+    <section id="pickup" class="border-t border-zinc-900 bg-zinc-950">
+      <div class="mx-auto max-w-6xl px-4 py-14">
+        <div
+          class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between"
+        >
+          <div>
+            <h2 class="text-2xl font-bold">Pickup this week</h2>
+            <p class="mt-1 text-zinc-400">The fastest way to join the scene.</p>
+          </div>
+          <a
+            href="#events"
+            class="text-sm font-semibold text-white/90 hover:text-white"
+            >View full calendar →</a
+          >
+        </div>
+
+        <div class="mt-8 grid gap-4 lg:grid-cols-3">
+          <!-- Card -->
+          <article
+            class="rounded-2xl border border-zinc-800 bg-zinc-900/30 p-6"
+          >
+            <div class="flex items-center justify-between gap-4">
+              <h3 class="text-lg font-semibold">Saturday Pickup</h3>
+              <span
+                class="rounded-full border border-zinc-800 bg-zinc-950/40 px-3 py-1 text-xs text-zinc-300"
+                >Open</span
+              >
+            </div>
+
+            <div class="mt-4 space-y-2 text-sm text-zinc-300">
+              <p>
+                🕐 <span class="font-semibold text-white">1:00–4:00pm</span>
+              </p>
+              <p>
+                📍 <span class="font-semibold text-white">Alberta Court</span>
+              </p>
+              <p>
+                🥅 Loaners: <span class="font-semibold text-white">Yes</span>
+              </p>
+              <p>🚲 Bring: helmet, water, good vibes</p>
+            </div>
+
+            <div class="mt-6 flex gap-3">
+              <a
+                href="#contact"
+                class="inline-flex flex-1 items-center justify-center rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-zinc-950 hover:bg-zinc-200"
+              >
+                RSVP / Say hi
+              </a>
+              <a
+                href="#court"
+                class="inline-flex items-center justify-center rounded-xl border border-zinc-800 bg-zinc-900/50 px-4 py-2.5 text-sm font-semibold hover:bg-zinc-900"
+              >
+                Court info
+              </a>
+            </div>
+          </article>
+
+          <!-- Card -->
+          <article
+            class="rounded-2xl border border-zinc-800 bg-zinc-900/30 p-6"
+          >
+            <div class="flex items-center justify-between gap-4">
+              <h3 class="text-lg font-semibold">Weeknight Roll-in</h3>
+              <span
+                class="rounded-full border border-zinc-800 bg-zinc-950/40 px-3 py-1 text-xs text-zinc-300"
+                >Casual</span
+              >
+            </div>
+
+            <div class="mt-4 space-y-2 text-sm text-zinc-300">
+              <p>
+                🕗 <span class="font-semibold text-white">Wed 7:30–10:00pm</span
+                >
+              </p>
+              <p>
+                📍 <span class="font-semibold text-white">Alberta Court</span>
+              </p>
+              <p>💡 Lights: <span class="font-semibold text-white">On</span></p>
+              <p>🌧 Weather: check Discord/IG</p>
+            </div>
+
+            <div class="mt-6">
+              <a
+                href="#contact"
+                class="inline-flex w-full items-center justify-center rounded-xl border border-zinc-800 bg-zinc-900/50 px-4 py-2.5 text-sm font-semibold hover:bg-zinc-900"
+              >
+                Get updates
+              </a>
+            </div>
+          </article>
+
+          <!-- Card -->
+          <article
+            class="rounded-2xl border border-zinc-800 bg-zinc-900/30 p-6"
+          >
+            <div class="flex items-center justify-between gap-4">
+              <h3 class="text-lg font-semibold">Beginner Night</h3>
+              <span
+                class="rounded-full border border-emerald-900/60 bg-emerald-950/30 px-3 py-1 text-xs text-emerald-200"
+              >
+                New players
+              </span>
+            </div>
+
+            <div class="mt-4 space-y-2 text-sm text-zinc-300">
+              <p>
+                🕕 <span class="font-semibold text-white">First Tue 6:30pm</span
+                >
+              </p>
+              <p>
+                📍 <span class="font-semibold text-white">Alberta Court</span>
+              </p>
+              <p>
+                🧰 Loaners: <span class="font-semibold text-white">Usually</span
+                >
+              </p>
+              <p>🧠 Learn: turns, stops, ball control</p>
+            </div>
+
+            <div class="mt-6">
+              <a
+                href="#new"
+                class="inline-flex w-full items-center justify-center rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-zinc-950 hover:bg-zinc-200"
+              >
+                Beginner guide
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- What is Bike Polo -->
+    <section class="border-t border-zinc-900 bg-zinc-950">
+      <div class="mx-auto max-w-6xl px-4 py-14">
+        <div class="grid gap-10 lg:grid-cols-2 lg:items-center">
+          <div>
+            <h2 class="text-2xl font-bold">What is bike polo?</h2>
+            <p class="mt-3 text-zinc-300">
+              Hardcourt bike polo is 3v3 on bikes with mallets and a ball. It’s
+              competitive if you want it to be, but pickup is all about
+              learning, reps, and community.
+            </p>
+
+            <ul class="mt-6 space-y-3 text-sm text-zinc-300">
+              <li class="flex gap-3">
+                <span
+                  class="mt-0.5 grid h-7 w-7 place-items-center rounded-lg bg-zinc-900 ring-1 ring-zinc-800"
+                  >✅</span
+                >
+                No experience needed — we’ll help you get rolling.
+              </li>
+              <li class="flex gap-3">
+                <span
+                  class="mt-0.5 grid h-7 w-7 place-items-center rounded-lg bg-zinc-900 ring-1 ring-zinc-800"
+                  >✅</span
+                >
+                Helmet required. Gloves recommended. Good vibes mandatory.
+              </li>
+              <li class="flex gap-3">
+                <span
+                  class="mt-0.5 grid h-7 w-7 place-items-center rounded-lg bg-zinc-900 ring-1 ring-zinc-800"
+                  >✅</span
+                >
+                Loaner mallets/balls sometimes available — check Discord.
+              </li>
+            </ul>
+
+            <div class="mt-7 flex flex-wrap gap-3">
+              <a
+                href="#new"
+                class="inline-flex items-center justify-center rounded-xl bg-white px-5 py-3 text-sm font-semibold text-zinc-950 hover:bg-zinc-200"
+              >
+                Learn to play
+              </a>
+              <a
+                href="#contact"
+                class="inline-flex items-center justify-center rounded-xl border border-zinc-800 bg-zinc-900/50 px-5 py-3 text-sm font-semibold hover:bg-zinc-900"
+              >
+                Ask about loaners
+              </a>
+            </div>
+          </div>
+
+          <!-- Placeholder media -->
+          <div class="rounded-2xl border border-zinc-800 bg-zinc-900/30 p-6">
+            <div
+              class="aspect-[16/10] w-full overflow-hidden rounded-xl border border-zinc-800 bg-zinc-950/40"
+            >
+              <div class="grid h-full place-items-center text-sm text-zinc-500">
+                Replace with photo/video
+              </div>
+            </div>
+            <p class="mt-4 text-xs text-zinc-400">
+              Tip: Put a 10–15s hero clip here (ball hits, saves, goals). Looks
+              amazing on mobile.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Community Spotlight -->
+    <section class="border-t border-zinc-900 bg-zinc-950">
+      <div class="mx-auto max-w-6xl px-4 py-14">
+        <div
+          class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between"
+        >
+          <div>
+            <h2 class="text-2xl font-bold">Community spotlight</h2>
+            <p class="mt-1 text-zinc-400">Faces, vibes, and court life.</p>
+          </div>
+          <a
+            href="#"
+            class="text-sm font-semibold text-white/90 hover:text-white"
+            >Meet the crew →</a
+          >
+        </div>
+
+        <div class="mt-8 grid gap-4 md:grid-cols-3">
+          <figure class="rounded-2xl border border-zinc-800 bg-zinc-900/30 p-6">
+            <div class="flex items-center gap-4">
+              <div class="h-12 w-12 rounded-xl bg-zinc-800"></div>
+              <div>
+                <div class="font-semibold">Alex “Lefty”</div>
+                <div class="text-xs text-zinc-400">
+                  Playing 2 years • Defender
+                </div>
+              </div>
+            </div>
+            <blockquote class="mt-4 text-sm text-zinc-300">
+              “Best part of my week. Everyone’s down to teach.”
+            </blockquote>
+          </figure>
+
+          <figure class="rounded-2xl border border-zinc-800 bg-zinc-900/30 p-6">
+            <div class="flex items-center gap-4">
+              <div class="h-12 w-12 rounded-xl bg-zinc-800"></div>
+              <div>
+                <div class="font-semibold">Jamie “Soft Hands”</div>
+                <div class="text-xs text-zinc-400">
+                  Tournament regular • Striker
+                </div>
+              </div>
+            </div>
+            <blockquote class="mt-4 text-sm text-zinc-300">
+              “Showed up once, never left. Instant friends.”
+            </blockquote>
+          </figure>
+
+          <figure class="rounded-2xl border border-zinc-800 bg-zinc-900/30 p-6">
+            <div class="flex items-center gap-4">
+              <div class="h-12 w-12 rounded-xl bg-zinc-800"></div>
+              <div>
+                <div class="font-semibold">Riley “Wrench”</div>
+                <div class="text-xs text-zinc-400">
+                  Court volunteer • Mechanic
+                </div>
+              </div>
+            </div>
+            <blockquote class="mt-4 text-sm text-zinc-300">
+              “We keep it welcoming. Come learn, then pay it forward.”
+            </blockquote>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section id="gallery" class="border-t border-zinc-900 bg-zinc-950">
+      <div class="mx-auto max-w-6xl px-4 py-14">
+        <div
+          class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between"
+        >
+          <div>
+            <h2 class="text-2xl font-bold">Gallery</h2>
+            <p class="mt-1 text-zinc-400">
+              Pickup nights, tournaments, and the afters.
+            </p>
+          </div>
+          <a
+            href="#"
+            class="text-sm font-semibold text-white/90 hover:text-white"
+            >Follow on Instagram →</a
+          >
+        </div>
+
+        <div class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+          <!-- Replace these with real images -->
+          <div
+            class="aspect-square rounded-2xl bg-zinc-900/50 ring-1 ring-zinc-800"
+          >
+          </div>
+          <div
+            class="aspect-square rounded-2xl bg-zinc-900/50 ring-1 ring-zinc-800"
+          >
+          </div>
+          <div
+            class="aspect-square rounded-2xl bg-zinc-900/50 ring-1 ring-zinc-800"
+          >
+          </div>
+          <div
+            class="aspect-square rounded-2xl bg-zinc-900/50 ring-1 ring-zinc-800"
+          >
+          </div>
+          <div
+            class="aspect-square rounded-2xl bg-zinc-900/50 ring-1 ring-zinc-800"
+          >
+          </div>
+          <div
+            class="aspect-square rounded-2xl bg-zinc-900/50 ring-1 ring-zinc-800"
+          >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Court Info -->
+    <section id="court" class="border-t border-zinc-900 bg-zinc-950">
+      <div class="mx-auto max-w-6xl px-4 py-14">
+        <div class="grid gap-10 lg:grid-cols-2 lg:items-center">
+          <div>
+            <h2 class="text-2xl font-bold">Our home court</h2>
+            <p class="mt-3 text-zinc-300">
+              Alberta Court is our main spot. It’s lit at night and maintained
+              by volunteers.
+            </p>
+
+            <div class="mt-6 grid gap-4 sm:grid-cols-2">
+              <div
+                class="rounded-2xl border border-zinc-800 bg-zinc-900/30 p-5"
+              >
+                <div class="text-xs text-zinc-400">Location</div>
+                <div class="mt-1 font-semibold">Alberta Park</div>
+                <div class="mt-2 text-sm text-zinc-300">
+                  Easy street parking nearby.
+                </div>
+              </div>
+              <div
+                class="rounded-2xl border border-zinc-800 bg-zinc-900/30 p-5"
+              >
+                <div class="text-xs text-zinc-400">Lights</div>
+                <div class="mt-1 font-semibold">On after dusk</div>
+                <div class="mt-2 text-sm text-zinc-300">
+                  Weeknights are great.
+                </div>
+              </div>
+              <div
+                class="rounded-2xl border border-zinc-800 bg-zinc-900/30 p-5"
+              >
+                <div class="text-xs text-zinc-400">Court rules</div>
+                <div class="mt-1 font-semibold">Respect the space</div>
+                <div class="mt-2 text-sm text-zinc-300">
+                  Share time, keep it safe.
+                </div>
+              </div>
+              <div
+                class="rounded-2xl border border-zinc-800 bg-zinc-900/30 p-5"
+              >
+                <div class="text-xs text-zinc-400">Support</div>
+                <div class="mt-1 font-semibold">Donations help</div>
+                <div class="mt-2 text-sm text-zinc-300">
+                  Paint, nets, tools, balls.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="rounded-2xl border border-zinc-800 bg-zinc-900/30 p-6">
+            <div
+              class="aspect-[16/10] w-full overflow-hidden rounded-xl border border-zinc-800 bg-zinc-950/40"
+            >
+              <div class="grid h-full place-items-center text-sm text-zinc-500">
+                Replace with embedded map / court photo
+              </div>
+            </div>
+            <div class="mt-4 flex gap-3">
+              <a
+                href="#"
+                class="inline-flex flex-1 items-center justify-center rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-zinc-950 hover:bg-zinc-200"
+              >
+                Open in Maps
+              </a>
+              <a
+                href="#contact"
+                class="inline-flex flex-1 items-center justify-center rounded-xl border border-zinc-800 bg-zinc-900/50 px-4 py-2.5 text-sm font-semibold hover:bg-zinc-900"
+              >
+                Donate / Help
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- New Players -->
+    <section id="new" class="border-t border-zinc-900 bg-zinc-950">
+      <div class="mx-auto max-w-6xl px-4 py-14">
+        <div
+          class="rounded-3xl border border-zinc-800 bg-zinc-900/30 p-8 sm:p-10"
+        >
+          <div class="grid gap-10 lg:grid-cols-2 lg:items-center">
+            <div>
+              <h2 class="text-2xl font-bold">New players welcome</h2>
+              <p class="mt-3 text-zinc-300">
+                If you can ride a bike, you can learn polo. Come early, say
+                you’re new, and we’ll get you set up.
+              </p>
+
+              <div class="mt-6 grid gap-3 sm:grid-cols-2">
+                <div
+                  class="rounded-2xl border border-zinc-800 bg-zinc-950/30 p-5"
+                >
+                  <div class="text-sm font-semibold">Bring</div>
+                  <div class="mt-2 text-sm text-zinc-300">
+                    Helmet, water, gloves (optional)
+                  </div>
+                </div>
+                <div
+                  class="rounded-2xl border border-zinc-800 bg-zinc-950/30 p-5"
+                >
+                  <div class="text-sm font-semibold">Expect</div>
+                  <div class="mt-2 text-sm text-zinc-300">
+                    Quick tips, warmups, then games
+                  </div>
+                </div>
+                <div
+                  class="rounded-2xl border border-zinc-800 bg-zinc-950/30 p-5"
+                >
+                  <div class="text-sm font-semibold">Loaners</div>
+                  <div class="mt-2 text-sm text-zinc-300">
+                    Sometimes available—ask ahead
+                  </div>
+                </div>
+                <div
+                  class="rounded-2xl border border-zinc-800 bg-zinc-950/30 p-5"
+                >
+                  <div class="text-sm font-semibold">Safety</div>
+                  <div class="mt-2 text-sm text-zinc-300">
+                    Ride in control, respect calls
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-7 flex flex-wrap gap-3">
+                <a
+                  href="#contact"
+                  class="inline-flex items-center justify-center rounded-xl bg-white px-5 py-3 text-sm font-semibold text-zinc-950 hover:bg-zinc-200"
+                >
+                  Ask about loaners
+                </a>
+                <a
+                  href="#events"
+                  class="inline-flex items-center justify-center rounded-xl border border-zinc-800 bg-zinc-950/20 px-5 py-3 text-sm font-semibold hover:bg-zinc-900"
+                >
+                  See schedule
+                </a>
+              </div>
+            </div>
+
+            <div class="rounded-2xl border border-zinc-800 bg-zinc-950/30 p-6">
+              <h3 class="text-lg font-semibold">Beginner checklist</h3>
+              <ul class="mt-4 space-y-3 text-sm text-zinc-300">
+                <li class="flex gap-3">
+                  <span
+                    class="mt-0.5 grid h-6 w-6 place-items-center rounded-lg bg-zinc-900 ring-1 ring-zinc-800"
+                    >1</span
+                  >
+                  Arrive 10–15 minutes early.
+                </li>
+                <li class="flex gap-3">
+                  <span
+                    class="mt-0.5 grid h-6 w-6 place-items-center rounded-lg bg-zinc-900 ring-1 ring-zinc-800"
+                    >2</span
+                  >
+                  Tell someone you’re new.
+                </li>
+                <li class="flex gap-3">
+                  <span
+                    class="mt-0.5 grid h-6 w-6 place-items-center rounded-lg bg-zinc-900 ring-1 ring-zinc-800"
+                    >3</span
+                  >
+                  Practice stopping + turning tight.
+                </li>
+                <li class="flex gap-3">
+                  <span
+                    class="mt-0.5 grid h-6 w-6 place-items-center rounded-lg bg-zinc-900 ring-1 ring-zinc-800"
+                    >4</span
+                  >
+                  Have fun. You’ll improve fast.
+                </li>
+              </ul>
+              <a
+                href="#contact"
+                class="mt-6 inline-flex w-full items-center justify-center rounded-xl border border-zinc-800 bg-zinc-900/50 px-4 py-2.5 text-sm font-semibold hover:bg-zinc-900"
+              >
+                Get a reminder
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Events -->
+    <section id="events" class="border-t border-zinc-900 bg-zinc-950">
+      <div class="mx-auto max-w-6xl px-4 py-14">
+        <div
+          class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between"
+        >
+          <div>
+            <h2 class="text-2xl font-bold">Rides & events</h2>
+            <p class="mt-1 text-zinc-400">
+              Pickups, tournaments, travel, and court days.
+            </p>
+          </div>
+          <a
+            href="#"
+            class="text-sm font-semibold text-white/90 hover:text-white"
+            >Past tournaments →</a
+          >
+        </div>
+
+        <div class="mt-8 overflow-hidden rounded-2xl border border-zinc-800">
+          <div
+            class="grid grid-cols-12 bg-zinc-900/40 px-4 py-3 text-xs font-semibold text-zinc-300"
+          >
+            <div class="col-span-3 sm:col-span-2">Date</div>
+            <div class="col-span-6 sm:col-span-6">Event</div>
+            <div class="col-span-3 sm:col-span-4">Location</div>
+          </div>
+
+          <!-- Row -->
+          <div
+            class="grid grid-cols-12 items-center gap-2 border-t border-zinc-800 px-4 py-4 text-sm"
+          >
+            <div class="col-span-3 text-zinc-300 sm:col-span-2">Feb 15</div>
+            <div class="col-span-6 sm:col-span-6">
+              <div class="font-semibold">Saturday Pickup</div>
+              <div class="text-xs text-zinc-400">
+                All levels • loaners maybe
+              </div>
+            </div>
+            <div class="col-span-3 text-zinc-300 sm:col-span-4">
+              Alberta Court
+            </div>
+          </div>
+
+          <div
+            class="grid grid-cols-12 items-center gap-2 border-t border-zinc-800 px-4 py-4 text-sm"
+          >
+            <div class="col-span-3 text-zinc-300 sm:col-span-2">Mar 02</div>
+            <div class="col-span-6 sm:col-span-6">
+              <div class="font-semibold">Court Work Day</div>
+              <div class="text-xs text-zinc-400">Paint • nets • cleanup</div>
+            </div>
+            <div class="col-span-3 text-zinc-300 sm:col-span-4">
+              Alberta Court
+            </div>
+          </div>
+
+          <div
+            class="grid grid-cols-12 items-center gap-2 border-t border-zinc-800 px-4 py-4 text-sm"
+          >
+            <div class="col-span-3 text-zinc-300 sm:col-span-2">Apr 19</div>
+            <div class="col-span-6 sm:col-span-6">
+              <div class="font-semibold">Spring Open (Tourney)</div>
+              <div class="text-xs text-zinc-400">Registration opens soon</div>
+            </div>
+            <div class="col-span-3 text-zinc-300 sm:col-span-4">TBD</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sponsors -->
+    <section id="sponsors" class="border-t border-zinc-900 bg-zinc-950">
+      <div class="mx-auto max-w-6xl px-4 py-14">
+        <div
+          class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between"
+        >
+          <div>
+            <h2 class="text-2xl font-bold">Sponsors</h2>
+            <p class="mt-1 text-zinc-400">They help keep the court rolling.</p>
+          </div>
+          <a
+            href="#contact"
+            class="text-sm font-semibold text-white/90 hover:text-white"
+            >Become a sponsor →</a
+          >
+        </div>
+
+        <div class="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+          <div
+            class="grid h-20 place-items-center rounded-2xl border border-zinc-800 bg-zinc-900/30 text-sm text-zinc-400"
+          >
+            Logo
+          </div>
+          <div
+            class="grid h-20 place-items-center rounded-2xl border border-zinc-800 bg-zinc-900/30 text-sm text-zinc-400"
+          >
+            Logo
+          </div>
+          <div
+            class="grid h-20 place-items-center rounded-2xl border border-zinc-800 bg-zinc-900/30 text-sm text-zinc-400"
+          >
+            Logo
+          </div>
+          <div
+            class="grid h-20 place-items-center rounded-2xl border border-zinc-800 bg-zinc-900/30 text-sm text-zinc-400"
+          >
+            Logo
+          </div>
+          <div
+            class="grid h-20 place-items-center rounded-2xl border border-zinc-800 bg-zinc-900/30 text-sm text-zinc-400"
+          >
+            Logo
+          </div>
+          <div
+            class="grid h-20 place-items-center rounded-2xl border border-zinc-800 bg-zinc-900/30 text-sm text-zinc-400"
+          >
+            Logo
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact / Join -->
+    <section id="contact" class="border-t border-zinc-900 bg-zinc-950">
+      <div class="mx-auto max-w-6xl px-4 py-14">
+        <div class="grid gap-8 lg:grid-cols-2">
+          <div class="rounded-3xl border border-zinc-800 bg-zinc-900/30 p-8">
+            <h2 class="text-2xl font-bold">Play with us</h2>
+            <p class="mt-2 text-zinc-300">
+              Best way to stay updated is Discord + Instagram. Want a reminder
+              or have questions? Send a note.
+            </p>
+
+            <div class="mt-6 flex flex-wrap gap-3">
+              <a
+                href="#"
+                class="inline-flex items-center justify-center rounded-xl bg-white px-5 py-3 text-sm font-semibold text-zinc-950 hover:bg-zinc-200"
+              >
+                Join Discord
+              </a>
+              <a
+                href="#"
+                class="inline-flex items-center justify-center rounded-xl border border-zinc-800 bg-zinc-900/50 px-5 py-3 text-sm font-semibold hover:bg-zinc-900"
+              >
+                Follow Instagram
+              </a>
+            </div>
+
+            <div class="mt-8 text-sm text-zinc-300">
+              <p class="font-semibold">Other links</p>
+              <div class="mt-2 flex flex-wrap gap-x-6 gap-y-2 text-zinc-400">
+                <a class="hover:text-white" href="#">Waiver</a>
+                <a class="hover:text-white" href="#">Merch</a>
+                <a class="hover:text-white" href="#">Donate</a>
+              </div>
+            </div>
+          </div>
+
+          <form class="rounded-3xl border border-zinc-800 bg-zinc-900/30 p-8">
+            <h3 class="text-lg font-semibold">Send a message</h3>
+            <p class="mt-1 text-sm text-zinc-400">
+              Replace action with your form handler.
+            </p>
+
+            <div class="mt-6 grid gap-4">
+              <label class="grid gap-2 text-sm">
+                <span class="text-zinc-300">Name</span>
+                <input
+                  class="h-11 rounded-xl border border-zinc-800 bg-zinc-950/40 px-4 text-white placeholder:text-zinc-600 focus:border-white/40 focus:outline-none"
+                  placeholder="Your name"
+                  type="text"
+                />
+              </label>
+
+              <label class="grid gap-2 text-sm">
+                <span class="text-zinc-300">Email</span>
+                <input
+                  class="h-11 rounded-xl border border-zinc-800 bg-zinc-950/40 px-4 text-white placeholder:text-zinc-600 focus:border-white/40 focus:outline-none"
+                  placeholder="you@example.com"
+                  type="email"
+                />
+              </label>
+
+              <label class="grid gap-2 text-sm">
+                <span class="text-zinc-300">Message</span>
+                <textarea
+                  class="min-h-[120px] rounded-xl border border-zinc-800 bg-zinc-950/40 p-4 text-white placeholder:text-zinc-600 focus:border-white/40 focus:outline-none"
+                  placeholder="Questions, loaner gear, sponsorship, etc."
+                ></textarea>
+              </label>
+
+              <button
+                type="button"
+                class="inline-flex h-11 items-center justify-center rounded-xl bg-white px-5 text-sm font-semibold text-zinc-950 hover:bg-zinc-200"
+              >
+                Send
+              </button>
+
+              <p class="text-xs text-zinc-500">
+                If you use Astro, you can wire this to Netlify Forms, Formspree,
+                or a serverless endpoint.
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-zinc-900 bg-zinc-950">
+      <div class="mx-auto max-w-6xl px-4 py-10">
+        <div
+          class="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between"
+        >
+          <div class="flex items-center gap-3">
+            <div
+              class="grid h-9 w-9 place-items-center rounded-xl bg-zinc-800 font-black"
+            >
+              BP
+            </div>
+            <div class="text-sm">
+              <div class="font-semibold">Portland Bike Polo</div>
+              <div class="text-zinc-500">See you on court.</div>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-zinc-400">
+            <a class="hover:text-white" href="#pickup">Pickup</a>
+            <a class="hover:text-white" href="#new">New Players</a>
+            <a class="hover:text-white" href="#events">Events</a>
+            <a class="hover:text-white" href="#sponsors">Sponsors</a>
+            <a class="hover:text-white" href="#contact">Contact</a>
+          </div>
+        </div>
+
+        <div
+          class="mt-8 flex flex-col gap-2 text-xs text-zinc-500 sm:flex-row sm:items-center sm:justify-between"
+        >
+          <p>
+            © <span id="year">2026</span> Portland Bike Polo. All rights reserved.
+          </p>
+          <p>
+            <a class="hover:text-white" href="#">Waiver</a>
+            <span class="mx-2">•</span>
+            <a class="hover:text-white" href="#">Privacy</a>
+          </p>
+        </div>
+      </div>
+
+      <script>
+        // tiny convenience
+        document.getElementById("year").textContent = new Date().getFullYear();
+      </script>
+    </footer>
+  </body>
+</html>

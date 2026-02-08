@@ -18,11 +18,28 @@ import BaseLayout from "@layouts/BaseLayout.astro";
   ↓
   Footer
   -->
-  <section class="min-h-screen">
-    <p>
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Natus impedit
-      fugit molestiae perspiciatis corporis consequatur aliquid officiis amet
-      voluptatum labore.
-    </p>
+
+  <section class="mx-auto max-w-6xl px-4 py-10">
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-12">
+      <article class="rounded-2xl border p-6 lg:col-span-7">
+        Big feature
+      </article>
+      <article class="rounded-2xl border p-6 lg:col-span-5">Side</article>
+      <article class="rounded-2xl border p-6 lg:col-span-4">Card</article>
+      <article class="rounded-2xl border p-6 lg:col-span-4">Card</article>
+      <article class="rounded-2xl border p-6 lg:col-span-4">Card</article>
+    </div>
   </section>
+
+  <div class="@container">
+    <div
+      class="bg-card grid gap-4 rounded-2xl border p-4 @md:grid-cols-[250px_1fr]"
+    >
+      <div class="bg-secondary-accent aspect-video rounded-xl"></div>
+      <div>
+        <h3 class="font-semibold">Card title</h3>
+        <p class="text-card-foreground text-sm">Card content…</p>
+      </div>
+    </div>
+  </div>
 </BaseLayout>
