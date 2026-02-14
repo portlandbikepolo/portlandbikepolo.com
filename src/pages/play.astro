@@ -1,0 +1,13 @@
+---
+import { render, getEntry } from "astro:content";
+
+const play = await getEntry("keystatic", "play");
+
+if (!play) {
+  throw new Error("can't find play page");
+}
+
+const { Content } = await render(play);
+---
+
+<Content />
