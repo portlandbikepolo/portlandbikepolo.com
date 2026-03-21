@@ -16,7 +16,7 @@ const gallery = await reader.singletons.gallery.read();
 // Eagerly import all polo images so Vite processes them
 const poloImages = import.meta.glob<{ default: ImageMetadata }>(
   "../assets/images/polo/*.{webp,jpg,jpeg,png}",
-  { eager: true }
+  { eager: true },
 );
 
 // Resolve each gallery entry to an optimized URL
@@ -26,9 +26,13 @@ const photos = (
       const key = `../assets/images/polo/${img.image}`;
       const mod = poloImages[key];
       if (!mod) return null;
-      const optimized = await getImage({ src: mod.default, width: 1200, format: "webp" });
+      const optimized = await getImage({
+        src: mod.default,
+        width: 1200,
+        format: "webp",
+      });
       return { src: optimized.src, alt: img.alt };
-    })
+    }),
   )
 ).filter((p): p is { src: string; alt: string } => p !== null);
 ---
@@ -37,6 +41,6 @@ const photos = (
   <HeroSection />
   <InfoCards />
   <PhotoCarousel photos={photos} client:visible />
-  <InstagramFeed />
+
   <SupportedVendors />
 </BaseLayout>

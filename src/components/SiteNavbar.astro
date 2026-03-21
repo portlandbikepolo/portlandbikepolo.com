@@ -1,7 +1,4 @@
 ---
-import { Image } from "astro:assets";
-import logo from "@assets/images/logo_light_outline.svg";
-
 const navLinks = [
   { href: "/about", label: "About" },
   { href: "/play", label: "Play" },
@@ -18,10 +15,9 @@ const currentPath = Astro.url.pathname;
   >
     <a
       href="/"
-      aria-label="Portland Bike Polo — Home"
-      class="flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded"
+      class="text-mist font-black text-sm uppercase tracking-widest hover:text-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded"
     >
-      <Image src={logo} alt="" width={120} height={40} />
+      Portland Bike Polo
     </a>
 
     <!-- Desktop nav -->

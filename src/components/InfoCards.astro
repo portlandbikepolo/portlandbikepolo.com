@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 
 // Get next upcoming tournament (earliest startDate >= today at build time)
@@ -45,7 +46,19 @@ function formatDateRange(start: Date, end: Date): string {
     </article>
 
     <!-- Next Tournament -->
-    <article class="bg-surface border-t-4 border-teal p-6 flex flex-col gap-3 rounded-sm">
+    <article class="bg-surface border-t-4 border-teal flex flex-col rounded-sm overflow-hidden">
+      {nextTournament?.data.cover && (
+        <div class="aspect-video overflow-hidden">
+          <Image
+            src={nextTournament.data.cover}
+            alt={nextTournament.data.title}
+            width={600}
+            height={338}
+            class="w-full h-full object-cover"
+          />
+        </div>
+      )}
+      <div class="p-6 flex flex-col gap-3 flex-1">
       <h2 class="text-teal text-xs font-bold uppercase tracking-widest">Next Tournament</h2>
       {nextTournament ? (
         <>
@@ -68,6 +81,7 @@ function formatDateRange(start: Date, end: Date): string {
       ) : (
         <p class="text-fog text-sm">Stay tuned — more tournaments coming soon.</p>
       )}
+      </div>
     </article>
 
     <!-- What Is Bike Polo -->
