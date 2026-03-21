@@ -20,7 +20,7 @@ const showControls = photos.length > 1;
 ---
 
 <section
-  class="relative flex items-center justify-center min-h-svh md:min-h-[80vh]"
+  class="relative flex min-h-svh md:min-h-[80vh]"
   style={`background-image: url('${initialBg}'); background-size: cover; background-position: center;`}
   data-photos={JSON.stringify(photos)}
   aria-label="Hero"
@@ -30,26 +30,31 @@ const showControls = photos.length > 1;
 
   <!-- Content -->
   <div
-    class="relative z-10 max-w-6xl mx-auto px-4 py-16 flex flex-col gap-4 items-start"
+    class="relative z-10 w-full self-stretch max-w-6xl mx-auto px-4 py-12 md:py-16 flex flex-col justify-between"
   >
-    <div class="border-l-[5px] border-accent pl-5 flex flex-col gap-4">
-      <p class="text-accent text-xs font-bold tracking-[0.3em] uppercase">
-        // PORTLAND, OREGON · EST. 2007
-      </p>
+    <!-- Top anchor: tagline -->
+    <p class="text-accent text-xs font-bold tracking-[0.3em] uppercase">
+      // PORTLAND, OREGON · EST. 2007
+    </p>
 
+    <!-- Middle anchor: title -->
+    <div class="border-l-[5px] border-accent pl-5">
       <h1
         class="text-mist font-bold uppercase leading-none"
         style="font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 0.95;"
       >
         Hardcourt<br />Bike Polo
       </h1>
+    </div>
 
+    <!-- Bottom anchor: description + buttons -->
+    <div class="flex flex-col gap-4">
       <p class="text-fog text-base max-w-md" style="line-height: 1.8;">
         We play every week at Alberta Park. All skill levels welcome — just bring
         a bike and a helmet.
       </p>
 
-      <div class="flex flex-wrap gap-3 mt-2">
+      <div class="flex flex-wrap gap-3">
         <a
           href="/play"
           class="btn-primary bg-accent text-bg px-6 py-3 text-sm font-bold uppercase tracking-widest
