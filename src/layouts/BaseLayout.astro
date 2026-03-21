@@ -1,6 +1,7 @@
 ---
 import SiteNavbar from "@components/SiteNavbar.astro";
 import SiteFooter from "@components/SiteFooter.astro";
+import { Font } from "astro:assets";
 import "@styles/global.css";
 
 interface Props {
@@ -24,11 +25,12 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
     <title>{title}</title>
+    <Font cssVariable="--font-mono" preload />
   </head>
   <body class="bg-bg text-mist">
     <a
       href="#main-content"
-      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-accent focus:text-bg focus:px-4 focus:py-2 focus:rounded focus:font-bold"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-accent focus:text-bg focus:px-4 focus:py-2 focus:font-bold"
     >
       Skip to main content
     </a>
