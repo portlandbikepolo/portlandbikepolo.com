@@ -1,0 +1,45 @@
+---
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  tournament: CollectionEntry<"tournaments">;
+}
+
+const { tournament } = Astro.props;
+const { title, cover, startDate, endDate, venue } = tournament.data;
+
+function formatDateRange(start: Date, end: Date): string {
+  const opts: Intl.DateTimeFormatOptions = { month: "short", day: "numeric" };
+  const startStr = start.toLocaleDateString("en-US", opts);
+  const endStr = end.toLocaleDateString("en-US", { day: "numeric" });
+  const year = end.getFullYear();
+  return `${startStr}–${endStr}, ${year}`;
+}
+---
+
+<article class="bg-surface rounded-sm overflow-hidden group">
+  <a
+    href={`/tournaments/${tournament.id}`}
+    aria-label={title}
+    class="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+  >
+    <div class="aspect-video overflow-hidden">
+      <Image
+        src={cover}
+        alt={title}
+        width={600}
+        height={338}
+        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+        loading="lazy"
+      />
+    </div>
+    <div class="p-5 flex flex-col gap-2">
+      <p class="text-accent text-xs font-bold uppercase tracking-widest">
+        {formatDateRange(startDate, endDate)}
+      </p>
+      <h3 class="text-mist font-bold text-lg leading-tight">{title}</h3>
+      <p class="text-fog text-sm">{venue}</p>
+    </div>
+  </a>
+</article>

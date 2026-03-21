@@ -1,0 +1,27 @@
+---
+import { getCollection } from "astro:content";
+import TournamentCard from "@components/TournamentCard.astro";
+
+const tournaments = await getCollection("tournaments");
+
+// Sort descending: newest startDate first (archive view)
+const sorted = tournaments.sort(
+  (a, b) =>
+    new Date(b.data.startDate).getTime() - new Date(a.data.startDate).getTime()
+);
+---
+
+{sorted.length > 0 ? (
+  <ul
+    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 list-none"
+    role="list"
+  >
+    {sorted.map((t) => (
+      <li>
+        <TournamentCard tournament={t} />
+      </li>
+    ))}
+  </ul>
+) : (
+  <p class="text-fog">No tournaments yet — check back soon.</p>
+)}
