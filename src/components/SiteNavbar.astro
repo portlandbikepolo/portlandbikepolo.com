@@ -8,14 +8,14 @@ const navLinks = [
 const currentPath = Astro.url.pathname;
 ---
 
-<header class="sticky top-0 z-40 bg-surface border-b border-surface">
+<header class="sticky top-0 z-40 bg-bg border-b-2 border-mist">
   <nav
     aria-label="Main navigation"
     class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between"
   >
     <a
       href="/"
-      class="text-mist font-black text-sm uppercase tracking-widest hover:text-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded"
+      class="text-mist font-bold text-sm uppercase tracking-[0.2em] hover:text-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
     >
       Portland Bike Polo
     </a>
@@ -28,8 +28,7 @@ const currentPath = Astro.url.pathname;
             <a
               href={href}
               aria-current={currentPath.startsWith(href) ? "page" : undefined}
-              class="text-fog hover:text-mist text-sm tracking-wide uppercase transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded
-                     aria-[current=page]:text-accent aria-[current=page]:border-b-2 aria-[current=page]:border-accent pb-0.5"
+              class="nav-link text-fog text-sm tracking-wide uppercase focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
             >
               {label}
             </a>
@@ -44,33 +43,14 @@ const currentPath = Astro.url.pathname;
       aria-expanded="false"
       aria-controls="mobile-menu"
       aria-label="Open navigation menu"
-      class="md:hidden p-2 text-fog hover:text-mist focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded"
+      class="md:hidden p-2 text-fog hover:text-mist focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
     >
-      <svg
-        id="icon-open"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        aria-hidden="true"
-      >
+      <svg id="icon-open" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
         <line x1="3" y1="6" x2="21" y2="6" />
         <line x1="3" y1="12" x2="21" y2="12" />
         <line x1="3" y1="18" x2="21" y2="18" />
       </svg>
-      <svg
-        id="icon-close"
-        class="hidden"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        aria-hidden="true"
-      >
+      <svg id="icon-close" class="hidden" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
         <line x1="18" y1="6" x2="6" y2="18" />
         <line x1="6" y1="6" x2="18" y2="18" />
       </svg>
@@ -80,22 +60,53 @@ const currentPath = Astro.url.pathname;
   <!-- Mobile menu -->
   <div
     id="mobile-menu"
-    class="hidden md:hidden fixed inset-0 top-16 bg-bg z-30 flex flex-col p-8 gap-6"
+    class="hidden md:hidden fixed inset-0 top-16 bg-bg z-30 flex flex-col p-8 gap-0"
   >
     {
       navLinks.map(({ href, label }) => (
         <a
           href={href}
           aria-current={currentPath.startsWith(href) ? "page" : undefined}
-          class="text-mist text-2xl font-bold tracking-wide uppercase focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded
-                 aria-[current=page]:text-accent"
+          class="text-mist text-2xl font-bold tracking-wide uppercase border-b border-[#1a1a1a] py-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent aria-[current=page]:text-accent"
         >
           {label}
         </a>
       ))
     }
+    <p class="text-fog text-xs uppercase tracking-[0.15em] mt-auto">
+      Alberta Park · Portland, OR
+    </p>
   </div>
 </header>
+
+<style>
+  .nav-link {
+    position: relative;
+    padding-bottom: 3px;
+    transition: color 0.2s ease;
+    color: var(--color-fog);
+  }
+  .nav-link:hover {
+    color: var(--color-mist);
+  }
+  .nav-link[aria-current="page"] {
+    color: var(--color-accent);
+  }
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--color-accent);
+    transition: width 0.25s ease;
+  }
+  .nav-link:hover::after,
+  .nav-link[aria-current="page"]::after {
+    width: 100%;
+  }
+</style>
 
 <script>
   const btn = document.getElementById("menu-btn")!;
@@ -155,7 +166,6 @@ const currentPath = Astro.url.pathname;
           first?.focus();
         }
       }
-      // Remove handler when menu closes
       if (menu.classList.contains("hidden")) {
         el.removeEventListener("keydown", handler);
       }
