@@ -100,43 +100,47 @@ const showControls = photos.length > 1;
 </section>
 
 <script>
-  const section = document.querySelector<HTMLElement>('[data-photos]');
-  if (!section) throw new Error('no section');
+  function initHero() {
+    const section = document.querySelector<HTMLElement>('[data-photos]');
+    if (!section) return;
 
-  const photos: { src: string }[] = JSON.parse(section.dataset.photos ?? '[]');
-  if (photos.length < 2) throw new Error('not enough photos');
+    const photos: { src: string }[] = JSON.parse(section.dataset.photos ?? '[]');
+    if (photos.length < 2) return;
 
-  const dots = Array.from(section.querySelectorAll<HTMLElement>('[data-dot]'));
-  let i = 0;
-  let timer: ReturnType<typeof setInterval>;
+    const dots = Array.from(section.querySelectorAll<HTMLElement>('[data-dot]'));
+    let i = 0;
+    let timer: ReturnType<typeof setInterval>;
 
-  function goTo(index: number) {
-    i = index;
-    section!.style.backgroundImage = `url('${photos[i].src}')`;
-    dots.forEach((d, n) => d.setAttribute('aria-current', n === i ? 'true' : 'false'));
-  }
-
-  function resetTimer() {
-    clearInterval(timer);
-    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      timer = setInterval(() => goTo((i + 1) % photos.length), 4000);
+    function goTo(index: number) {
+      i = index;
+      section!.style.backgroundImage = `url('${photos[i].src}')`;
+      dots.forEach((d, n) => d.setAttribute('aria-current', n === i ? 'true' : 'false'));
     }
+
+    function resetTimer() {
+      clearInterval(timer);
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        timer = setInterval(() => goTo((i + 1) % photos.length), 4000);
+      }
+    }
+
+    section.querySelector('[data-prev]')?.addEventListener('click', () => {
+      goTo((i - 1 + photos.length) % photos.length);
+      resetTimer();
+    });
+    section.querySelector('[data-next]')?.addEventListener('click', () => {
+      goTo((i + 1) % photos.length);
+      resetTimer();
+    });
+    dots.forEach((d, n) => d.addEventListener('click', () => {
+      goTo(n);
+      resetTimer();
+    }));
+
+    resetTimer();
   }
 
-  section.querySelector('[data-prev]')?.addEventListener('click', () => {
-    goTo((i - 1 + photos.length) % photos.length);
-    resetTimer();
-  });
-  section.querySelector('[data-next]')?.addEventListener('click', () => {
-    goTo((i + 1) % photos.length);
-    resetTimer();
-  });
-  dots.forEach((d, n) => d.addEventListener('click', () => {
-    goTo(n);
-    resetTimer();
-  }));
-
-  resetTimer();
+  initHero();
 </script>
 
 <style>
