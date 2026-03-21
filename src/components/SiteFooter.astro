@@ -1,1 +1,55 @@
-<footer></footer>
+---
+const year = new Date().getFullYear();
+
+const navLinks = [
+  { href: "/about", label: "About" },
+  { href: "/play", label: "Play" },
+  { href: "/tournaments", label: "Tournaments" },
+];
+---
+
+<footer class="bg-surface border-t border-bg mt-16">
+  <div class="max-w-6xl mx-auto px-4 py-12 flex flex-col gap-8">
+
+    <!-- Nav links -->
+    <nav aria-label="Footer navigation">
+      <ul class="flex flex-wrap gap-6 list-none" role="list">
+        {navLinks.map(({ href, label }) => (
+          <li>
+            <a
+              href={href}
+              class="text-fog hover:text-mist text-sm uppercase tracking-wide transition-colors
+                     focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded"
+            >
+              {label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <!-- Instagram -->
+    <a
+      href="https://instagram.com/portlandbikepolo"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="text-teal hover:text-mist text-sm transition-colors w-fit
+             focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded"
+    >
+      Follow @portlandbikepolo on Instagram ↗
+    </a>
+
+    <!-- Non-profit info -->
+    <div class="text-fog text-xs leading-relaxed max-w-2xl flex flex-col gap-1">
+      <p>
+        Portland Bike Polo is a non-profit 501(c)(3) organization focused on
+        building a competitive, diverse, and inclusive bike polo community in
+        the Pacific Northwest.
+      </p>
+      <p>Federal Tax ID: #83-3435866</p>
+    </div>
+
+    <!-- Copyright -->
+    <p class="text-fog text-xs">© {year} Portland Bike Polo</p>
+  </div>
+</footer>
