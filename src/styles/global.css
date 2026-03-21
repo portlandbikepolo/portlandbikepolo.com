@@ -1,0 +1,42 @@
+/* src/styles/global.css */
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@plugin "@tailwindcss/forms";
+
+@theme {
+  --color-bg: #1e2a30;
+  --color-surface: #253540;
+  --color-mist: #e8e4d8;
+  --color-fog: #9ab5c2;
+  --color-accent: #d4842a;
+  --color-teal: #5a9eae;
+}
+
+html {
+  background-color: var(--color-bg);
+  color: var(--color-mist);
+}
+
+/* Visually hidden but focusable — for skip link */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.sr-only:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: 0.5rem 1rem;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
