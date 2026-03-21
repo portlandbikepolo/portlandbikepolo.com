@@ -1,9 +1,12 @@
 ---
-import { getImage, Image } from "astro:assets";
+import { getImage } from "astro:assets";
 import heroBg from "@assets/images/polo/polo_01.webp";
-import logo from "@assets/images/logo_light_outline.svg";
 
-const optimizedBg = await getImage({ src: heroBg, format: "webp", width: 1920 });
+const optimizedBg = await getImage({
+  src: heroBg,
+  format: "webp",
+  width: 1920,
+});
 ---
 
 <section
@@ -12,45 +15,71 @@ const optimizedBg = await getImage({ src: heroBg, format: "webp", width: 1920 })
   aria-label="Hero"
 >
   <!-- Dark overlay -->
-  <div class="absolute inset-0 bg-black/60" aria-hidden="true"></div>
+  <div class="absolute inset-0 bg-black/75" aria-hidden="true"></div>
 
   <!-- Content -->
-  <div class="relative z-10 max-w-6xl mx-auto px-4 py-16 flex flex-col gap-4 items-center text-center">
-    <Image src={logo} alt="Portland Bike Polo" width={200} height={200} class="w-48 h-48 mx-auto opacity-80" />
-    <p class="text-accent text-xs font-bold tracking-[0.2em] uppercase">
-      Portland, Oregon · Est. 2007
-    </p>
+  <div
+    class="relative z-10 max-w-6xl mx-auto px-4 py-16 flex flex-col gap-4 items-start"
+  >
+    <div class="border-l-[5px] border-accent pl-5 flex flex-col gap-4">
+      <p class="text-accent text-xs font-bold tracking-[0.3em] uppercase">
+        // PORTLAND, OREGON · EST. 2007
+      </p>
 
-    <h1
-      class="text-mist font-black leading-none tracking-tight"
-      style="font-size: clamp(2rem, 5vw, 4rem);"
-    >
-      Hardcourt Bike Polo<br />
-      <span class="text-teal">In the Rain</span>
-    </h1>
-
-    <p class="text-fog text-lg max-w-md leading-relaxed">
-      We play every week at Alberta Park. All skill levels welcome — just bring
-      a bike and a helmet.
-    </p>
-
-    <div class="flex flex-wrap gap-3 mt-2">
-      <a
-        href="/play"
-        class="bg-accent text-bg px-6 py-3 text-sm font-bold uppercase tracking-widest rounded
-               hover:opacity-90 transition-opacity
-               focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-mist"
+      <h1
+        class="text-mist font-bold uppercase leading-none"
+        style="font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 0.95;"
       >
-        Come Play
-      </a>
-      <a
-        href="/tournaments"
-        class="border border-teal text-teal px-6 py-3 text-sm font-bold uppercase tracking-widest rounded
-               hover:bg-teal/10 transition-colors
-               focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal"
-      >
-        Tournaments →
-      </a>
+        Hardcourt<br />Bike Polo
+      </h1>
+
+      <p class="text-fog text-base max-w-md" style="line-height: 1.8;">
+        We play every week at Alberta Park. All skill levels welcome — just bring
+        a bike and a helmet.
+      </p>
+
+      <div class="flex flex-wrap gap-3 mt-2">
+        <a
+          href="/play"
+          class="btn-primary bg-accent text-bg px-6 py-3 text-sm font-bold uppercase tracking-widest
+                 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-mist"
+        >
+          Come Play →
+        </a>
+        <a
+          href="/tournaments"
+          class="btn-ghost border border-[#333] text-fog px-6 py-3 text-sm font-bold uppercase tracking-widest relative overflow-hidden
+                 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-mist"
+        >
+          <span class="relative z-10">Tournaments</span>
+        </a>
+      </div>
     </div>
   </div>
 </section>
+
+<style>
+  .btn-primary {
+    transition: background-color 0.2s ease;
+  }
+  .btn-primary:hover {
+    background-color: #e89a3a;
+  }
+
+  .btn-ghost::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--color-mist);
+    transform: translateX(-101%);
+    transition: transform 0.25s ease;
+    z-index: 0;
+  }
+  .btn-ghost:hover::before {
+    transform: translateX(0);
+  }
+  .btn-ghost:hover {
+    color: var(--color-bg);
+    border-color: var(--color-mist);
+  }
+</style>
