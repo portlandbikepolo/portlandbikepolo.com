@@ -85,12 +85,12 @@ const showControls = photos.length > 1;
       >›</button>
 
       <!-- Dot indicators -->
-      <div class="hero-dots" aria-label="Photo indicators">
+      <div class="hero-dots" role="group" aria-label="Photo indicators">
         {photos.map((_, n) => (
           <button
             data-dot
             aria-label={`Go to photo ${n + 1}`}
-            aria-current={n === 0 ? "true" : "false"}
+            {...(n === 0 ? { 'aria-current': 'true' } : {})}
             class="hero-dot"
           />
         ))}
@@ -114,7 +114,13 @@ const showControls = photos.length > 1;
     function goTo(index: number) {
       i = index;
       section!.style.backgroundImage = `url('${photos[i].src}')`;
-      dots.forEach((d, n) => d.setAttribute('aria-current', n === i ? 'true' : 'false'));
+      dots.forEach((d, n) => {
+        if (n === i) {
+          d.setAttribute('aria-current', 'true');
+        } else {
+          d.removeAttribute('aria-current');
+        }
+      });
     }
 
     function resetTimer() {
