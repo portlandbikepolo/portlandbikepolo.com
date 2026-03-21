@@ -78,7 +78,8 @@ Sections top to bottom:
 3. **Three equal info cards** — Come Play / Next Tournament / What Is Bike Polo? (3-column on `md+`, stacked on mobile)
 4. **Photo carousel** — Embla with autoplay, all 6 polo action photos
 5. **Instagram feed** — official Instagram embed with always-visible fallback link
-6. **Footer**
+6. **Supported vendors** — logo strip for Enforcer Bikes and Hecklers Alley
+7. **Footer**
 
 ---
 
@@ -167,6 +168,19 @@ Three `<article>` cards in a CSS grid: `grid-cols-1 md:grid-cols-3`. Each card h
 
 *(Alt text is descriptive placeholder — update with accurate descriptions once photos are reviewed.)*
 
+### `SupportedVendors.astro`
+
+A logo strip section placed between the Instagram feed and the footer on the homepage.
+
+- `<section aria-label="Vendors we support">`
+- Section heading (visible): "Vendors We Support"
+- Two linked logo items:
+  - Enforcer Bikes — `src/assets/images/brands/enforcer.svg`, links to `https://www.enforcerbikes.com/`, `aria-label="Enforcer Bikes"`
+  - Hecklers Alley — `src/assets/images/brands/hecklers_alley.webp`, links to `https://hecklersalley.com/`, `aria-label="Hecklers Alley"`
+- Logos open in a new tab (`target="_blank" rel="noopener noreferrer"`)
+- Logos displayed at a consistent height (e.g. `h-12`), grayscale by default, full color on hover — keeps the section subtle without burying the brands
+- Layout: centered flex row, wraps on mobile
+
 ### `InstagramFeed.astro`
 
 - `<section aria-label="Portland Bike Polo on Instagram">`
@@ -199,7 +213,7 @@ Used on `/tournaments/index.astro`:
 
 ### `/` — Homepage
 
-Composition of: `HeroSection`, `InfoCards`, `PhotoCarousel`, `InstagramFeed` inside `BaseLayout`.
+Composition of: `HeroSection`, `InfoCards`, `PhotoCarousel`, `InstagramFeed`, `SupportedVendors` inside `BaseLayout`.
 
 ### `/tournaments` — Tournament Index
 
