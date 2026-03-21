@@ -16,10 +16,10 @@ const nextTournament =
     )[0] ?? null;
 
 function formatDateRange(start: Date, end: Date): string {
-  const opts: Intl.DateTimeFormatOptions = { month: "short", day: "numeric" };
+  const opts: Intl.DateTimeFormatOptions = { month: "short", day: "numeric", timeZone: "UTC" };
   const startStr = start.toLocaleDateString("en-US", opts);
-  const endStr = end.toLocaleDateString("en-US", { day: "numeric" });
-  const year = end.getFullYear();
+  const endStr = end.toLocaleDateString("en-US", { day: "numeric", timeZone: "UTC" });
+  const year = end.getUTCFullYear();
   return `${startStr}–${endStr}, ${year}`;
 }
 ---
@@ -58,6 +58,11 @@ function formatDateRange(start: Date, end: Date): string {
     <article
       class="info-card border-l-[3px] border-teal flex flex-col overflow-hidden"
     >
+      <div class="px-8 pt-8 pb-5">
+        <h2 class="text-teal text-xs font-bold uppercase tracking-[0.2em]">
+          Next Tournament
+        </h2>
+      </div>
       {
         nextTournament?.data.cover && (
           <div class="aspect-video overflow-hidden">
@@ -71,10 +76,7 @@ function formatDateRange(start: Date, end: Date): string {
           </div>
         )
       }
-      <div class="p-8 flex flex-col gap-5 flex-1">
-        <h2 class="text-teal text-xs font-bold uppercase tracking-[0.2em]">
-          Next Tournament
-        </h2>
+      <div class="p-8 pt-5 flex flex-col gap-5 flex-1">
         {
           nextTournament ? (
             <>
@@ -83,8 +85,8 @@ function formatDateRange(start: Date, end: Date): string {
               </p>
               <p class="text-fog text-sm">
                 {formatDateRange(
-                  new Date(nextTournament.data.startDate),
-                  new Date(nextTournament.data.endDate),
+                  nextTournament.data.startDate,
+                  nextTournament.data.endDate,
                 )}
               </p>
               <p class="text-fog text-xs">{nextTournament.data.venue}</p>

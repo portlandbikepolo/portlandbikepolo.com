@@ -64,7 +64,7 @@ const showControls = photos.length > 1;
         </a>
         <a
           href="/tournaments"
-          class="btn-ghost border border-mist/30 text-mist px-6 py-3 text-sm font-bold uppercase tracking-widest relative overflow-hidden
+          class="btn-ghost border border-mist/50 text-mist px-6 py-3 text-sm font-bold uppercase tracking-widest relative overflow-hidden
                  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-mist"
         >
           <span class="relative z-10">Tournaments</span>
@@ -219,19 +219,28 @@ const showControls = photos.length > 1;
   }
 
   .hero-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
+    width: 24px;
+    height: 24px;
     border: none;
-    background: rgba(255, 255, 255, 0.35);
+    background: transparent;
     cursor: pointer;
     padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero-dot::after {
+    content: '';
+    display: block;
+    width: 10px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.35);
     transition: background 0.2s ease;
   }
-  .hero-dot[aria-current="true"] {
+  .hero-dot[aria-current="true"]::after {
     background: #e8a838;
   }
-  .hero-dot:hover {
+  .hero-dot:hover::after {
     background: rgba(255, 255, 255, 0.65);
   }
   .hero-dot:focus-visible {

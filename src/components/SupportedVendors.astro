@@ -19,27 +19,31 @@ const vendors = [
 
 <section aria-label="Vendors we support" class="border-t border-[#222] py-12">
   <div class="max-w-6xl mx-auto px-4">
-    <h2 class="text-fog text-xs font-bold uppercase tracking-[0.2em] mb-8 text-center">
+    <h2
+      class="text-fog text-xs font-bold uppercase tracking-[0.2em] mb-8 text-center"
+    >
       Vendors We Support
     </h2>
     <div class="flex flex-wrap items-center justify-center gap-10">
-      {vendors.map(({ name, href, logo }) => (
-        <a
-          href={href}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={`${name} (opens in a new tab)`}
-          class="opacity-50 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-300
+      {
+        vendors.map(({ name, href, logo }) => (
+          <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`${name} (opens in a new tab)`}
+            class="opacity-50 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-300
                  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
-        >
-          <Image
-            src={logo}
-            alt=""
-            height={48}
-            class="h-12 w-auto"
-          />
-        </a>
-      ))}
+          >
+            <Image
+              src={logo}
+              alt=""
+              height={48}
+              class="h-14 rounded-2xl w-auto"
+            />
+          </a>
+        ))
+      }
     </div>
   </div>
 </section>
