@@ -2,8 +2,6 @@
 import BaseLayout from "@layouts/BaseLayout.astro";
 import HeroSection from "@components/HeroSection.astro";
 import InfoCards from "@components/InfoCards.astro";
-import PhotoCarousel from "@components/PhotoCarousel";
-import InstagramFeed from "@components/InstagramFeed.astro";
 import SupportedVendors from "@components/SupportedVendors.astro";
 import { createReader } from "@keystatic/core/reader";
 import { getImage } from "astro:assets";
@@ -13,34 +11,33 @@ import keystaticConfig from "../../keystatic.config";
 const reader = createReader(process.cwd(), keystaticConfig);
 const heroSlideshow = await reader.singletons.heroSlideshow.read();
 
-// Eagerly import all polo images so Vite processes them
+// Eager-import all polo images so Vite processes them
 const poloImages = import.meta.glob<{ default: ImageMetadata }>(
   "../assets/images/polo/*.{webp,jpg,jpeg,png}",
   { eager: true },
 );
 
-// Resolve each slideshow entry to an optimized URL
+// Resolve each entry to an optimized URL — entries are plain filename strings
 const photos = (
   await Promise.all(
-    (heroSlideshow?.images ?? []).map(async (img) => {
-      const key = `../assets/images/polo/${img}`;
+    (heroSlideshow?.images ?? []).map(async (filename) => {
+      if (!filename) return null;
+      const key = `../assets/images/polo/${filename}`;
       const mod = poloImages[key];
       if (!mod) return null;
       const optimized = await getImage({
         src: mod.default,
-        width: 1200,
+        width: 1920,
         format: "webp",
       });
-      return { src: optimized.src, alt: "" };
+      return { src: optimized.src };
     }),
   )
-).filter((p): p is { src: string; alt: string } => p !== null);
+).filter((p): p is { src: string } => p !== null);
 ---
 
 <BaseLayout>
-  <HeroSection />
+  <HeroSection photos={photos} />
   <InfoCards />
-  <PhotoCarousel photos={photos} client:visible />
-
   <SupportedVendors />
 </BaseLayout>
