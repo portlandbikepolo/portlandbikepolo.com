@@ -9,9 +9,22 @@ const { Content } = await render(entry);
 
 <BaseLayout title="About — Portland Bike Polo">
   <div class="max-w-2xl mx-auto px-4 py-16">
-    <p class="text-fog text-xs uppercase tracking-[0.2em] mb-2">// Info</p>
-    <h1 class="text-mist text-4xl font-bold uppercase tracking-tight mb-8">About</h1>
-    <div class="prose prose-invert prose-p:text-fog prose-headings:text-mist prose-a:text-accent max-w-none">
+    <p class="text-accent text-sm uppercase tracking-[0.2em] mb-2">// Info</p>
+    <h1 class="text-mist text-4xl font-bold uppercase tracking-tight mb-8">
+      About
+    </h1>
+    <div
+      class="prose prose-invert prose-p:text-mist prose-headings:text-mist prose-a:text-accent prose-p:leading-loose max-w-none"
+    >
+      <iframe
+        width="560"
+        height="315"
+        src="https://www.youtube.com/embed/FIeaWtb2JOU?si=TJmH9M3ZB8Em9Jop"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen></iframe>
       <Content />
     </div>
   </div>

@@ -9,7 +9,6 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.6",
     "@astrojs/cloudflare": "^12.6.12",
     "@astrojs/markdoc": "^0.15.10",
     "@astrojs/react": "^4.4.2",
@@ -36,12 +35,13 @@
     "tailwind-merge": "^3",
     "tailwind-variants": "^3",
     "tailwindcss": "^4",
-    "tw-animate-css": "^1",
-    "typescript": "^5.9.3"
+    "tw-animate-css": "^1"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.6",
     "prettier": "3.8.1",
     "prettier-plugin-astro": "0.14.1",
-    "prettier-plugin-tailwindcss": "0.7.2"
+    "prettier-plugin-tailwindcss": "0.7.2",
+    "typescript": "^5.9.3"
   }
 }
