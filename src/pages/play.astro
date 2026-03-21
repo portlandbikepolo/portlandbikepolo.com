@@ -1,18 +1,103 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
 import { getEntry, render } from "astro:content";
+import { createReader } from "@keystatic/core/reader";
+import keystaticConfig from "../../keystatic.config";
+import mapImage from "@assets/images/map.png";
+import hecklersLogo from "@assets/images/brands/hecklers_alley.webp";
 
+// Structured fields via Keystatic reader
+const reader = createReader(process.cwd(), keystaticConfig);
+const playData = await reader.singletons.play.read();
+if (!playData) throw new Error("Play content not found");
+
+// Intro markdoc via Astro content collection
 const entry = await getEntry("keystatic", "play");
-if (!entry) throw new Error("Play content not found");
-const { Content } = await render(entry);
+if (!entry) throw new Error("Play entry not found");
+const { Content: Intro } = await render(entry);
 ---
 
 <BaseLayout title="Play — Portland Bike Polo">
   <div class="max-w-2xl mx-auto px-4 py-16">
+
     <p class="text-fog text-xs uppercase tracking-[0.2em] mb-2">// Get Involved</p>
     <h1 class="text-mist text-4xl font-bold uppercase tracking-tight mb-8">Play</h1>
-    <div class="prose prose-invert prose-p:text-fog prose-headings:text-mist prose-a:text-accent max-w-none">
-      <Content />
+
+    <div class="prose prose-invert prose-p:text-fog prose-headings:text-mist prose-a:text-accent max-w-none mb-12">
+      <Intro />
     </div>
+
+    <section class="mb-12">
+      <p class="text-fog text-xs font-bold uppercase tracking-[0.2em] mb-4">// When & Where</p>
+      <ul class="text-mist text-sm leading-relaxed list-none flex flex-col gap-1 mb-6">
+        {playData.schedule.map(({ day, description }) => (
+          <li><span class="text-fog">{day}</span> — {description}</li>
+        ))}
+      </ul>
+      <figure>
+        <Image
+          src={mapImage}
+          alt="Map of Alberta Park in Portland, OR"
+          class="w-full rounded"
+        />
+        <figcaption class="text-fog text-xs mt-2">
+          {playData.location.name} — {playData.location.address}
+        </figcaption>
+      </figure>
+    </section>
+
+    <section class="mb-12">
+      <p class="text-fog text-xs font-bold uppercase tracking-[0.2em] mb-4">// What to Bring</p>
+      <p class="text-fog text-sm leading-relaxed whitespace-pre-line">{playData.equipment}</p>
+    </section>
+
+    <section class="mb-12">
+      <p class="text-fog text-xs font-bold uppercase tracking-[0.2em] mb-4">// What Kind of Bike</p>
+      <p class="text-fog text-sm leading-relaxed whitespace-pre-line mb-6">{playData.bikeType}</p>
+      <div class="border-l-[3px] border-[#333] p-6 flex flex-col gap-3">
+        <p class="text-fog text-xs font-bold uppercase tracking-[0.2em]">Featured Frame</p>
+        <p class="text-mist font-bold">Enforcer 13</p>
+        <a
+          href="https://www.enforcerbikes.com/enforcer-13"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-accent text-xs font-bold uppercase tracking-[0.1em]
+                 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+        >
+          View at Enforcer Bikes →
+        </a>
+      </div>
+    </section>
+
+    <section class="border-l-[3px] border-accent p-8 flex flex-col gap-5">
+      <p class="text-fog text-xs font-bold uppercase tracking-[0.2em]">// Get Your Gear</p>
+      <Image
+        src={hecklersLogo}
+        alt="Hecklers Alley"
+        height={48}
+        class="h-12 w-auto"
+      />
+      <p class="text-fog text-sm leading-relaxed">{playData.hecklersAlleyBlurb}</p>
+      <a
+        href="https://hecklersalley.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-accent text-xs font-bold uppercase tracking-[0.1em]
+               focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+      >
+        Shop Hecklers Alley →
+      </a>
+      <a
+        href="https://hecklersalley.com/collections/mallet-parts/products/complete-mallet?variant=41418374217791"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-accent text-xs font-bold uppercase tracking-[0.1em]
+               focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+      >
+        Complete Setup Bike Polo Mallet →
+      </a>
+    </section>
+
   </div>
 </BaseLayout>
