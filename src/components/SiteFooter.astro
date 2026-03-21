@@ -8,7 +8,7 @@ const navLinks = [
 ];
 ---
 
-<footer class="bg-surface border-t border-bg mt-16">
+<footer class="bg-bg border-t-2 border-mist mt-16">
   <div class="max-w-6xl mx-auto px-4 py-12 flex flex-col gap-8">
 
     <!-- Nav links -->
@@ -18,8 +18,8 @@ const navLinks = [
           <li>
             <a
               href={href}
-              class="text-fog hover:text-mist text-sm uppercase tracking-wide transition-colors
-                     focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded"
+              class="text-fog hover:text-mist text-xs uppercase tracking-[0.15em] transition-colors
+                     focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
             >
               {label}
             </a>
@@ -33,10 +33,10 @@ const navLinks = [
       href="https://instagram.com/portlandbikepolo"
       target="_blank"
       rel="noopener noreferrer"
-      class="text-teal hover:text-mist text-sm transition-colors w-fit
-             focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded"
+      class="text-teal hover:text-mist text-xs uppercase tracking-[0.1em] transition-colors w-fit
+             focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
     >
-      Follow @portlandbikepolo on Instagram ↗
+      @portlandbikepolo on Instagram ↗
     </a>
 
     <!-- Non-profit info -->
@@ -50,6 +50,6 @@ const navLinks = [
     </div>
 
     <!-- Copyright -->
-    <p class="text-fog text-xs">© {year} Portland Bike Polo</p>
+    <p class="text-fog text-xs uppercase tracking-[0.1em]">© {year} Portland Bike Polo</p>
   </div>
 </footer>
