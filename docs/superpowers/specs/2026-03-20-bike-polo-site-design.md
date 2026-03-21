@@ -104,9 +104,9 @@ Sections top to bottom:
 
 - Repeated nav links (About, Play, Tournaments)
 - Instagram link: `https://instagram.com/portlandbikepolo` with text "Follow @portlandbikepolo"
-- Non-profit statement: "Portland Bike Polo is a non-profit 501(c)(3) organization focused on building a competitive, diverse, and inclusive bike polo community in the Pacific Northwest."
-- Tax ID line: "Federal Tax ID: #83-3435866"
-- Copyright: `© Portland Bike Polo`
+- Non-profit statement rendered as a `<p>`: "Portland Bike Polo is a non-profit 501(c)(3) organization focused on building a competitive, diverse, and inclusive bike polo community in the Pacific Northwest."
+- Tax ID rendered as a `<p>`: "Federal Tax ID: #83-3435866"
+- Copyright: `© <current year> Portland Bike Polo` — year generated at build time using `new Date().getFullYear()` in the Astro component frontmatter
 
 ### `HeroSection.astro`
 
@@ -136,10 +136,10 @@ Three `<article>` cards in a CSS grid: `grid-cols-1 md:grid-cols-3`. Each card h
 **Next Tournament card** (teal border):
 
 - Heading: "Next Tournament"
-- Pulls from the `tournaments` content collection: the entry with the earliest `startDate` that is ≥ today's date (build time)
+- Pulls from the `tournaments` content collection: the entry with the earliest `startDate` that is ≥ the build-time UTC date. Note: this is static — content must be rebuilt/redeployed to keep it current.
 - Displays: title, formatted date range (`MMM D–D, YYYY`), venue
 - Link: "Details →" → `/tournaments/[id]`
-- Fallback (no upcoming tournaments): render "Stay tuned — more tournaments coming soon."
+- Fallback (no upcoming tournaments at build time): render "Stay tuned — more tournaments coming soon."
 
 **What Is Bike Polo card** (fog/slate border):
 
@@ -147,7 +147,9 @@ Three `<article>` cards in a CSS grid: `grid-cols-1 md:grid-cols-3`. Each card h
 - Content: one short hardcoded paragraph: "Three players, one goal, one mallet. Hardcourt bike polo is fast, physical, and welcoming — played on bikes in a fenced court."
 - Link: "Learn more →" → `/about`
 
-### `PhotoCarousel` (React island, `client:load`)
+### `PhotoCarousel` (React island, `client:visible`)
+
+Uses `client:visible` (not `client:load`) so React only hydrates once the carousel scrolls into view — appropriate for a below-the-fold component.
 
 - Embla Carousel with `EmblaAutoplay({ delay: 4000, stopOnInteraction: true })`
 - Autoplay is disabled entirely when `window.matchMedia('(prefers-reduced-motion: reduce)').matches` — carousel renders as static first slide in that case
@@ -155,11 +157,10 @@ Three `<article>` cards in a CSS grid: `grid-cols-1 md:grid-cols-3`. Each card h
 - `role="region"` with `aria-label="Portland Bike Polo photo gallery"`
 - Pause/Play toggle button: `aria-label="Pause slideshow"` / `"Play slideshow"`, visually a ⏸/▶ icon, always visible — satisfies WCAG 2.2.2
 - Prev / Next buttons: `aria-label="Previous photo"` / `"Next photo"`, keyboard accessible
-- Photos (all from `src/assets/images/polo/`):
+- Photos (all from `src/assets/images/polo/`) — `polo_01.webp` is excluded as it is used for the hero background; carousel uses `polo_02.webp` through `polo_06.webp`:
 
 | File | `alt` text |
 | --- | --- |
-| `polo_01.webp` | Players jostling for position during a Portland Bike Polo match |
 | `polo_02.webp` | A polo player taking a shot on goal |
 | `polo_03.webp` | Two players racing for the ball at midcourt |
 | `polo_04.webp` | A goalie defending the net during a club match |
@@ -173,12 +174,11 @@ Three `<article>` cards in a CSS grid: `grid-cols-1 md:grid-cols-3`. Each card h
 A logo strip section placed between the Instagram feed and the footer on the homepage.
 
 - `<section aria-label="Vendors we support">`
-- Section heading (visible): "Vendors We Support"
-- Two linked logo items:
-  - Enforcer Bikes — `src/assets/images/brands/enforcer.svg`, links to `https://www.enforcerbikes.com/`, `aria-label="Enforcer Bikes"`
-  - Hecklers Alley — `src/assets/images/brands/hecklers_alley.webp`, links to `https://hecklersalley.com/`, `aria-label="Hecklers Alley"`
-- Logos open in a new tab (`target="_blank" rel="noopener noreferrer"`)
-- Logos displayed at a consistent height (e.g. `h-12`), grayscale by default, full color on hover — keeps the section subtle without burying the brands
+- Section heading (visible, `h2`): "Vendors We Support"
+- Two linked logo items — each is an `<a>` wrapping an `<img alt="">`. The `<a>` carries the accessible name and new-tab disclosure via `aria-label`; the `<img>` is decorative (`alt=""`):
+  - Enforcer Bikes — `src/assets/images/brands/enforcer.svg`, links to `https://www.enforcerbikes.com/`, `aria-label="Enforcer Bikes (opens in a new tab)"`, `target="_blank" rel="noopener noreferrer"`
+  - Hecklers Alley — `src/assets/images/brands/hecklers_alley.webp`, links to `https://hecklersalley.com/`, `aria-label="Hecklers Alley (opens in a new tab)"`, `target="_blank" rel="noopener noreferrer"`
+- Logos displayed at a consistent height (`h-12`), grayscale by default, full color on hover
 - Layout: centered flex row, wraps on mobile
 
 ### `InstagramFeed.astro`
@@ -186,7 +186,7 @@ A logo strip section placed between the Instagram feed and the footer on the hom
 - `<section aria-label="Portland Bike Polo on Instagram">`
 - Section heading (visible): "Follow Along"
 - Instagram embed: load `//www.instagram.com/embed.js` via `<script async>`; embed a pinned post or the profile widget using the official embed markup
-- Fallback link: always visible below the embed — `<a href="https://instagram.com/portlandbikepolo">@portlandbikepolo on Instagram</a>` — ensures content is accessible with or without the embed loading
+- Fallback link: always visible below the embed regardless of whether the embed loads — `<a href="https://instagram.com/portlandbikepolo">@portlandbikepolo on Instagram ↗</a>`. It is not hidden when the embed succeeds; it serves as a persistent direct link for users who cannot or choose not to interact with the embed.
 
 ### `TournamentCard.astro`
 
@@ -203,7 +203,7 @@ Props: `title`, `startDate`, `endDate`, `venue`, `cover` (image), `slug`
 Used on `/tournaments/index.astro`:
 
 - Fetches all entries from `tournaments` collection
-- Sorts by `startDate` descending (most recent first)
+- Sorts by `startDate` descending (most recent first — newest tournament at the top, as a historical archive)
 - Renders a grid of `<TournamentCard>` components: `grid-cols-1 sm:grid-cols-2 lg:grid-cols-3`
 - Empty state: "No tournaments yet — check back soon."
 
@@ -300,7 +300,9 @@ All three singletons (`about`, `play`, `codeOfConduct`) use a single Markdoc con
 | --- | --- |
 | `src/assets/images/logo_light_outline.svg` | Navbar logo |
 | `src/assets/images/polo/polo_01.webp` | Hero background image |
-| `src/assets/images/polo/polo_01.webp` – `polo_06.webp` | Photo carousel |
+| `src/assets/images/polo/polo_02.webp` – `src/assets/images/polo/polo_06.webp` | Photo carousel (polo_01 excluded — used for hero) |
+| `src/assets/images/brands/enforcer.svg` | Enforcer Bikes vendor logo |
+| `src/assets/images/brands/hecklers_alley.webp` | Hecklers Alley vendor logo |
 | `src/assets/images/brands/instagram.svg` | Footer Instagram icon (optional) |
 
 ---
@@ -313,3 +315,4 @@ All three singletons (`about`, `play`, `codeOfConduct`) use a single Markdoc con
 - Search functionality
 - Dark/light mode toggle (dark is the only mode)
 - CMS field changes to existing Keystatic singleton schemas
+- Redirect handling for previously existing routes (`/espn`, `/sports`) — these pages are being dropped with no redirects
