@@ -1,4 +1,6 @@
 ---
+import SocialLinks from './SocialLinks.astro';
+
 const year = new Date().getFullYear();
 
 const navLinks = [
@@ -28,16 +30,7 @@ const navLinks = [
       </ul>
     </nav>
 
-    <!-- Instagram -->
-    <a
-      href="https://instagram.com/portlandbikepolo"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="text-teal hover:text-mist text-xs uppercase tracking-[0.1em] transition-colors w-fit
-             focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
-    >
-      @portlandbikepolo on Instagram ↗
-    </a>
+    <SocialLinks />
 
     <!-- Non-profit info -->
     <div class="text-fog text-xs leading-relaxed max-w-2xl flex flex-col gap-1">
