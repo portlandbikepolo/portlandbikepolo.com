@@ -32,7 +32,7 @@ function formatDateRange(start: Date, end: Date): string {
   <article class="max-w-4xl mx-auto px-4 py-16">
 
     <!-- Cover image -->
-    <div class="aspect-video mb-8 overflow-hidden rounded-sm">
+    <div class="aspect-video mb-8 overflow-hidden">
       <Image
         src={cover}
         alt={title}
@@ -43,7 +43,8 @@ function formatDateRange(start: Date, end: Date): string {
     </div>
 
     <!-- Header -->
-    <h1 class="text-mist text-4xl font-black uppercase tracking-tight mb-3">
+    <p class="text-fog text-xs uppercase tracking-[0.2em] mb-2">// Tournament</p>
+    <h1 class="text-mist text-4xl font-bold uppercase tracking-tight mb-3">
       {title}
     </h1>
     <p class="text-fog text-sm mb-1">
@@ -51,7 +52,7 @@ function formatDateRange(start: Date, end: Date): string {
     </p>
     <p class="text-fog text-sm mb-8">{venue}</p>
 
-    <hr class="border-surface mb-8" />
+    <hr class="border-[#222] mb-8" />
 
     <!-- Body content -->
     <div class="prose prose-invert prose-p:text-fog prose-headings:text-mist prose-a:text-accent prose-strong:text-mist max-w-none">
@@ -61,8 +62,8 @@ function formatDateRange(start: Date, end: Date): string {
     <!-- Back link -->
     <a
       href="/tournaments"
-      class="inline-block mt-12 text-fog text-sm hover:text-mist transition-colors
-             focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded"
+      class="inline-block mt-12 text-fog text-xs hover:text-mist transition-colors uppercase tracking-[0.1em]
+             focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
     >
       ← All Tournaments
     </a>
