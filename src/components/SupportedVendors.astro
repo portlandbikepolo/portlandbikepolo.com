@@ -1,0 +1,48 @@
+---
+import { Image } from "astro:assets";
+import enforcerLogo from "@assets/images/brands/enforcer.svg";
+import hecklersLogo from "@assets/images/brands/hecklers_alley.webp";
+
+const vendors = [
+  {
+    name: "Enforcer Bikes",
+    href: "https://www.enforcerbikes.com/",
+    logo: enforcerLogo,
+  },
+  {
+    name: "Hecklers Alley",
+    href: "https://hecklersalley.com/",
+    logo: hecklersLogo,
+  },
+];
+---
+
+<section
+  aria-label="Vendors we support"
+  class="bg-surface py-12"
+>
+  <div class="max-w-6xl mx-auto px-4">
+    <h2 class="text-fog text-xs font-bold uppercase tracking-widest mb-8 text-center">
+      Vendors We Support
+    </h2>
+    <div class="flex flex-wrap items-center justify-center gap-10">
+      {vendors.map(({ name, href, logo }) => (
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`${name} (opens in a new tab)`}
+          class="opacity-50 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-300
+                 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded"
+        >
+          <Image
+            src={logo}
+            alt=""
+            height={48}
+            class="h-12 w-auto"
+          />
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
