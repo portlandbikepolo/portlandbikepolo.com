@@ -1,4 +1,6 @@
 ---
+import SocialLinks from './SocialLinks.astro';
+
 const navLinks = [
   { href: "/about", label: "About" },
   { href: "/play", label: "Play" },
@@ -73,6 +75,7 @@ const currentPath = Astro.url.pathname;
         </a>
       ))
     }
+    <SocialLinks />
     <p class="text-fog text-xs uppercase tracking-[0.15em] mt-auto">
       Alberta Park · Portland, OR
     </p>
