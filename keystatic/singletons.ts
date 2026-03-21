@@ -28,11 +28,40 @@ const about = singleton({
 const play = singleton({
   label: "Play",
   path: "src/content/play/",
-  format: { contentField: "content" },
+  format: { contentField: "intro" },
   schema: {
-    content: fields.markdoc({
-      label: "Content",
-      description: "Content on the play page",
+    intro: fields.markdoc({
+      label: "Intro",
+      description: "Beginner overview of bike polo shown at the top of the page",
+    }),
+    schedule: fields.array(
+      fields.object({
+        day: fields.text({ label: "Day" }),
+        description: fields.text({ label: "Description" }),
+      }),
+      {
+        label: "Schedule",
+        itemLabel: (props) => props.fields.day.value ?? "Day",
+      }
+    ),
+    location: fields.object({
+      name: fields.text({ label: "Venue name" }),
+      address: fields.text({ label: "Address" }),
+    }),
+    equipment: fields.text({
+      label: "Equipment",
+      multiline: true,
+      description: "What to bring — one item per line",
+    }),
+    bikeType: fields.text({
+      label: "Bike type",
+      multiline: true,
+      description: "What kind of bike works for pickup",
+    }),
+    hecklersAlleyBlurb: fields.text({
+      label: "Hecklers Alley blurb",
+      multiline: true,
+      description: "Short vendor callout text for the Get Your Gear section",
     }),
   },
 });
