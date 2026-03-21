@@ -1,0 +1,17 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { getEntry, render } from "astro:content";
+
+const entry = await getEntry("keystatic", "play");
+if (!entry) throw new Error("Play content not found");
+const { Content } = await render(entry);
+---
+
+<BaseLayout title="Play — Portland Bike Polo">
+  <div class="max-w-2xl mx-auto px-4 py-16">
+    <h1 class="text-mist text-4xl font-black uppercase tracking-tight mb-8">Play</h1>
+    <div class="prose prose-invert prose-p:text-fog prose-headings:text-mist prose-a:text-accent max-w-none">
+      <Content />
+    </div>
+  </div>
+</BaseLayout>
