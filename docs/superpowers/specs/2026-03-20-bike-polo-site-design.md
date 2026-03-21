@@ -10,6 +10,10 @@
 
 A public-facing Astro website for Portland Bike Polo serving two equal audiences: curious newcomers who have never heard of the sport, and current/returning club members. The aesthetic is gritty/underground — raw and punchy like the sport itself — with a Pacific Northwest character.
 
+Portland Bike Polo is a non-profit 501(c)(3) organization focused on building a competitive, diverse, and inclusive bike polo community in the Pacific Northwest. Federal Tax ID: #83-3435866.
+
+This information should appear in the site footer.
+
 ---
 
 ## Goals
@@ -99,6 +103,8 @@ Sections top to bottom:
 
 - Repeated nav links (About, Play, Tournaments)
 - Instagram link: `https://instagram.com/portlandbikepolo` with text "Follow @portlandbikepolo"
+- Non-profit statement: "Portland Bike Polo is a non-profit 501(c)(3) organization focused on building a competitive, diverse, and inclusive bike polo community in the Pacific Northwest."
+- Tax ID line: "Federal Tax ID: #83-3435866"
 - Copyright: `© Portland Bike Polo`
 
 ### `HeroSection.astro`
