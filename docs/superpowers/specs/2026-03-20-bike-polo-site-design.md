@@ -151,23 +151,16 @@ Three `<article>` cards in a CSS grid: `grid-cols-1 md:grid-cols-3`. Each card h
 
 Uses `client:visible` (not `client:load`) so React only hydrates once the carousel scrolls into view — appropriate for a below-the-fold component.
 
+- Images sourced from the `gallery` Keystatic singleton (see Content Collections below) — not hardcoded
+- The parent page (`index.astro`) loads the gallery entry at build time and passes the image array as a prop
 - Embla Carousel with `EmblaAutoplay({ delay: 4000, stopOnInteraction: true })`
 - Autoplay is disabled entirely when `window.matchMedia('(prefers-reduced-motion: reduce)').matches` — carousel renders as static first slide in that case
 - Autoplay pauses on mouse hover and on keyboard focus within the carousel
 - `role="region"` with `aria-label="Portland Bike Polo photo gallery"`
 - Pause/Play toggle button: `aria-label="Pause slideshow"` / `"Play slideshow"`, visually a ⏸/▶ icon, always visible — satisfies WCAG 2.2.2
 - Prev / Next buttons: `aria-label="Previous photo"` / `"Next photo"`, keyboard accessible
-- Photos (all from `src/assets/images/polo/`) — `polo_01.webp` is excluded as it is used for the hero background; carousel uses `polo_02.webp` through `polo_06.webp`:
-
-| File | `alt` text |
-| --- | --- |
-| `polo_02.webp` | A polo player taking a shot on goal |
-| `polo_03.webp` | Two players racing for the ball at midcourt |
-| `polo_04.webp` | A goalie defending the net during a club match |
-| `polo_05.webp` | Players clustered around the ball in tight court action |
-| `polo_06.webp` | A polo player maneuvering around an opponent |
-
-*(Alt text is descriptive placeholder — update with accurate descriptions once photos are reviewed.)*
+- Each slide renders the image with the `alt` text authored in Keystatic
+- If the gallery has no images, the carousel section is hidden entirely
 
 ### `SupportedVendors.astro`
 
@@ -263,7 +256,19 @@ Fields: `title`, `cover` (image), `startDate`, `endDate`, `venue`, `content` (Ma
 
 ### Keystatic singletons
 
-All three singletons (`about`, `play`, `codeOfConduct`) use a single Markdoc content field. No schema changes required — existing configuration is sufficient.
+The existing singletons (`about`, `play`, `codeOfConduct`) use a single Markdoc content field — no changes required.
+
+A new `gallery` singleton is added:
+
+- **Path:** `src/content/gallery/`
+- **Schema:** an ordered array of objects, each with:
+  - `image` — `fields.image({ label: "Photo" })` — stores the image file
+  - `alt` — `fields.text({ label: "Alt text", description: "Describe what's happening in the photo — required for accessibility" })`
+- **Item label** in the Keystatic UI: the `alt` value (falls back to "Photo" if empty)
+- Images are added, removed, and reordered via the Keystatic admin UI
+- Pre-populated with the existing 6 polo photos (`polo_01.webp` – `polo_06.webp`) and their placeholder alt text as initial content
+
+The Astro content collection config (`src/content.config.ts`) must be updated to define a `gallery` collection entry that reads from this singleton path.
 
 ---
 
@@ -300,7 +305,7 @@ All three singletons (`about`, `play`, `codeOfConduct`) use a single Markdoc con
 | --- | --- |
 | `src/assets/images/logo_light_outline.svg` | Navbar logo |
 | `src/assets/images/polo/polo_01.webp` | Hero background image |
-| `src/assets/images/polo/polo_02.webp` – `src/assets/images/polo/polo_06.webp` | Photo carousel (polo_01 excluded — used for hero) |
+| `src/assets/images/polo/polo_01.webp` – `polo_06.webp` | Initial gallery images (managed via Keystatic `gallery` singleton going forward) |
 | `src/assets/images/brands/enforcer.svg` | Enforcer Bikes vendor logo |
 | `src/assets/images/brands/hecklers_alley.webp` | Hecklers Alley vendor logo |
 | `src/assets/images/brands/instagram.svg` | Footer Instagram icon (optional) |
@@ -314,5 +319,5 @@ All three singletons (`about`, `play`, `codeOfConduct`) use a single Markdoc con
 - Cloudflare Workers / server-side rendering (static output only)
 - Search functionality
 - Dark/light mode toggle (dark is the only mode)
-- CMS field changes to existing Keystatic singleton schemas
+- CMS field changes to existing Keystatic singleton schemas (`about`, `play`, `codeOfConduct` are unchanged)
 - Redirect handling for previously existing routes (`/espn`, `/sports`) — these pages are being dropped with no redirects
