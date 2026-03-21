@@ -37,29 +37,22 @@ const play = singleton({
   },
 });
 
-const gallery = singleton({
-  label: "Gallery",
-  path: "src/content/gallery/",
+const heroSlideshow = singleton({
+  label: "Hero Slideshow",
+  path: "src/content/hero-slideshow/",
   schema: {
     images: fields.array(
-      fields.object({
-        image: fields.image({
-          label: "Photo",
-          directory: "src/assets/images/polo",
-          publicPath: "../../assets/images/polo/",
-        }),
-        alt: fields.text({
-          label: "Alt text",
-          description:
-            "Describe what's happening in the photo — required for accessibility",
-        }),
+      fields.image({
+        label: "Photo",
+        directory: "src/assets/images/polo",
+        publicPath: "../../assets/images/polo/",
       }),
       {
         label: "Photos",
-        itemLabel: (props) => props.fields.alt.value || "Photo",
+        itemLabel: (props) => props.value?.filename ?? "Photo",
       }
     ),
   },
 });
 
-export const singletons = { about, codeOfConduct, play, gallery };
+export const singletons = { about, codeOfConduct, play, heroSlideshow };

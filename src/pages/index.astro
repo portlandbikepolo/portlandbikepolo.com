@@ -11,7 +11,7 @@ import type { ImageMetadata } from "astro";
 import keystaticConfig from "../../keystatic.config";
 
 const reader = createReader(process.cwd(), keystaticConfig);
-const gallery = await reader.singletons.gallery.read();
+const heroSlideshow = await reader.singletons.heroSlideshow.read();
 
 // Eagerly import all polo images so Vite processes them
 const poloImages = import.meta.glob<{ default: ImageMetadata }>(
@@ -19,11 +19,11 @@ const poloImages = import.meta.glob<{ default: ImageMetadata }>(
   { eager: true },
 );
 
-// Resolve each gallery entry to an optimized URL
+// Resolve each slideshow entry to an optimized URL
 const photos = (
   await Promise.all(
-    (gallery?.images ?? []).map(async (img) => {
-      const key = `../assets/images/polo/${img.image}`;
+    (heroSlideshow?.images ?? []).map(async (img) => {
+      const key = `../assets/images/polo/${img}`;
       const mod = poloImages[key];
       if (!mod) return null;
       const optimized = await getImage({
@@ -31,7 +31,7 @@ const photos = (
         width: 1200,
         format: "webp",
       });
-      return { src: optimized.src, alt: img.alt };
+      return { src: optimized.src, alt: "" };
     }),
   )
 ).filter((p): p is { src: string; alt: string } => p !== null);
