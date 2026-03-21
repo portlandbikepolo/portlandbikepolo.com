@@ -1,0 +1,90 @@
+---
+import { getCollection } from "astro:content";
+
+// Get next upcoming tournament (earliest startDate >= today at build time)
+const today = new Date();
+today.setUTCHours(0, 0, 0, 0);
+
+const allTournaments = await getCollection("tournaments");
+const nextTournament = allTournaments
+  .filter((t) => new Date(t.data.startDate) >= today)
+  .sort(
+    (a, b) =>
+      new Date(a.data.startDate).getTime() -
+      new Date(b.data.startDate).getTime()
+  )[0] ?? null;
+
+function formatDateRange(start: Date, end: Date): string {
+  const opts: Intl.DateTimeFormatOptions = { month: "short", day: "numeric" };
+  const startStr = start.toLocaleDateString("en-US", opts);
+  const endStr = end.toLocaleDateString("en-US", { day: "numeric" });
+  const year = end.getFullYear();
+  return `${startStr}–${endStr}, ${year}`;
+}
+---
+
+<section aria-label="Key information" class="max-w-6xl mx-auto px-4 py-16">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+    <!-- Come Play -->
+    <article class="bg-surface border-t-4 border-accent p-6 flex flex-col gap-3 rounded-sm">
+      <h2 class="text-accent text-xs font-bold uppercase tracking-widest">Come Play</h2>
+      <ul class="text-mist text-sm leading-relaxed list-none flex flex-col gap-1">
+        <li><span class="text-fog">Fridays</span> — afternoon pick-up, all levels</li>
+        <li><span class="text-fog">Saturdays</span> — afternoon, pro-level</li>
+        <li><span class="text-fog">Sundays</span> — general pick-up, all welcome</li>
+      </ul>
+      <p class="text-fog text-xs">Alberta Park, Portland, OR</p>
+      <a
+        href="/play"
+        class="text-accent text-sm font-bold mt-auto hover:underline
+               focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded"
+      >
+        How to show up →
+      </a>
+    </article>
+
+    <!-- Next Tournament -->
+    <article class="bg-surface border-t-4 border-teal p-6 flex flex-col gap-3 rounded-sm">
+      <h2 class="text-teal text-xs font-bold uppercase tracking-widest">Next Tournament</h2>
+      {nextTournament ? (
+        <>
+          <p class="text-mist font-bold text-lg leading-tight">{nextTournament.data.title}</p>
+          <p class="text-fog text-sm">
+            {formatDateRange(
+              new Date(nextTournament.data.startDate),
+              new Date(nextTournament.data.endDate)
+            )}
+          </p>
+          <p class="text-fog text-xs">{nextTournament.data.venue}</p>
+          <a
+            href={`/tournaments/${nextTournament.id}`}
+            class="text-teal text-sm font-bold mt-auto hover:underline
+                   focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal rounded"
+          >
+            Details →
+          </a>
+        </>
+      ) : (
+        <p class="text-fog text-sm">Stay tuned — more tournaments coming soon.</p>
+      )}
+    </article>
+
+    <!-- What Is Bike Polo -->
+    <article class="bg-surface border-t-4 border-fog p-6 flex flex-col gap-3 rounded-sm">
+      <h2 class="text-fog text-xs font-bold uppercase tracking-widest">What Is Bike Polo?</h2>
+      <p class="text-mist text-sm leading-relaxed">
+        Three players, one goal, one mallet. Hardcourt bike polo is fast,
+        physical, and welcoming — played on bikes in a fenced court.
+      </p>
+      <a
+        href="/about"
+        class="text-fog text-sm font-bold mt-auto hover:text-mist hover:underline transition-colors
+               focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded"
+      >
+        Learn more →
+      </a>
+    </article>
+
+  </div>
+</section>
