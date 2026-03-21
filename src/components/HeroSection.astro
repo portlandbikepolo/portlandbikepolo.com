@@ -1,0 +1,54 @@
+---
+import { getImage } from "astro:assets";
+import heroBg from "@assets/images/polo/polo_01.webp";
+
+const optimizedBg = await getImage({ src: heroBg, format: "webp", width: 1920 });
+---
+
+<section
+  class="relative flex items-end min-h-svh md:min-h-[80vh]"
+  style={`background-image: url('${optimizedBg.src}'); background-size: cover; background-position: center;`}
+  aria-label="Hero"
+>
+  <!-- Dark overlay -->
+  <div class="absolute inset-0 bg-black/60" aria-hidden="true"></div>
+
+  <!-- Content -->
+  <div class="relative z-10 max-w-6xl mx-auto px-4 pb-16 pt-32 flex flex-col gap-4">
+    <p class="text-accent text-xs font-bold tracking-[0.2em] uppercase">
+      Portland, Oregon · Est. 2007
+    </p>
+
+    <h1
+      class="text-mist font-black leading-none tracking-tight"
+      style="font-size: clamp(2rem, 5vw, 4rem);"
+    >
+      Hardcourt Bike Polo<br />
+      <span class="text-teal">In the Rain</span>
+    </h1>
+
+    <p class="text-fog text-lg max-w-md leading-relaxed">
+      We play every week at Alberta Park. All skill levels welcome — just bring
+      a bike and a helmet.
+    </p>
+
+    <div class="flex flex-wrap gap-3 mt-2">
+      <a
+        href="/play"
+        class="bg-accent text-bg px-6 py-3 text-sm font-bold uppercase tracking-widest rounded
+               hover:opacity-90 transition-opacity
+               focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-mist"
+      >
+        Come Play
+      </a>
+      <a
+        href="/tournaments"
+        class="border border-teal text-teal px-6 py-3 text-sm font-bold uppercase tracking-widest rounded
+               hover:bg-teal/10 transition-colors
+               focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal"
+      >
+        Tournaments →
+      </a>
+    </div>
+  </div>
+</section>
