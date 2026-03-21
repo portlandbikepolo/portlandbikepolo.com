@@ -24,10 +24,10 @@ function formatDateRange(start: Date, end: Date): string {
 ---
 
 <section aria-label="Key information" class="max-w-6xl mx-auto px-4 py-16">
-  <div class="grid grid-cols-1 md:grid-cols-3 border border-[#222]">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
 
     <!-- Come Play -->
-    <article class="info-card border-l-[3px] border-accent p-6 flex flex-col gap-3 md:border-r md:border-r-[#222]">
+    <article class="info-card border-l-[3px] border-accent p-8 flex flex-col gap-5">
       <h2 class="text-accent text-xs font-bold uppercase tracking-[0.2em]">Come Play</h2>
       <ul class="text-mist text-sm leading-relaxed list-none flex flex-col gap-1">
         <li><span class="text-fog">Fridays</span> — afternoon pick-up, all levels</li>
@@ -45,7 +45,7 @@ function formatDateRange(start: Date, end: Date): string {
     </article>
 
     <!-- Next Tournament -->
-    <article class="info-card border-l-[3px] border-teal flex flex-col overflow-hidden md:border-r md:border-r-[#222]">
+    <article class="info-card border-l-[3px] border-teal flex flex-col overflow-hidden">
       {nextTournament?.data.cover && (
         <div class="aspect-video overflow-hidden">
           <Image
@@ -57,7 +57,7 @@ function formatDateRange(start: Date, end: Date): string {
           />
         </div>
       )}
-      <div class="p-6 flex flex-col gap-3 flex-1">
+      <div class="p-8 flex flex-col gap-5 flex-1">
         <h2 class="text-teal text-xs font-bold uppercase tracking-[0.2em]">Next Tournament</h2>
         {nextTournament ? (
           <>
@@ -84,7 +84,7 @@ function formatDateRange(start: Date, end: Date): string {
     </article>
 
     <!-- What Is Bike Polo -->
-    <article class="info-card border-l-[3px] border-[#333] p-6 flex flex-col gap-3">
+    <article class="info-card border-l-[3px] border-[#333] p-8 flex flex-col gap-5">
       <h2 class="text-fog text-xs font-bold uppercase tracking-[0.2em]">What Is Bike Polo?</h2>
       <p class="text-mist text-sm leading-relaxed">
         Three players, one goal, one mallet. Hardcourt bike polo is fast,

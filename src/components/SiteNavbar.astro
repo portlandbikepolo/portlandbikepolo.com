@@ -1,10 +1,9 @@
 ---
-import SocialLinks from './SocialLinks.astro';
+import SocialLinks from "./SocialLinks.astro";
 
 const navLinks = [
-  { href: "/about", label: "About" },
-  { href: "/play", label: "Play" },
   { href: "/tournaments", label: "Tournaments" },
+  { href: "/coc", label: "Code of Conduct" },
 ];
 
 const currentPath = Astro.url.pathname;
@@ -47,14 +46,33 @@ const currentPath = Astro.url.pathname;
       aria-label="Open navigation menu"
       class="md:hidden p-2 text-fog hover:text-mist focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
     >
-      <svg id="icon-open" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-        <line x1="3" y1="6" x2="21" y2="6" />
-        <line x1="3" y1="12" x2="21" y2="12" />
-        <line x1="3" y1="18" x2="21" y2="18" />
+      <svg
+        id="icon-open"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        aria-hidden="true"
+      >
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
       </svg>
-      <svg id="icon-close" class="hidden" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-        <line x1="18" y1="6" x2="6" y2="18" />
-        <line x1="6" y1="6" x2="18" y2="18" />
+      <svg
+        id="icon-close"
+        class="hidden"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        aria-hidden="true"
+      >
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
       </svg>
     </button>
   </nav>
@@ -148,8 +166,8 @@ const currentPath = Astro.url.pathname;
   function trapFocus(el: HTMLElement) {
     const focusable = Array.from(
       el.querySelectorAll<HTMLElement>(
-        'a[href], button, [tabindex]:not([tabindex="-1"])'
-      )
+        'a[href], button, [tabindex]:not([tabindex="-1"])',
+      ),
     ).filter((el) => !el.closest("[hidden]"));
 
     const first = focusable[0];
