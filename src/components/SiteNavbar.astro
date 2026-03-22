@@ -137,13 +137,13 @@ const currentPath = Astro.url.pathname;
   const iconOpen = document.getElementById("icon-open")!;
   const iconClose = document.getElementById("icon-close")!;
 
-  function openMenu() {
+  function openMenu(focusFirst = true) {
     btn.setAttribute("aria-expanded", "true");
     btn.setAttribute("aria-label", "Close navigation menu");
     menu.classList.remove("hidden");
     iconOpen.classList.add("hidden");
     iconClose.classList.remove("hidden");
-    trapFocus(menu);
+    trapFocus(menu, focusFirst);
   }
 
   function closeMenu() {
@@ -155,8 +155,13 @@ const currentPath = Astro.url.pathname;
     btn.focus();
   }
 
-  btn.addEventListener("click", () => {
-    btn.getAttribute("aria-expanded") === "true" ? closeMenu() : openMenu();
+  btn.addEventListener("click", (e) => {
+    if (btn.getAttribute("aria-expanded") === "true") {
+      closeMenu();
+    } else {
+      // e.detail === 0 means keyboard-triggered click (Enter/Space); focus first item only then
+      openMenu(e.detail === 0);
+    }
   });
 
   document.addEventListener("keydown", (e) => {
@@ -165,7 +170,7 @@ const currentPath = Astro.url.pathname;
     }
   });
 
-  function trapFocus(el: HTMLElement) {
+  function trapFocus(el: HTMLElement, focusFirst = true) {
     const focusable = Array.from(
       el.querySelectorAll<HTMLElement>(
         'a[href], button, [tabindex]:not([tabindex="-1"])',
@@ -174,7 +179,7 @@ const currentPath = Astro.url.pathname;
 
     const first = focusable[0];
     const last = focusable[focusable.length - 1];
-    first?.focus();
+    if (focusFirst) first?.focus();
 
     el.addEventListener("keydown", function handler(e: KeyboardEvent) {
       if (e.key !== "Tab") return;
