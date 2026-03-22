@@ -1,0 +1,46 @@
+---
+import SiteNavbar from "@components/SiteNavbar.astro";
+import SiteFooter from "@components/SiteFooter.astro";
+import { Font } from "astro:assets";
+import "@styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Portland Bike Polo",
+  description = "Hardcourt bike polo in Portland, Oregon. All skill levels welcome.",
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    <title>{title}</title>
+    <Font cssVariable="--font-mono" preload />
+  </head>
+  <body class="bg-bg text-mist">
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-accent focus:text-bg focus:px-4 focus:py-2 focus:font-bold"
+    >
+      Skip to main content
+    </a>
+
+    <SiteNavbar />
+
+    <main id="main-content">
+      <slot />
+    </main>
+
+    <SiteFooter />
+  </body>
+</html>

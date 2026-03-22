@@ -1,0 +1,20 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { getEntry, render } from "astro:content";
+
+const entry = await getEntry("keystatic", "code-of-conduct");
+if (!entry) throw new Error("Code of Conduct content not found");
+const { Content } = await render(entry);
+---
+
+<BaseLayout title="Code of Conduct — Portland Bike Polo">
+  <div class="max-w-2xl mx-auto px-4 py-16">
+    <p class="text-accent text-sm uppercase tracking-[0.2em] mb-2">// Community</p>
+    <h1 class="text-mist text-4xl font-bold uppercase tracking-tight mb-8">
+      Code of Conduct
+    </h1>
+    <div class="prose prose-invert prose-p:text-mist prose-headings:text-mist prose-a:text-accent prose-p:leading-loose max-w-none">
+      <Content />
+    </div>
+  </div>
+</BaseLayout>

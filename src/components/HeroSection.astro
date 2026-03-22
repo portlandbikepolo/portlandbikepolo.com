@@ -1,0 +1,253 @@
+---
+import { getImage } from "astro:assets";
+import heroBg from "@assets/images/polo/polo_01.webp";
+
+interface Props {
+  photos?: { src: string }[];
+}
+
+const { photos = [] } = Astro.props;
+
+// Fallback image used when photos array is empty
+const optimizedBg = await getImage({
+  src: heroBg,
+  format: "webp",
+  width: 1920,
+});
+
+const initialBg = photos.length > 0 ? photos[0].src : optimizedBg.src;
+const showControls = photos.length > 1;
+---
+
+<section
+  class="relative flex min-h-svh md:min-h-[80vh]"
+  style={`background-image: url('${initialBg}'); background-size: cover; background-position: center;`}
+  data-photos={JSON.stringify(photos)}
+  aria-label="Hero"
+>
+  <!-- Dark overlay -->
+  <div class="absolute inset-0 bg-black/55" aria-hidden="true"></div>
+
+  <!-- Content -->
+  <div
+    class="relative z-10 flex-1 max-w-6xl mx-auto px-4 py-12 md:py-16 flex flex-col justify-between"
+  >
+    <!-- Top anchor: tagline -->
+    <p class="text-accent text-xs font-bold tracking-[0.3em] uppercase">
+      // PORTLAND, OREGON · EST. 2007
+    </p>
+
+    <!-- Middle anchor: title -->
+    <div class="border-l-[5px] border-accent pl-5">
+      <h1
+        class="text-mist font-bold uppercase leading-none"
+        style="font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 0.95;"
+      >
+        Hardcourt<br />Bike Polo
+      </h1>
+    </div>
+
+    <!-- Bottom anchor: description + buttons -->
+    <div class="flex flex-col gap-4">
+      <p class="text-mist/80 text-base max-w-md" style="line-height: 1.8;">
+        We play every week at Alberta Park. All skill levels welcome — just bring
+        a bike and a helmet.
+      </p>
+
+      <div class="flex flex-wrap gap-3">
+        <a
+          href="/play"
+          class="btn-primary bg-accent text-bg px-6 py-3 text-sm font-bold uppercase tracking-widest
+                 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-mist"
+        >
+          Come Play →
+        </a>
+        <a
+          href="/tournaments"
+          class="btn-ghost border border-mist/50 text-mist px-6 py-3 text-sm font-bold uppercase tracking-widest relative overflow-hidden
+                 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-mist"
+        >
+          <span class="relative z-10">Tournaments</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  {showControls && (
+    <>
+      <!-- Prev arrow -->
+      <button
+        data-prev
+        aria-label="Previous photo"
+        class="hero-arrow hero-arrow--prev"
+      >‹</button>
+
+      <!-- Next arrow -->
+      <button
+        data-next
+        aria-label="Next photo"
+        class="hero-arrow hero-arrow--next"
+      >›</button>
+
+      <!-- Dot indicators -->
+      <div class="hero-dots" role="group" aria-label="Photo indicators">
+        {photos.map((_, n) => (
+          <button
+            data-dot
+            aria-label={`Go to photo ${n + 1}`}
+            {...(n === 0 ? { 'aria-current': 'true' } : {})}
+            class="hero-dot"
+          />
+        ))}
+      </div>
+    </>
+  )}
+</section>
+
+<script>
+  function initHero() {
+    const section = document.querySelector<HTMLElement>('[data-photos]');
+    if (!section) return;
+
+    const photos: { src: string }[] = JSON.parse(section.dataset.photos ?? '[]');
+    if (photos.length < 2) return;
+
+    const dots = Array.from(section.querySelectorAll<HTMLElement>('[data-dot]'));
+    let i = 0;
+    let timer: ReturnType<typeof setInterval>;
+
+    function goTo(index: number) {
+      i = index;
+      section!.style.backgroundImage = `url('${photos[i].src}')`;
+      dots.forEach((d, n) => {
+        if (n === i) {
+          d.setAttribute('aria-current', 'true');
+        } else {
+          d.removeAttribute('aria-current');
+        }
+      });
+    }
+
+    function resetTimer() {
+      clearInterval(timer);
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        timer = setInterval(() => goTo((i + 1) % photos.length), 4000);
+      }
+    }
+
+    section.querySelector('[data-prev]')?.addEventListener('click', () => {
+      goTo((i - 1 + photos.length) % photos.length);
+      resetTimer();
+    });
+    section.querySelector('[data-next]')?.addEventListener('click', () => {
+      goTo((i + 1) % photos.length);
+      resetTimer();
+    });
+    dots.forEach((d, n) => d.addEventListener('click', () => {
+      goTo(n);
+      resetTimer();
+    }));
+
+    resetTimer();
+
+    // Prefetch remaining images after page load so transitions are seamless
+    photos.slice(1).forEach(p => { const img = new Image(); img.src = p.src; });
+  }
+
+  initHero();
+</script>
+
+<style>
+  .btn-primary {
+    transition: background-color 0.2s ease;
+  }
+  .btn-primary:hover {
+    background-color: #e89a3a;
+  }
+
+  .btn-ghost {
+    transition: color 0.25s ease, border-color 0.25s ease;
+  }
+  .btn-ghost::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--color-mist);
+    transform: translateX(-101%);
+    transition: transform 0.25s ease;
+    z-index: 0;
+  }
+  .btn-ghost:hover::before {
+    transform: translateX(0);
+  }
+  .btn-ghost:hover {
+    color: var(--color-bg);
+    border-color: var(--color-mist);
+  }
+
+  .hero-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 44px;
+    height: 44px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #e8e4d8;
+    font-size: 1.75rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero-arrow--prev { left: 0.75rem; }
+  .hero-arrow--next { right: 0.75rem; }
+  .hero-arrow:hover { background: rgba(0, 0, 0, 0.75); }
+  .hero-arrow:focus-visible {
+    outline: 2px solid var(--color-mist);
+    outline-offset: 2px;
+  }
+
+  .hero-dots {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .hero-dot {
+    width: 24px;
+    height: 24px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero-dot::after {
+    content: '';
+    display: block;
+    width: 10px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.35);
+    transition: background 0.2s ease;
+  }
+  .hero-dot[aria-current="true"]::after {
+    background: #e8a838;
+  }
+  .hero-dot:hover::after {
+    background: rgba(255, 255, 255, 0.65);
+  }
+  .hero-dot:focus-visible {
+    outline: 2px solid var(--color-mist);
+    outline-offset: 2px;
+  }
+</style>

@@ -1,0 +1,74 @@
+---
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  tournament: CollectionEntry<"tournaments">;
+}
+
+const { tournament } = Astro.props;
+const { title, cover, startDate, endDate, venue } = tournament.data;
+
+function formatDateRange(start: Date, end: Date): string {
+  const opts: Intl.DateTimeFormatOptions = { month: "short", day: "numeric" };
+  const startStr = start.toLocaleDateString("en-US", opts);
+  const endStr = end.toLocaleDateString("en-US", { day: "numeric" });
+  const year = end.getFullYear();
+  return `${startStr}–${endStr}, ${year}`;
+}
+---
+
+<article class="border border-fog/80 overflow-hidden group">
+  <a
+    href={`/tournaments/${tournament.id}`}
+    aria-label={title}
+    class="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+  >
+    <!-- Header bar -->
+    <div class="bg-accent px-4 py-2 flex justify-between items-center">
+      <span class="text-bg text-xs font-bold uppercase tracking-[0.15em]"
+        >Tournament</span
+      >
+      <span class="text-bg text-xs font-bold"
+        >{new Date(endDate).getFullYear()}</span
+      >
+    </div>
+
+    <!-- Cover image -->
+    <div class="aspect-video overflow-hidden">
+      <Image
+        src={cover}
+        alt={title}
+        width={600}
+        height={338}
+        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+        loading="lazy"
+      />
+    </div>
+
+    <!-- Meta -->
+    <div class="border-t border-[#222]">
+      <div class="p-4 flex flex-col gap-2">
+        <h3 class="text-mist font-bold text-base uppercase leading-tight">
+          {title}
+        </h3>
+        <div class="flex gap-0 border-t border-[#222] mt-1">
+          <div class="flex-1 pt-2 pr-3 border-r border-[#222]">
+            <p class="text-fog text-[0.65rem] uppercase tracking-[0.1em]">
+              Date
+            </p>
+            <p class="text-accent text-xs font-bold uppercase tracking-wide">
+              {formatDateRange(startDate, endDate)}
+            </p>
+          </div>
+          <div class="flex-1 pt-2 pl-3">
+            <p class="text-fog text-[0.65rem] uppercase tracking-[0.1em]">
+              Venue
+            </p>
+            <p class="text-mist text-xs font-bold">{venue}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </a>
+</article>

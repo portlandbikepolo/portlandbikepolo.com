@@ -1,0 +1,21 @@
+---
+import { getCollection } from "astro:content";
+import TournamentCard from "@components/TournamentCard.astro";
+
+const tournaments = await getCollection("tournaments");
+
+const sorted = tournaments.sort(
+  (a, b) =>
+    new Date(b.data.startDate).getTime() - new Date(a.data.startDate).getTime()
+);
+---
+
+{sorted.length > 0 ? (
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    {sorted.map((t) => (
+      <TournamentCard tournament={t} />
+    ))}
+  </div>
+) : (
+  <p class="text-fog uppercase tracking-[0.1em] text-sm">No tournaments yet — check back soon.</p>
+)}
