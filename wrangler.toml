@@ -1,0 +1,6 @@
+name = "portlandbikepolo-com"
+# Set this to today's date
+compatibility_date = "2026-03-20"
+
+[assets]
+directory = "./dist"
