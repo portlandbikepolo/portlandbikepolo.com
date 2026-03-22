@@ -16,15 +16,16 @@ const { Content } = await render(entry);
     <div
       class="prose prose-invert prose-p:text-mist prose-headings:text-mist prose-a:text-accent prose-p:leading-loose max-w-none"
     >
-      <iframe
-        width="560"
-        height="315"
-        src="https://www.youtube.com/embed/FIeaWtb2JOU?si=TJmH9M3ZB8Em9Jop"
-        title="YouTube video player"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin"
-        allowfullscreen></iframe>
+      <div class="relative w-full aspect-video mb-6">
+        <iframe
+          class="absolute inset-0 w-full h-full"
+          src="https://www.youtube.com/embed/FIeaWtb2JOU?si=TJmH9M3ZB8Em9Jop"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen></iframe>
+      </div>
       <Content />
     </div>
   </div>

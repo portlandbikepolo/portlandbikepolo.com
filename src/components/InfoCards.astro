@@ -25,29 +25,31 @@ function formatDateRange(start: Date, end: Date): string {
 ---
 
 <section aria-label="Key information" class="max-w-6xl mx-auto px-4 py-16">
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+  <div class="grid grid-cols-1 md:grid-cols-3 md:grid-rows-[auto_1fr_auto] gap-4">
     <!-- Come Play -->
     <article
       class="info-card border-l-[3px] border-accent p-8 flex flex-col gap-5"
     >
-      <h2 class="text-accent text-xs font-bold uppercase tracking-[0.2em]">
+      <h2 class="card-heading text-accent text-xs font-bold uppercase tracking-[0.2em]">
         Come Play
       </h2>
-      <ul
-        class="text-mist text-sm leading-relaxed list-none flex flex-col gap-1"
-      >
-        <li>
-          <span class="text-fog">Fridays</span> — afternoon pick-up, all levels
-        </li>
-        <li><span class="text-fog">Saturdays</span> — afternoon, pro-level</li>
-        <li>
-          <span class="text-fog">Sundays</span> — general pick-up, all welcome
-        </li>
-      </ul>
-      <p class="text-fog text-xs">Alberta Park, Portland, OR</p>
+      <div class="card-body flex flex-col gap-3">
+        <ul
+          class="text-mist text-sm leading-relaxed list-none flex flex-col gap-1"
+        >
+          <li>
+            <span class="text-fog">Fridays</span> — afternoon pick-up, all levels
+          </li>
+          <li><span class="text-fog">Saturdays</span> — afternoon, pro-level</li>
+          <li>
+            <span class="text-fog">Sundays</span> — general pick-up, all welcome
+          </li>
+        </ul>
+        <p class="text-fog text-xs">Alberta Park, Portland, OR</p>
+      </div>
       <a
         href="/play"
-        class="info-card-link text-accent text-xs font-bold mt-auto uppercase tracking-widest
+        class="card-cta info-card-link text-accent text-xs font-bold mt-auto uppercase tracking-widest
                focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
       >
         How to show up →
@@ -56,27 +58,14 @@ function formatDateRange(start: Date, end: Date): string {
 
     <!-- Next Tournament -->
     <article
-      class="info-card border-l-[3px] border-teal flex flex-col overflow-hidden"
+      class="info-card border-l-[3px] border-teal p-8 flex flex-col gap-5"
     >
-      <div class="px-8 pt-8 pb-5">
+      <div class="card-heading">
         <h2 class="text-teal text-xs font-bold uppercase tracking-[0.2em]">
           Next Tournament
         </h2>
       </div>
-      {
-        nextTournament?.data.cover && (
-          <div class="aspect-video overflow-hidden">
-            <Image
-              src={nextTournament.data.cover}
-              alt={nextTournament.data.title}
-              width={600}
-              height={338}
-              class="w-full h-full object-cover"
-            />
-          </div>
-        )
-      }
-      <div class="p-8 pt-5 flex flex-col gap-5 flex-1">
+      <div class="card-body flex flex-col gap-3 flex-1">
         {
           nextTournament ? (
             <>
@@ -90,13 +79,17 @@ function formatDateRange(start: Date, end: Date): string {
                 )}
               </p>
               <p class="text-fog text-xs">{nextTournament.data.venue}</p>
-              <a
-                href={`/tournaments/${nextTournament.id}`}
-                class="info-card-link text-teal text-xs font-bold mt-auto uppercase tracking-[0.1em]
-                     focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal"
-              >
-                Details →
-              </a>
+              {nextTournament.data.cover && (
+                <div class="flex-1 overflow-hidden aspect-video md:aspect-auto min-h-0 mt-2">
+                  <Image
+                    src={nextTournament.data.cover}
+                    alt={nextTournament.data.title}
+                    width={600}
+                    height={338}
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+              )}
             </>
           ) : (
             <p class="text-fog text-sm">
@@ -105,22 +98,33 @@ function formatDateRange(start: Date, end: Date): string {
           )
         }
       </div>
+      {
+        nextTournament && (
+          <a
+            href={`/tournaments/${nextTournament.id}`}
+            class="card-cta info-card-link text-teal text-xs font-bold mt-auto uppercase tracking-[0.1em]
+                   focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal"
+          >
+            Details →
+          </a>
+        )
+      }
     </article>
 
     <!-- What Is Bike Polo -->
     <article
       class="info-card border-l-[3px] border-[#333] p-8 flex flex-col gap-5"
     >
-      <h2 class="text-fog text-xs font-bold uppercase tracking-[0.2em]">
+      <h2 class="card-heading text-fog text-xs font-bold uppercase tracking-[0.2em]">
         What Is Bike Polo?
       </h2>
-      <p class="text-mist text-sm leading-relaxed">
+      <p class="card-body text-mist text-sm leading-relaxed">
         6 player 3v3 hardcourt action. Hardcourt bike polo is fast, physical,
         and fun — check out bike polo today!.
       </p>
       <a
         href="/about"
-        class="info-card-link text-fog text-xs font-bold mt-auto uppercase tracking-widest
+        class="card-cta info-card-link text-fog text-xs font-bold mt-auto uppercase tracking-widest
                focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
       >
         Learn more →
@@ -144,5 +148,25 @@ function formatDateRange(start: Date, end: Date): string {
   }
   .info-card:hover .info-card-link {
     letter-spacing: 0.2em;
+  }
+
+  @media (min-width: 768px) {
+    .info-card {
+      display: grid;
+      grid-row: span 3;
+      grid-template-rows: subgrid;
+      padding: 0;
+      gap: unset;
+    }
+    .card-heading {
+      padding: 2rem 2rem 0;
+    }
+    .card-body {
+      padding: 0 2rem;
+    }
+    .card-cta {
+      padding: 0 2rem 2rem;
+      margin-top: 0;
+    }
   }
 </style>
