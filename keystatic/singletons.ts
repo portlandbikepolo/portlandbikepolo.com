@@ -37,7 +37,12 @@ const play = singleton({
     schedule: fields.array(
       fields.object({
         day: fields.text({ label: "Day" }),
+        format: fields.text({ label: "Format" }),
         description: fields.text({ label: "Description" }),
+        newcomer: fields.checkbox({
+          label: "New-player friendly",
+          defaultValue: false,
+        }),
       }),
       {
         label: "Schedule",

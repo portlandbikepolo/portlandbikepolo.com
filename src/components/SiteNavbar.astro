@@ -134,6 +134,16 @@ const currentPath = Astro.url.pathname;
   .nav-link[aria-current="page"] {
     color: var(--color-ball);
   }
+  /* Transparent-over-hero state only: chalk links clear AA over the bright
+     graffiti photo (paired with the deepened hero top scrim); amber on hover.
+     The solid/inner-page look above (concrete + amber active + chalk hover) is
+     untouched — the homepage hero has no active top-level nav link. */
+  .site-header:not(.is-solid) .nav-link {
+    color: var(--color-chalk);
+  }
+  .site-header:not(.is-solid) .nav-link:hover {
+    color: var(--color-ball);
+  }
   .nav-link::after {
     content: "";
     position: absolute;

@@ -39,13 +39,32 @@ const { Content: Intro } = await render(entry);
         class="text-chalk text-sm leading-relaxed list-none flex flex-col gap-1 mb-6"
       >
         {
-          playData.schedule.map(({ day, description }) => (
+          playData.schedule.map(({ day, format, description }) => (
             <li>
-              <span class="text-concrete">{day}</span> — {description}
+              <span class="text-concrete">{day}</span>
+              {format && <> — <em>{format}</em></>} — {description}
             </li>
           ))
         }
       </ul>
+      <div class="flex flex-col gap-3 mb-8">
+        <p class="text-chalk text-sm leading-loose text-pretty">
+          No gear? We've got loaner bikes and mallets — give us a heads-up in
+          <span class="font-medium">#pickup</span> on Discord and we'll bring
+          them for you.
+        </p>
+        <a
+          href="https://discord.gg/GsEQT9THkw"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center self-start bg-ball px-5 py-2.5 text-sm font-medium text-asphalt
+                 transition-colors hover:bg-ball-hover
+                 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ball
+                 focus-visible:ring-offset-2 focus-visible:ring-offset-asphalt"
+        >
+          Get in touch on Discord →
+        </a>
+      </div>
       <figure>
         <Image
           src={mapImage}

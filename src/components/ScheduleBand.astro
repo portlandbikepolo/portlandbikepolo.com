@@ -1,12 +1,18 @@
 ---
 // Band 3 — Play / when-and-where. THE SIGNATURE.
 // The quiet typographic payoff to the loud photographic hero: oversized day
-// names, a single neutral court-line hairline as the edge cue, and exactly one
-// orange interactive link (Get directions). Schedule content is passed in from
-// the `play` Keystatic singleton (index.astro) — no clock times are invented;
-// only the day + description + location the content actually provides is shown.
+// names with each day's format + description grouped directly beside it, and one
+// loud interactive accent — the filled amber Discord CTA that routes newcomers
+// to loaner gear in #pickup. Schedule content is passed in from the `play`
+// Keystatic singleton (index.astro) — no clock times are invented; only the day,
+// format, description, and location the content actually provides are shown.
 interface Props {
-  schedule: readonly { day: string; description: string }[];
+  schedule: readonly {
+    day: string;
+    description: string;
+    format?: string;
+    newcomer?: boolean;
+  }[];
   location: { name: string; address: string };
 }
 
@@ -14,24 +20,58 @@ const { schedule, location } = Astro.props;
 
 const mapsQuery = encodeURIComponent(`${location.name} ${location.address}`);
 const mapsHref = `https://www.google.com/maps/search/?api=1&query=${mapsQuery}`;
+const discordHref = "https://discord.gg/GsEQT9THkw";
 ---
 
 <section class="home-band home-reveal bg-asphalt-raised" aria-labelledby="play-heading">
   <div class="mx-auto max-w-6xl px-4">
-    <p id="play-heading" class="text-concrete text-sm font-medium mb-8">
+    <p id="play-heading" class="text-concrete text-sm font-medium mb-3">
       When and where
+    </p>
+    <p class="sched-lede text-chalk text-pretty mb-8">
+      New to polo? Come to a Casual pickup — Friday or Sunday. All levels, no
+      experience needed.
     </p>
 
     <ol class="sched-list">
       {
-        schedule.map(({ day, description }) => (
+        schedule.map(({ day, description, format, newcomer }) => (
           <li class="sched-row">
             <span class="sched-day tabular-nums text-chalk">{day}</span>
-            <span class="sched-desc text-concrete text-pretty">{description}</span>
+            <div class="sched-detail">
+              {(format || newcomer) && (
+                <p class="sched-format">
+                  {format && <span class="text-concrete">{format}</span>}
+                  {newcomer && (
+                    <span class="sched-newcomer">Good for first-timers</span>
+                  )}
+                </p>
+              )}
+              <p class="sched-desc text-concrete text-pretty">{description}</p>
+            </div>
           </li>
         ))
       }
     </ol>
+
+    <div class="sched-cta">
+      <p class="sched-cta-text text-chalk text-pretty">
+        No gear? We've got loaner bikes and mallets — give us a heads-up in
+        <span class="text-chalk font-medium">#pickup</span> on Discord and we'll
+        bring them for you.
+      </p>
+      <a
+        href={discordHref}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="sched-discord inline-flex items-center bg-ball px-6 py-3 font-medium text-asphalt
+               transition-colors hover:bg-ball-hover
+               focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ball
+               focus-visible:ring-offset-2 focus-visible:ring-offset-asphalt"
+      >
+        Get in touch on Discord →
+      </a>
+    </div>
 
     <div class="sched-footer">
       <div>
@@ -42,7 +82,7 @@ const mapsHref = `https://www.google.com/maps/search/?api=1&query=${mapsQuery}`;
         href={mapsHref}
         target="_blank"
         rel="noopener noreferrer"
-        class="sched-directions text-ball transition-colors hover:text-ball-hover
+        class="sched-directions text-concrete transition-colors hover:text-chalk
                focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ball"
       >
         Get directions →
@@ -52,6 +92,12 @@ const mapsHref = `https://www.google.com/maps/search/?api=1&query=${mapsQuery}`;
 </section>
 
 <style>
+  .sched-lede {
+    font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+    line-height: 1.5;
+    max-width: 34rem;
+  }
+
   /* Exactly ONE neutral chalk-toned hairline — the deliberate court boundary. */
   .sched-list {
     list-style: none;
@@ -76,6 +122,33 @@ const mapsHref = `https://www.google.com/maps/search/?api=1&query=${mapsQuery}`;
     font-variant-numeric: tabular-nums;
   }
 
+  .sched-format {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.4rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Newcomer-friendly marker — the warm signal for a stranger scanning for the
+     safe day. Neutral chalk, NOT the reserved accent orange (which stays
+     interactive-only per the design system): it stands out by brightness. A
+     concrete middot sets it off from the uppercase format label when both show. */
+  .sched-newcomer {
+    color: var(--color-chalk);
+    text-transform: none;
+    letter-spacing: normal;
+  }
+  .sched-format > span + .sched-newcomer::before {
+    content: "·";
+    margin-right: 0.6rem;
+    color: var(--color-concrete);
+  }
+
   .sched-desc {
     font-size: clamp(1rem, 1.6vw, 1.125rem);
     line-height: 1.5;
@@ -84,14 +157,40 @@ const mapsHref = `https://www.google.com/maps/search/?api=1&query=${mapsQuery}`;
 
   @media (min-width: 48rem) {
     .sched-row {
-      grid-template-columns: minmax(0, auto) 1fr;
+      /* First column grows to fit the oversized day name (max-content), so the
+         format + description group sits directly beside each day instead of
+         right-justified to the opposite edge — and never overlaps the day. */
+      grid-template-columns: max-content 1fr;
+      gap: 1.5rem 2.5rem;
       align-items: end;
     }
-    .sched-desc {
-      justify-self: end;
-      text-align: right;
-      padding-bottom: 0.35rem;
+    .sched-detail {
+      justify-self: start;
+      text-align: left;
+      padding-bottom: 0.5rem;
     }
+  }
+
+  /* Primary conversion block — the single loud accent lives in this button. */
+  .sched-cta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.25rem 2rem;
+    margin-top: clamp(2.5rem, 5vw, 4rem);
+    padding-top: clamp(2rem, 4vw, 3rem);
+    border-top: 1px solid var(--color-line);
+  }
+
+  .sched-cta-text {
+    font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+    line-height: 1.5;
+    max-width: 34rem;
+    flex: 1 1 20rem;
+  }
+
+  .sched-discord {
+    flex-shrink: 0;
   }
 
   .sched-footer {

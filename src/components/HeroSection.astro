@@ -133,11 +133,19 @@ const frames =
     }
   }
 
+  /* Deeper, taller scrim so chalk nav links + the wordmark clear AA on first
+     paint over the bright graffiti photo — a mid stop keeps the full nav zone
+     (top ~4rem) dark before fading out. */
   .hero-scrim-top {
     position: absolute;
     inset: 0 0 auto 0;
-    height: 6rem;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.55), transparent);
+    height: 8rem;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.7),
+      rgba(0, 0, 0, 0.45) 50%,
+      transparent
+    );
     z-index: 1;
     pointer-events: none;
   }
