@@ -22,15 +22,24 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0e0e10" />
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
     <title>{title}</title>
-    <Font cssVariable="--font-mono" preload />
+    <!--
+      Space Grotesk is self-hosted by Astro's font provider (no third-party host,
+      so no preconnect is needed). font-display:swap is set in astro.config.
+      Preload just the critical latin/normal file so the hero headline never FOITs.
+    -->
+    <Font
+      cssVariable="--font-space-grotesk"
+      preload={[{ subset: "latin", style: "normal" }]}
+    />
   </head>
-  <body class="bg-bg text-mist">
+  <body class="bg-asphalt text-chalk">
     <a
       href="#main-content"
-      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-accent focus:text-bg focus:px-4 focus:py-2 focus:font-bold"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-ball focus:text-asphalt focus:px-4 focus:py-2 focus:font-bold"
     >
       Skip to main content
     </a>

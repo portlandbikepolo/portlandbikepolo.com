@@ -43,27 +43,27 @@ function formatDateRange(start: Date, end: Date): string {
     </div>
 
     <!-- Header -->
-    <p class="text-fog text-xs uppercase tracking-[0.2em] mb-2">// Tournament</p>
-    <h1 class="text-mist text-4xl font-bold uppercase tracking-tight mb-3">
+    <p class="text-concrete text-xs uppercase tracking-[0.2em] mb-2">// Tournament</p>
+    <h1 class="text-chalk text-4xl font-bold uppercase tracking-tight mb-3">
       {title}
     </h1>
-    <p class="text-fog text-sm mb-1">
+    <p class="text-concrete text-sm mb-1">
       {formatDateRange(new Date(startDate), new Date(endDate))}
     </p>
-    <p class="text-fog text-sm mb-8">{venue}</p>
+    <p class="text-concrete text-sm mb-8">{venue}</p>
 
     <hr class="border-[#222] mb-8" />
 
     <!-- Body content -->
-    <div class="prose prose-invert prose-p:text-mist prose-headings:text-mist prose-a:text-accent prose-strong:text-mist max-w-none prose-p:leading-loose">
+    <div class="prose prose-invert prose-p:text-chalk prose-headings:text-chalk prose-a:text-ball prose-strong:text-chalk max-w-none prose-p:leading-loose">
       <Content />
     </div>
 
     <!-- Back link -->
     <a
       href="/tournaments"
-      class="inline-block mt-12 text-fog text-xs hover:text-mist transition-colors uppercase tracking-[0.1em]
-             focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+      class="inline-block mt-12 text-concrete text-xs hover:text-chalk transition-colors uppercase tracking-[0.1em]
+             focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ball"
     >
       ← All Tournaments
     </a>

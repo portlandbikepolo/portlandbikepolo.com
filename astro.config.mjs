@@ -14,11 +14,15 @@ export default defineConfig({
   experimental: {
     fonts: [
       {
+        // Space Grotesk is the site's sole typeface (sibling of the outgoing
+        // Space Mono — keeps a thread to the prior identity). Variable weight
+        // range 300–700 ships as a single self-hosted file per subset.
         provider: fontProviders.google(),
-        name: "Space Mono",
-        cssVariable: "--font-mono",
-        weights: [400, 700],
+        name: "Space Grotesk",
+        cssVariable: "--font-space-grotesk",
+        weights: ["300 700"],
         styles: ["normal"],
+        display: "swap",
       },
     ],
   },

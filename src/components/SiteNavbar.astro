@@ -11,14 +11,14 @@ const navLinks = [
 const currentPath = Astro.url.pathname;
 ---
 
-<header class="sticky top-0 z-40 bg-bg border-b-2 border-mist">
+<header class="sticky top-0 z-40 bg-asphalt border-b-2 border-chalk">
   <nav
     aria-label="Main navigation"
     class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between"
   >
     <a
       href="/"
-      class="text-mist font-bold text-sm uppercase tracking-[0.2em] hover:text-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+      class="text-chalk font-bold text-sm uppercase tracking-[0.2em] hover:text-ball transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ball"
     >
       Portland Bike Polo
     </a>
@@ -31,7 +31,7 @@ const currentPath = Astro.url.pathname;
             <a
               href={href}
               aria-current={currentPath.startsWith(href) ? "page" : undefined}
-              class="nav-link text-sm tracking-wide uppercase focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+              class="nav-link text-sm tracking-wide uppercase focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ball"
             >
               {label}
             </a>
@@ -46,7 +46,7 @@ const currentPath = Astro.url.pathname;
       aria-expanded="false"
       aria-controls="mobile-menu"
       aria-label="Open navigation menu"
-      class="md:hidden p-2 text-fog hover:text-mist focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+      class="md:hidden p-2 text-concrete hover:text-chalk focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ball"
     >
       <svg
         id="icon-open"
@@ -82,21 +82,21 @@ const currentPath = Astro.url.pathname;
   <!-- Mobile menu -->
   <div
     id="mobile-menu"
-    class="hidden md:hidden fixed inset-0 top-16 bg-bg z-30 flex flex-col p-8 gap-0"
+    class="hidden md:hidden fixed inset-0 top-16 bg-asphalt z-30 flex flex-col p-8 gap-0"
   >
     {
       navLinks.map(({ href, label }) => (
         <a
           href={href}
           aria-current={currentPath.startsWith(href) ? "page" : undefined}
-          class="text-mist text-2xl font-bold tracking-wide uppercase border-b border-[#1a1a1a] py-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent aria-[current=page]:text-accent"
+          class="text-chalk text-2xl font-bold tracking-wide uppercase border-b border-[#1a1a1a] py-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ball aria-[current=page]:text-ball"
         >
           {label}
         </a>
       ))
     }
     <div class="mt-6"><SocialLinks /></div>
-    <p class="text-fog text-xs uppercase tracking-[0.15em] mt-auto">
+    <p class="text-concrete text-xs uppercase tracking-[0.15em] mt-auto">
       Alberta Park · Portland, OR
     </p>
   </div>
@@ -107,13 +107,13 @@ const currentPath = Astro.url.pathname;
     position: relative;
     padding-bottom: 3px;
     transition: color 0.2s ease;
-    color: var(--color-fog);
+    color: var(--color-concrete);
   }
   .nav-link:hover {
-    color: var(--color-mist);
+    color: var(--color-chalk);
   }
   .nav-link[aria-current="page"] {
-    color: var(--color-accent);
+    color: var(--color-ball);
   }
   .nav-link::after {
     content: "";
@@ -122,7 +122,7 @@ const currentPath = Astro.url.pathname;
     left: 0;
     width: 0;
     height: 1px;
-    background: var(--color-accent);
+    background: var(--color-ball);
     transition: width 0.25s ease;
   }
   .nav-link:hover::after,

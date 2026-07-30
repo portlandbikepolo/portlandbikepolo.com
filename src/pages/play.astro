@@ -21,30 +21,30 @@ const { Content: Intro } = await render(entry);
 
 <BaseLayout title="Play — Portland Bike Polo">
   <div class="max-w-2xl mx-auto px-4 py-16">
-    <p class="text-accent text-sm uppercase tracking-[0.2em] mb-2">
+    <p class="text-ball text-sm uppercase tracking-[0.2em] mb-2">
       // Get Involved
     </p>
-    <h1 class="text-mist text-4xl font-bold uppercase tracking-tight mb-8">
+    <h1 class="text-chalk text-4xl font-bold uppercase tracking-tight mb-8">
       Play
     </h1>
 
     <div
-      class="prose prose-invert prose-p:text-mist prose-headings:text-mist prose-a:text-accent prose-p:leading-loose max-w-none mb-12"
+      class="prose prose-invert prose-p:text-chalk prose-headings:text-chalk prose-a:text-ball prose-p:leading-loose max-w-none mb-12"
     >
       <Intro />
     </div>
 
     <section class="mb-12">
-      <p class="text-accent text-sm font-bold uppercase tracking-[0.2em] mb-4">
+      <p class="text-ball text-sm font-bold uppercase tracking-[0.2em] mb-4">
         // When & Where
       </p>
       <ul
-        class="text-mist text-sm leading-relaxed list-none flex flex-col gap-1 mb-6"
+        class="text-chalk text-sm leading-relaxed list-none flex flex-col gap-1 mb-6"
       >
         {
           playData.schedule.map(({ day, description }) => (
             <li>
-              <span class="text-fog">{day}</span> — {description}
+              <span class="text-concrete">{day}</span> — {description}
             </li>
           ))
         }
@@ -55,30 +55,30 @@ const { Content: Intro } = await render(entry);
           alt="Map of Alberta Park in Portland, OR"
           class="w-full rounded"
         />
-        <figcaption class="text-fog text-xs mt-2">
+        <figcaption class="text-concrete text-xs mt-2">
           {playData.location.name} — {playData.location.address}
         </figcaption>
       </figure>
     </section>
 
     <section class="mb-12">
-      <p class="text-accent text-sm font-bold uppercase tracking-[0.2em] mb-4">
+      <p class="text-ball text-sm font-bold uppercase tracking-[0.2em] mb-4">
         // What to Bring
       </p>
-      <p class="text-mist text-sm leading-loose whitespace-pre-line">
+      <p class="text-chalk text-sm leading-loose whitespace-pre-line">
         {playData.equipment}
       </p>
     </section>
 
     <section class="mb-12">
-      <p class="text-accent text-sm font-bold uppercase tracking-[0.2em] mb-4">
+      <p class="text-ball text-sm font-bold uppercase tracking-[0.2em] mb-4">
         // What Kind of Bike
       </p>
-      <p class="text-mist text-sm leading-loose whitespace-pre-line mb-6">
+      <p class="text-chalk text-sm leading-loose whitespace-pre-line mb-6">
         {playData.bikeType}
       </p>
       <div class="border-l-[3px] border-[#333] p-6 flex flex-col gap-3">
-        <p class="text-accent text-sm font-bold uppercase tracking-[0.2em]">
+        <p class="text-ball text-sm font-bold uppercase tracking-[0.2em]">
           Featured Frame
         </p>
         <Image
@@ -86,21 +86,21 @@ const { Content: Intro } = await render(entry);
           alt="Enforcer 13 bike polo frame"
           class="w-full rounded"
         />
-        <p class="text-mist font-bold">Enforcer 13</p>
+        <p class="text-chalk font-bold">Enforcer 13</p>
         <a
           href="https://www.enforcerbikes.com/enforcer-13"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-accent text-xs font-bold uppercase tracking-[0.1em]
-                 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+          class="text-ball text-xs font-bold uppercase tracking-[0.1em]
+                 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ball"
         >
           View at Enforcer Bikes →
         </a>
       </div>
     </section>
 
-    <section class="border-l-[3px] border-accent p-8 flex flex-col gap-5">
-      <p class="text-accent text-sm font-bold uppercase tracking-[0.2em]">
+    <section class="border-l-[3px] border-ball p-8 flex flex-col gap-5">
+      <p class="text-ball text-sm font-bold uppercase tracking-[0.2em]">
         // Get Your Gear
       </p>
       <Image
@@ -108,15 +108,15 @@ const { Content: Intro } = await render(entry);
         alt="Hecklers Alley"
         class="h-32 w-auto self-start"
       />
-      <p class="text-mist text-sm leading-loose">
+      <p class="text-chalk text-sm leading-loose">
         {playData.hecklersAlleyBlurb}
       </p>
       <a
         href="https://hecklersalley.com/"
         target="_blank"
         rel="noopener noreferrer"
-        class="text-accent text-xs font-bold uppercase tracking-[0.1em]
-               focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+        class="text-ball text-xs font-bold uppercase tracking-[0.1em]
+               focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ball"
       >
         Shop Hecklers Alley →
       </a>
@@ -124,8 +124,8 @@ const { Content: Intro } = await render(entry);
         href="https://hecklersalley.com/collections/mallet-parts/products/complete-mallet?variant=41418374217791"
         target="_blank"
         rel="noopener noreferrer"
-        class="text-accent text-xs font-bold uppercase tracking-[0.1em]
-               focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+        class="text-ball text-xs font-bold uppercase tracking-[0.1em]
+               focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ball"
       >
         Complete Setup Bike Polo Mallet →
       </a>

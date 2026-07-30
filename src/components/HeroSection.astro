@@ -33,14 +33,14 @@ const showControls = photos.length > 1;
     class="relative z-10 flex-1 max-w-6xl mx-auto px-4 py-12 md:py-16 flex flex-col justify-between"
   >
     <!-- Top anchor: tagline -->
-    <p class="text-accent text-xs font-bold tracking-[0.3em] uppercase">
+    <p class="text-ball text-xs font-bold tracking-[0.3em] uppercase">
       // PORTLAND, OREGON · EST. 2007
     </p>
 
     <!-- Middle anchor: title -->
-    <div class="border-l-[5px] border-accent pl-5">
+    <div class="border-l-[5px] border-ball pl-5">
       <h1
-        class="text-mist font-bold uppercase leading-none"
+        class="text-chalk font-bold uppercase leading-none"
         style="font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 0.95;"
       >
         Hardcourt<br />Bike Polo
@@ -49,7 +49,7 @@ const showControls = photos.length > 1;
 
     <!-- Bottom anchor: description + buttons -->
     <div class="flex flex-col gap-4">
-      <p class="text-mist/80 text-base max-w-md" style="line-height: 1.8;">
+      <p class="text-chalk/80 text-base max-w-md" style="line-height: 1.8;">
         We play every week at Alberta Park. All skill levels welcome — just bring
         a bike and a helmet.
       </p>
@@ -57,15 +57,15 @@ const showControls = photos.length > 1;
       <div class="flex flex-wrap gap-3">
         <a
           href="/play"
-          class="btn-primary bg-accent text-bg px-6 py-3 text-sm font-bold uppercase tracking-widest
-                 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-mist"
+          class="btn-primary bg-ball text-asphalt px-6 py-3 text-sm font-bold uppercase tracking-widest
+                 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-chalk"
         >
           Come Play →
         </a>
         <a
           href="/tournaments"
-          class="btn-ghost border border-mist/50 text-mist px-6 py-3 text-sm font-bold uppercase tracking-widest relative overflow-hidden
-                 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-mist"
+          class="btn-ghost border border-chalk/50 text-chalk px-6 py-3 text-sm font-bold uppercase tracking-widest relative overflow-hidden
+                 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-chalk"
         >
           <span class="relative z-10">Tournaments</span>
         </a>
@@ -172,7 +172,7 @@ const showControls = photos.length > 1;
     content: "";
     position: absolute;
     inset: 0;
-    background: var(--color-mist);
+    background: var(--color-chalk);
     transform: translateX(-101%);
     transition: transform 0.25s ease;
     z-index: 0;
@@ -181,8 +181,8 @@ const showControls = photos.length > 1;
     transform: translateX(0);
   }
   .btn-ghost:hover {
-    color: var(--color-bg);
-    border-color: var(--color-mist);
+    color: var(--color-asphalt);
+    border-color: var(--color-chalk);
   }
 
   .hero-arrow {
@@ -206,7 +206,7 @@ const showControls = photos.length > 1;
   .hero-arrow--next { right: 0.75rem; }
   .hero-arrow:hover { background: rgba(0, 0, 0, 0.75); }
   .hero-arrow:focus-visible {
-    outline: 2px solid var(--color-mist);
+    outline: 2px solid var(--color-chalk);
     outline-offset: 2px;
   }
 
@@ -247,7 +247,7 @@ const showControls = photos.length > 1;
     background: rgba(255, 255, 255, 0.65);
   }
   .hero-dot:focus-visible {
-    outline: 2px solid var(--color-mist);
+    outline: 2px solid var(--color-chalk);
     outline-offset: 2px;
   }
 </style>

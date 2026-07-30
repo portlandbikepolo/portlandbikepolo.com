@@ -10,7 +10,7 @@ const navLinks = [
 ];
 ---
 
-<footer class="bg-bg border-t-2 border-mist mt-16">
+<footer class="bg-asphalt border-t-2 border-chalk mt-16">
   <div class="max-w-6xl mx-auto px-4 py-12 flex flex-col gap-8">
 
     <!-- Nav links -->
@@ -20,8 +20,8 @@ const navLinks = [
           <li>
             <a
               href={href}
-              class="text-fog hover:text-mist text-xs uppercase tracking-[0.15em] transition-colors
-                     focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+              class="text-concrete hover:text-chalk text-xs uppercase tracking-[0.15em] transition-colors
+                     focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ball"
             >
               {label}
             </a>
@@ -33,7 +33,7 @@ const navLinks = [
     <SocialLinks />
 
     <!-- Non-profit info -->
-    <div class="text-fog text-xs leading-relaxed max-w-2xl flex flex-col gap-1">
+    <div class="text-concrete text-xs leading-relaxed max-w-2xl flex flex-col gap-1">
       <p>
         Portland Bike Polo is a non-profit 501(c)(3) organization focused on
         building a competitive, diverse, and inclusive bike polo community in
@@ -43,6 +43,6 @@ const navLinks = [
     </div>
 
     <!-- Copyright -->
-    <p class="text-fog text-xs uppercase tracking-[0.1em]">© {year} Portland Bike Polo</p>
+    <p class="text-concrete text-xs uppercase tracking-[0.1em]">© {year} Portland Bike Polo</p>
   </div>
 </footer>
