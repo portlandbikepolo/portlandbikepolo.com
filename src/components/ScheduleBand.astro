@@ -25,9 +25,12 @@ const discordHref = "https://discord.gg/GsEQT9THkw";
 
 <section class="home-band home-reveal bg-asphalt-raised" aria-labelledby="play-heading">
   <div class="mx-auto max-w-6xl px-4">
-    <p id="play-heading" class="text-concrete text-sm font-medium mb-3">
+    <h2
+      id="play-heading"
+      class="text-concrete text-xs font-medium uppercase tracking-[0.1em] mb-4"
+    >
       When and where
-    </p>
+    </h2>
     <p class="sched-lede text-chalk text-pretty mb-8">
       New to polo? Come to a Casual pickup — Friday or Sunday. All levels, no
       experience needed.
@@ -56,9 +59,9 @@ const discordHref = "https://discord.gg/GsEQT9THkw";
 
     <div class="sched-cta">
       <p class="sched-cta-text text-chalk text-pretty">
-        No gear? We've got loaner bikes and mallets — give us a heads-up in
-        <span class="text-chalk font-medium">#pickup</span> on Discord and we'll
-        bring them for you.
+        No gear? We’ve got loaner bikes and mallets — give us a heads-up in
+        <span class="text-chalk font-medium" translate="no">#pickup</span> on Discord
+        and we’ll bring them for you.
       </p>
       <a
         href={discordHref}
@@ -69,7 +72,7 @@ const discordHref = "https://discord.gg/GsEQT9THkw";
                focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ball
                focus-visible:ring-offset-2 focus-visible:ring-offset-asphalt"
       >
-        Get in touch on Discord →
+        Get in touch on Discord →<span class="sr-only"> (opens in a new tab)</span>
       </a>
     </div>
 
@@ -85,7 +88,7 @@ const discordHref = "https://discord.gg/GsEQT9THkw";
         class="sched-directions text-concrete transition-colors hover:text-chalk
                focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ball"
       >
-        Get directions →
+        Get directions →<span class="sr-only"> (opens in a new tab)</span>
       </a>
     </div>
   </div>
@@ -106,18 +109,19 @@ const discordHref = "https://discord.gg/GsEQT9THkw";
     border-top: 1px solid var(--color-line);
   }
 
+  /* Mobile: day stacked over its detail. Only row-gap is set (no column-gap),
+     so the md subgrid below can inherit the list's column-gap cleanly. */
   .sched-row {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 0.5rem 2rem;
-    padding-block: clamp(1.25rem, 3vw, 2.25rem);
-    align-items: baseline;
+    row-gap: 0.5rem;
+    padding-block: clamp(1.25rem, 3vw, 2rem);
   }
 
   .sched-day {
-    font-size: clamp(2.75rem, 8vw, 6rem);
+    font-size: clamp(2rem, 4.5vw, 3.5rem);
     font-weight: 500;
-    line-height: 0.95;
+    line-height: 1;
     letter-spacing: -0.02em;
     font-variant-numeric: tabular-nums;
   }
@@ -156,18 +160,25 @@ const discordHref = "https://discord.gg/GsEQT9THkw";
   }
 
   @media (min-width: 48rem) {
-    .sched-row {
-      /* First column grows to fit the oversized day name (max-content), so the
-         format + description group sits directly beside each day instead of
-         right-justified to the opposite edge — and never overlaps the day. */
+    /* The list becomes the grid; every row is a subgrid spanning both tracks,
+       so the day column is sized to the WIDEST day across all rows and every
+       description lines up on one shared left edge (no per-row raggedness).
+       column-gap is declared once here and inherited by each row's subgrid. */
+    .sched-list {
+      display: grid;
       grid-template-columns: max-content 1fr;
-      gap: 1.5rem 2.5rem;
-      align-items: end;
+      column-gap: clamp(2rem, 4vw, 4rem);
+    }
+    .sched-row {
+      grid-template-columns: subgrid;
+      grid-column: 1 / -1;
+      /* Small detail text sits on the big day's baseline for a clean type line. */
+      align-items: baseline;
+      padding-block: clamp(1.5rem, 2.5vw, 2.25rem);
     }
     .sched-detail {
       justify-self: start;
       text-align: left;
-      padding-bottom: 0.5rem;
     }
   }
 

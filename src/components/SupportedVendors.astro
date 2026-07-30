@@ -6,6 +6,11 @@ import { Image } from "astro:assets";
 import enforcerLogo from "@assets/images/brands/enforcer.svg";
 import hecklersLogo from "@assets/images/brands/hecklers_alley.webp";
 
+// Logos render at a fixed 48px height; deriving width from each source's
+// intrinsic aspect ratio gives the <img> both explicit dimensions (no CLS)
+// while the SVG and raster keep their own proportions.
+const LOGO_HEIGHT = 48;
+
 const vendors = [
   {
     name: "Enforcer Bikes",
@@ -17,7 +22,10 @@ const vendors = [
     href: "https://hecklersalley.com/",
     logo: hecklersLogo,
   },
-];
+].map((v) => ({
+  ...v,
+  width: Math.round((LOGO_HEIGHT * v.logo.width) / v.logo.height),
+}));
 ---
 
 <section
@@ -29,7 +37,7 @@ const vendors = [
     <h2 class="text-concrete text-sm font-medium mb-10">Vendors we support</h2>
     <div class="flex flex-wrap items-center gap-x-12 gap-y-8">
       {
-        vendors.map(({ name, href, logo }) => (
+        vendors.map(({ name, href, logo, width }) => (
           <a
             href={href}
             target="_blank"
@@ -38,7 +46,13 @@ const vendors = [
             class="opacity-60 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0
                    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ball"
           >
-            <Image src={logo} alt={name} height={48} class="h-12 w-auto" />
+            <Image
+              src={logo}
+              alt={name}
+              width={width}
+              height={LOGO_HEIGHT}
+              class="h-12 w-auto"
+            />
           </a>
         ))
       }

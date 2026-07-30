@@ -106,6 +106,8 @@ const photos = (
     .js-motion .home-reveal.is-visible {
       opacity: 1;
       transform: none;
+      /* Release the compositor hint once the one-shot reveal has finished. */
+      will-change: auto;
     }
   }
 </style>

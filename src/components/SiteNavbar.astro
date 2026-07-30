@@ -16,7 +16,7 @@ const currentPath = Astro.url.pathname;
 >
   <nav
     aria-label="Main navigation"
-    class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between"
+    class="site-nav max-w-6xl mx-auto h-16 flex items-center justify-between"
   >
     <a
       href="/"
@@ -84,7 +84,7 @@ const currentPath = Astro.url.pathname;
   <!-- Mobile menu -->
   <div
     id="mobile-menu"
-    class="mobile-drawer hidden md:hidden fixed inset-0 top-16 bg-asphalt z-30 flex flex-col p-8 gap-2"
+    class="mobile-drawer hidden md:hidden fixed inset-0 top-16 bg-asphalt z-30 flex flex-col gap-2"
   >
     {
       navLinks.map(({ href, label }) => (
@@ -109,23 +109,31 @@ const currentPath = Astro.url.pathname;
   .site-header {
     background-color: transparent;
     border-bottom: 1px solid transparent;
-    transition:
-      background-color 0.3s ease,
-      border-color 0.3s ease;
   }
   .site-header.is-solid {
     background-color: var(--color-asphalt);
     border-bottom-color: var(--color-line);
   }
 
+  /* Clear notches on the full-bleed fixed bar (landscape) — never less than 1rem. */
+  .site-nav {
+    padding-left: max(1rem, env(safe-area-inset-left));
+    padding-right: max(1rem, env(safe-area-inset-right));
+  }
+
   .mobile-drawer {
     overscroll-behavior: contain;
+    /* Scroll if the menu is taller than a short viewport; clear notch + home indicator. */
+    overflow-y: auto;
+    padding: 2rem;
+    padding-left: max(2rem, env(safe-area-inset-left));
+    padding-right: max(2rem, env(safe-area-inset-right));
+    padding-bottom: max(2rem, env(safe-area-inset-bottom));
   }
 
   .nav-link {
     position: relative;
     padding-bottom: 3px;
-    transition: color 0.2s ease;
     color: var(--color-concrete);
   }
   .nav-link:hover {
@@ -144,19 +152,38 @@ const currentPath = Astro.url.pathname;
   .site-header:not(.is-solid) .nav-link:hover {
     color: var(--color-ball);
   }
+  /* Full-width rule scaled down on the X axis — animate transform, not width
+     (compositor-friendly). transform-origin:left grows it left→right on reveal. */
   .nav-link::after {
     content: "";
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 0;
+    width: 100%;
     height: 1px;
     background: var(--color-ball);
-    transition: width 0.25s ease;
+    transform: scaleX(0);
+    transform-origin: left;
   }
   .nav-link:hover::after,
   .nav-link[aria-current="page"]::after {
-    width: 100%;
+    transform: scaleX(1);
+  }
+
+  /* All bar/link motion is gated: reduced-motion users get the same end states
+     (solid bar, colored links, visible underline) applied instantly. */
+  @media (prefers-reduced-motion: no-preference) {
+    .site-header {
+      transition:
+        background-color 0.3s ease,
+        border-color 0.3s ease;
+    }
+    .nav-link {
+      transition: color 0.2s ease;
+    }
+    .nav-link::after {
+      transition: transform 0.25s ease;
+    }
   }
 </style>
 

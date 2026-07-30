@@ -60,6 +60,20 @@ html {
 }
 
 /*
+ * Snappier taps on touch devices: kill the ~300ms double-tap-zoom delay and the
+ * default grey flash on tap. Feedback is intentional here — hover/active/focus
+ * states already provide visual response, so the native highlight is redundant.
+ */
+a,
+button,
+label,
+summary,
+[role="button"] {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/*
  * In-page anchor targets (and the skip link's #main-content) clear the fixed/
  * sticky navbar, so anchors and the skip link never land underneath the bar.
  * Sized to the solidified navbar height.

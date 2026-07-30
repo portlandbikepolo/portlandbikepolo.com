@@ -34,7 +34,7 @@ const { Content: Intro } = await render(entry);
     </div>
 
     <section class="mb-16">
-      <p class="text-concrete text-sm mb-4">When and where</p>
+      <h2 class="text-concrete text-sm font-medium mb-4">When and where</h2>
       <ul
         class="text-chalk text-sm leading-relaxed list-none flex flex-col gap-1 mb-6"
       >
@@ -49,8 +49,8 @@ const { Content: Intro } = await render(entry);
       </ul>
       <div class="flex flex-col gap-3 mb-8">
         <p class="text-chalk text-sm leading-loose text-pretty">
-          No gear? We've got loaner bikes and mallets — give us a heads-up in
-          <span class="font-medium">#pickup</span> on Discord and we'll bring
+          No gear? We’ve got loaner bikes and mallets — give us a heads-up in
+          <span class="font-medium" translate="no">#pickup</span> on Discord and we’ll bring
           them for you.
         </p>
         <a
@@ -62,7 +62,7 @@ const { Content: Intro } = await render(entry);
                  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ball
                  focus-visible:ring-offset-2 focus-visible:ring-offset-asphalt"
         >
-          Get in touch on Discord →
+          Get in touch on Discord →<span class="sr-only"> (opens in a new tab)</span>
         </a>
       </div>
       <figure>
@@ -78,25 +78,25 @@ const { Content: Intro } = await render(entry);
     </section>
 
     <section class="mb-16">
-      <p class="text-concrete text-sm mb-4">What to bring</p>
+      <h2 class="text-concrete text-sm font-medium mb-4">What to bring</h2>
       <p class="text-chalk text-sm leading-loose whitespace-pre-line">
         {playData.equipment}
       </p>
     </section>
 
     <section class="mb-16">
-      <p class="text-concrete text-sm mb-4">What kind of bike</p>
+      <h2 class="text-concrete text-sm font-medium mb-4">What kind of bike</h2>
       <p class="text-chalk text-sm leading-loose whitespace-pre-line mb-8">
         {playData.bikeType}
       </p>
       <div class="flex flex-col gap-3">
-        <p class="text-concrete text-sm">Featured frame</p>
+        <h3 class="text-concrete text-sm font-medium">Featured frame</h3>
         <Image
           src={enforcer13}
           alt="Enforcer 13 bike polo frame"
           class="w-full"
         />
-        <p class="text-chalk font-medium">Enforcer 13</p>
+        <p class="text-chalk font-medium" translate="no">Enforcer&nbsp;13</p>
         <a
           href="https://www.enforcerbikes.com/enforcer-13"
           target="_blank"
@@ -104,13 +104,13 @@ const { Content: Intro } = await render(entry);
           class="text-ball text-sm hover:text-ball-hover transition-colors
                  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ball"
         >
-          View at Enforcer Bikes →
+          View at Enforcer Bikes →<span class="sr-only"> (opens in a new tab)</span>
         </a>
       </div>
     </section>
 
     <section class="flex flex-col gap-5">
-      <p class="text-concrete text-sm">Get your gear</p>
+      <h2 class="text-concrete text-sm font-medium">Get your gear</h2>
       <Image
         src={hecklersLogo}
         alt="Hecklers Alley"
@@ -126,7 +126,7 @@ const { Content: Intro } = await render(entry);
         class="text-ball text-sm hover:text-ball-hover transition-colors
                focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ball"
       >
-        Shop Hecklers Alley →
+        Shop Hecklers Alley →<span class="sr-only"> (opens in a new tab)</span>
       </a>
       <a
         href="https://hecklersalley.com/collections/mallet-parts/products/complete-mallet?variant=41418374217791"
@@ -135,7 +135,7 @@ const { Content: Intro } = await render(entry);
         class="text-ball text-sm hover:text-ball-hover transition-colors
                focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ball"
       >
-        Complete Setup Bike Polo Mallet →
+        Complete Setup Bike Polo Mallet →<span class="sr-only"> (opens in a new tab)</span>
       </a>
     </section>
   </div>
