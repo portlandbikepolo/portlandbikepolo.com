@@ -21,23 +21,20 @@ const { Content: Intro } = await render(entry);
 
 <BaseLayout title="Play — Portland Bike Polo">
   <div class="max-w-2xl mx-auto px-4 py-16">
-    <p class="text-ball text-sm uppercase tracking-[0.2em] mb-2">
-      // Get Involved
-    </p>
-    <h1 class="text-chalk text-4xl font-bold uppercase tracking-tight mb-8">
+    <h1
+      class="text-chalk text-5xl md:text-6xl font-medium tracking-tight text-balance mb-10"
+    >
       Play
     </h1>
 
     <div
-      class="prose prose-invert prose-p:text-chalk prose-headings:text-chalk prose-a:text-ball prose-p:leading-loose max-w-none mb-12"
+      class="prose prose-invert prose-p:text-chalk prose-headings:text-chalk prose-a:text-ball prose-p:leading-loose prose-p:text-pretty max-w-none mb-16"
     >
       <Intro />
     </div>
 
-    <section class="mb-12">
-      <p class="text-ball text-sm font-bold uppercase tracking-[0.2em] mb-4">
-        // When & Where
-      </p>
+    <section class="mb-16">
+      <p class="text-concrete text-sm mb-4">When and where</p>
       <ul
         class="text-chalk text-sm leading-relaxed list-none flex flex-col gap-1 mb-6"
       >
@@ -53,7 +50,7 @@ const { Content: Intro } = await render(entry);
         <Image
           src={mapImage}
           alt="Map of Alberta Park in Portland, OR"
-          class="w-full rounded"
+          class="w-full"
         />
         <figcaption class="text-concrete text-xs mt-2">
           {playData.location.name} — {playData.location.address}
@@ -61,37 +58,31 @@ const { Content: Intro } = await render(entry);
       </figure>
     </section>
 
-    <section class="mb-12">
-      <p class="text-ball text-sm font-bold uppercase tracking-[0.2em] mb-4">
-        // What to Bring
-      </p>
+    <section class="mb-16">
+      <p class="text-concrete text-sm mb-4">What to bring</p>
       <p class="text-chalk text-sm leading-loose whitespace-pre-line">
         {playData.equipment}
       </p>
     </section>
 
-    <section class="mb-12">
-      <p class="text-ball text-sm font-bold uppercase tracking-[0.2em] mb-4">
-        // What Kind of Bike
-      </p>
-      <p class="text-chalk text-sm leading-loose whitespace-pre-line mb-6">
+    <section class="mb-16">
+      <p class="text-concrete text-sm mb-4">What kind of bike</p>
+      <p class="text-chalk text-sm leading-loose whitespace-pre-line mb-8">
         {playData.bikeType}
       </p>
-      <div class="border-l-[3px] border-[#333] p-6 flex flex-col gap-3">
-        <p class="text-ball text-sm font-bold uppercase tracking-[0.2em]">
-          Featured Frame
-        </p>
+      <div class="flex flex-col gap-3">
+        <p class="text-concrete text-sm">Featured frame</p>
         <Image
           src={enforcer13}
           alt="Enforcer 13 bike polo frame"
-          class="w-full rounded"
+          class="w-full"
         />
-        <p class="text-chalk font-bold">Enforcer 13</p>
+        <p class="text-chalk font-medium">Enforcer 13</p>
         <a
           href="https://www.enforcerbikes.com/enforcer-13"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-ball text-xs font-bold uppercase tracking-[0.1em]
+          class="text-ball text-sm hover:text-ball-hover transition-colors
                  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ball"
         >
           View at Enforcer Bikes →
@@ -99,10 +90,8 @@ const { Content: Intro } = await render(entry);
       </div>
     </section>
 
-    <section class="border-l-[3px] border-ball p-8 flex flex-col gap-5">
-      <p class="text-ball text-sm font-bold uppercase tracking-[0.2em]">
-        // Get Your Gear
-      </p>
+    <section class="flex flex-col gap-5">
+      <p class="text-concrete text-sm">Get your gear</p>
       <Image
         src={hecklersLogo}
         alt="Hecklers Alley"
@@ -115,7 +104,7 @@ const { Content: Intro } = await render(entry);
         href="https://hecklersalley.com/"
         target="_blank"
         rel="noopener noreferrer"
-        class="text-ball text-xs font-bold uppercase tracking-[0.1em]
+        class="text-ball text-sm hover:text-ball-hover transition-colors
                focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ball"
       >
         Shop Hecklers Alley →
@@ -124,7 +113,7 @@ const { Content: Intro } = await render(entry);
         href="https://hecklersalley.com/collections/mallet-parts/products/complete-mallet?variant=41418374217791"
         target="_blank"
         rel="noopener noreferrer"
-        class="text-ball text-xs font-bold uppercase tracking-[0.1em]
+        class="text-ball text-sm hover:text-ball-hover transition-colors
                focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ball"
       >
         Complete Setup Bike Polo Mallet →

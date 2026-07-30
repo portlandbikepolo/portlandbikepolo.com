@@ -1,7 +1,9 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
 import HeroSection from "@components/HeroSection.astro";
-import InfoCards from "@components/InfoCards.astro";
+import IntroBand from "@components/IntroBand.astro";
+import ScheduleBand from "@components/ScheduleBand.astro";
+import PhotoStrip from "@components/PhotoStrip.astro";
 import SupportedVendors from "@components/SupportedVendors.astro";
 import { createReader } from "@keystatic/core/reader";
 import { getImage } from "astro:assets";
@@ -10,14 +12,16 @@ import keystaticConfig from "../../keystatic.config";
 
 const reader = createReader(process.cwd(), keystaticConfig);
 const heroSlideshow = await reader.singletons.heroSlideshow.read();
+const playData = await reader.singletons.play.read();
 
-// Eager-import all polo images so Vite processes them
+// Eager-import all polo images so Vite processes them.
 const poloImages = import.meta.glob<{ default: ImageMetadata }>(
   "../assets/images/polo/*.{webp,jpg,jpeg,png}",
   { eager: true },
 );
 
-// Resolve each entry to an optimized URL — entries are plain filename strings
+// Resolve each hero entry to an optimized URL WITH intrinsic width/height so the
+// full-bleed <img> layers reserve their space and cause zero layout shift.
 const photos = (
   await Promise.all(
     (heroSlideshow?.images ?? []).map(async (filename) => {
@@ -25,19 +29,114 @@ const photos = (
       const key = `../assets/images/polo/${filename}`;
       const mod = poloImages[key];
       if (!mod) return null;
-      const optimized = await getImage({
-        src: mod.default,
-        width: 1920,
-        format: "webp",
-      });
-      return { src: optimized.src };
+      const width = 1920;
+      const height = Math.round((width * mod.default.height) / mod.default.width);
+      const optimized = await getImage({ src: mod.default, width, format: "webp" });
+      return { src: optimized.src, width, height };
     }),
   )
-).filter((p): p is { src: string } => p !== null);
+).filter(
+  (p): p is { src: string; width: number; height: number } => p !== null,
+);
 ---
 
-<BaseLayout>
+<BaseLayout hero>
+  {/* Band 1 — Hero (must be the first child of <main> for the navbar observer) */}
   <HeroSection photos={photos} />
-  <InfoCards />
+
+  {/*
+    Enable the fade-up "hidden" state only when JS is available, set
+    synchronously here (before the bands below are parsed) so there is no flash
+    and content is never stuck invisible without JS. Placed after the hero so the
+    hero remains the first child of <main>.
+  */}
+  <script is:inline>
+    document.documentElement.classList.add("js-motion");
+  </script>
+
+  {/* Band 2 — Intro statement */}
+  <IntroBand />
+
+  {/* Band 3 — Play / when-and-where — the signature */}
+  {
+    playData && (
+      <ScheduleBand
+        schedule={playData.schedule}
+        location={playData.location}
+      />
+    )
+  }
+
+  {/* Band 4 — Photo strip */}
+  <PhotoStrip />
+
+  {/* Band 5 — Vendors */}
   <SupportedVendors />
+
+  {/* Band 6 — Footer is rendered by BaseLayout. */}
 </BaseLayout>
+
+<style is:global>
+  /*
+   * Single source of band vertical rhythm — one --band-y on the band wrapper
+   * drives padding-block; children never re-declare band padding (avoids the
+   * selector-specificity fight called out in the spec's Build cautions).
+   */
+  .home-band {
+    --band-y: clamp(4rem, 10vw, 9rem);
+    padding-block: var(--band-y);
+  }
+
+  /*
+   * Restrained scroll motion — one gentle fade/rise per band as it enters the
+   * viewport. transform + opacity only; no `transition: all`; interruptible.
+   * The hidden state applies only when JS is present (.js-motion) AND motion is
+   * not reduced, so reduced-motion users and no-JS visitors see content in its
+   * final position immediately.
+   */
+  @media (prefers-reduced-motion: no-preference) {
+    .js-motion .home-reveal {
+      opacity: 0;
+      transform: translateY(1.5rem);
+      transition:
+        opacity 0.6s ease,
+        transform 0.6s ease;
+      will-change: opacity, transform;
+    }
+    .js-motion .home-reveal.is-visible {
+      opacity: 1;
+      transform: none;
+    }
+  }
+</style>
+
+<script>
+  function initReveals() {
+    const reveals = Array.from(
+      document.querySelectorAll<HTMLElement>(".home-reveal"),
+    );
+    if (reveals.length === 0) return;
+
+    // Reduced motion: reveal everything immediately, skip the observer.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      reveals.forEach((el) => el.classList.add("is-visible"));
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            obs.unobserve(entry.target);
+          }
+        });
+      },
+      { rootMargin: "0px 0px -10% 0px", threshold: 0.1 },
+    );
+
+    reveals.forEach((el) => observer.observe(el));
+  }
+
+  initReveals();
+</script>

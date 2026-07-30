@@ -3,21 +3,24 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="Page Not Found — Portland Bike Polo">
-  <div class="max-w-2xl mx-auto px-4 py-32 flex flex-col items-center text-center gap-6">
-    <p class="text-ball text-xs font-bold uppercase tracking-[0.2em]">404</p>
-    <h1 class="text-chalk text-4xl font-bold uppercase tracking-tight">
-      Page Not Found
+  <div
+    class="max-w-2xl mx-auto px-4 py-32 flex flex-col items-center text-center gap-6"
+  >
+    <p class="text-concrete text-sm">404</p>
+    <h1 class="text-chalk text-5xl md:text-6xl font-medium tracking-tight text-balance">
+      Page not found
     </h1>
-    <p class="text-concrete">
+    <p class="text-concrete text-pretty">
       That page doesn't exist. Maybe it got mallet'd.
     </p>
     <a
       href="/"
-      class="bg-ball text-asphalt px-6 py-3 text-sm font-bold uppercase tracking-widest
+      class="bg-ball text-asphalt px-6 py-3 text-sm font-medium
              hover:bg-ball-hover transition-colors
-             focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-chalk"
+             focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ball
+             focus-visible:ring-offset-2 focus-visible:ring-offset-asphalt"
     >
-      Go Home
+      Go home
     </a>
   </div>
 </BaseLayout>

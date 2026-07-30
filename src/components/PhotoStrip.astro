@@ -1,0 +1,56 @@
+---
+// Band 4 — Photo strip.
+// A restrained responsive grid of a clean subset of the existing action photos.
+// astro:assets <Image> carries explicit intrinsic dimensions (no CLS); every
+// frame is lazy-loaded with a short descriptive alt. No borders/boxes — just a
+// tidy grid held together by whitespace.
+import { Image } from "astro:assets";
+import polo02 from "@assets/images/polo/polo_02.webp";
+import polo04 from "@assets/images/polo/polo_04.webp";
+import polo05 from "@assets/images/polo/polo_05.webp";
+import polo07 from "@assets/images/polo/polo_07.webp";
+import polo09 from "@assets/images/polo/polo_09.webp";
+import polo11 from "@assets/images/polo/polo_11.webp";
+import polo13 from "@assets/images/polo/polo_13.webp";
+import polo15 from "@assets/images/polo/polo_15.webp";
+
+const shots = [
+  { src: polo02, alt: "Bike polo pickup game at Alberta Park" },
+  { src: polo04, alt: "Players on bikes contesting the ball" },
+  { src: polo05, alt: "A rider moving the ball up the court" },
+  { src: polo07, alt: "Bike polo action on the fenced court" },
+  { src: polo09, alt: "Players during a weekly pickup game" },
+  { src: polo11, alt: "Riders battling for the ball" },
+  { src: polo13, alt: "Bike polo at Alberta Park in Portland" },
+  { src: polo15, alt: "Players on the court, mallets in hand" },
+];
+---
+
+<section class="home-band home-reveal" aria-label="Photos from the court">
+  <div class="mx-auto max-w-6xl px-4">
+    <div class="grid grid-cols-2 gap-2 md:grid-cols-4 md:gap-3">
+      {
+        shots.map(({ src, alt }) => (
+          <Image
+            src={src}
+            alt={alt}
+            widths={[320, 480, 640]}
+            sizes="(min-width: 768px) 25vw, 50vw"
+            loading="lazy"
+            class="photo-strip-img"
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .photo-strip-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+</style>

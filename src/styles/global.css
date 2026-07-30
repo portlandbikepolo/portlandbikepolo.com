@@ -35,9 +35,6 @@
   --color-ball: #d4842a; /* links, buttons, active/focus */
   --color-ball-hover: #ed9a3e; /* hover raises contrast */
 
-  /* Legacy second accent — retained ONLY where InfoCards still uses it; dropped in ticket 05 */
-  --color-teal: #5a9eae;
-
   /* Typeface — Space Grotesk, self-hosted via Astro's font provider (see BaseLayout) */
   --font-sans: var(--font-space-grotesk), sans-serif;
 }

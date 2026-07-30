@@ -4,21 +4,23 @@ import SocialLinks from "./SocialLinks.astro";
 const navLinks = [
   { href: "/about", label: "About" },
   { href: "/play", label: "Play" },
-  { href: "/tournaments", label: "Tournaments" },
-  { href: "/coc", label: "Code of Conduct" },
+  { href: "/coc", label: "Code of conduct" },
 ];
 
 const currentPath = Astro.url.pathname;
 ---
 
-<header class="sticky top-0 z-40 bg-asphalt border-b-2 border-chalk">
+<header
+  id="site-header"
+  class="site-header fixed top-0 inset-x-0 z-40"
+>
   <nav
     aria-label="Main navigation"
     class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between"
   >
     <a
       href="/"
-      class="text-chalk font-bold text-sm uppercase tracking-[0.2em] hover:text-ball transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ball"
+      class="text-chalk font-medium text-base hover:text-ball transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ball"
     >
       Portland Bike Polo
     </a>
@@ -31,7 +33,7 @@ const currentPath = Astro.url.pathname;
             <a
               href={href}
               aria-current={currentPath.startsWith(href) ? "page" : undefined}
-              class="nav-link text-sm tracking-wide uppercase focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ball"
+              class="nav-link text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ball"
             >
               {label}
             </a>
@@ -46,7 +48,7 @@ const currentPath = Astro.url.pathname;
       aria-expanded="false"
       aria-controls="mobile-menu"
       aria-label="Open navigation menu"
-      class="md:hidden p-2 text-concrete hover:text-chalk focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ball"
+      class="md:hidden p-2 text-concrete hover:text-chalk transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ball"
     >
       <svg
         id="icon-open"
@@ -82,27 +84,44 @@ const currentPath = Astro.url.pathname;
   <!-- Mobile menu -->
   <div
     id="mobile-menu"
-    class="hidden md:hidden fixed inset-0 top-16 bg-asphalt z-30 flex flex-col p-8 gap-0"
+    class="mobile-drawer hidden md:hidden fixed inset-0 top-16 bg-asphalt z-30 flex flex-col p-8 gap-2"
   >
     {
       navLinks.map(({ href, label }) => (
         <a
           href={href}
           aria-current={currentPath.startsWith(href) ? "page" : undefined}
-          class="text-chalk text-2xl font-bold tracking-wide uppercase border-b border-[#1a1a1a] py-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ball aria-[current=page]:text-ball"
+          class="text-chalk text-2xl font-medium py-3 hover:text-ball transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ball aria-[current=page]:text-ball"
         >
           {label}
         </a>
       ))
     }
-    <div class="mt-6"><SocialLinks /></div>
-    <p class="text-concrete text-xs uppercase tracking-[0.15em] mt-auto">
+    <div class="mt-8"><SocialLinks /></div>
+    <p class="text-concrete text-sm mt-auto">
       Alberta Park · Portland, OR
     </p>
   </div>
 </header>
 
 <style>
+  /* Transparent while over the hero; solidifies into a slim dark bar on scroll. */
+  .site-header {
+    background-color: transparent;
+    border-bottom: 1px solid transparent;
+    transition:
+      background-color 0.3s ease,
+      border-color 0.3s ease;
+  }
+  .site-header.is-solid {
+    background-color: var(--color-asphalt);
+    border-bottom-color: var(--color-line);
+  }
+
+  .mobile-drawer {
+    overscroll-behavior: contain;
+  }
+
   .nav-link {
     position: relative;
     padding-bottom: 3px;
@@ -132,10 +151,33 @@ const currentPath = Astro.url.pathname;
 </style>
 
 <script>
+  const header = document.getElementById("site-header");
   const btn = document.getElementById("menu-btn")!;
   const menu = document.getElementById("mobile-menu")!;
   const iconOpen = document.getElementById("icon-open")!;
   const iconClose = document.getElementById("icon-close")!;
+
+  // Transparent-over-hero → solid-on-scroll. Pages without a hero are solid from load.
+  const hero = document.getElementById("hero");
+  if (!hero) {
+    header?.classList.add("is-solid");
+  } else {
+    const io = new IntersectionObserver(
+      ([entry]) => header?.classList.toggle("is-solid", !entry.isIntersecting),
+      { rootMargin: "-64px 0px 0px 0px", threshold: 0 },
+    );
+    io.observe(hero);
+  }
+
+  // Background content marked inert while the drawer is open.
+  function setBackgroundInert(on: boolean) {
+    for (const el of document.querySelectorAll<HTMLElement>(
+      "#main-content, footer",
+    )) {
+      if (on) el.setAttribute("inert", "");
+      else el.removeAttribute("inert");
+    }
+  }
 
   function openMenu(focusFirst = true) {
     btn.setAttribute("aria-expanded", "true");
@@ -143,6 +185,7 @@ const currentPath = Astro.url.pathname;
     menu.classList.remove("hidden");
     iconOpen.classList.add("hidden");
     iconClose.classList.remove("hidden");
+    setBackgroundInert(true);
     trapFocus(menu, focusFirst);
   }
 
@@ -152,6 +195,7 @@ const currentPath = Astro.url.pathname;
     menu.classList.add("hidden");
     iconOpen.classList.remove("hidden");
     iconClose.classList.add("hidden");
+    setBackgroundInert(false);
     btn.focus();
   }
 

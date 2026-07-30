@@ -20,7 +20,7 @@ export default config({
       name: "Portland Bike Polo",
     },
     navigation: {
-      Content: ["tournaments", "heroSlideshow"],
+      Content: ["heroSlideshow"],
       Settings: ["about", "codeOfConduct", "play"],
     },
   },

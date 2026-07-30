@@ -1,4 +1,7 @@
 ---
+// Band 5 — Vendors. Kept quiet: grayscale logos with a subtle hover to
+// color/opacity, a sentence-case heading, no heavy top border. Each logo's alt
+// is the brand name.
 import { Image } from "astro:assets";
 import enforcerLogo from "@assets/images/brands/enforcer.svg";
 import hecklersLogo from "@assets/images/brands/hecklers_alley.webp";
@@ -17,14 +20,10 @@ const vendors = [
 ];
 ---
 
-<section aria-label="Vendors we support" class="border-t border-[#222] py-12">
-  <div class="max-w-6xl mx-auto px-4">
-    <h2
-      class="text-concrete text-xs font-bold uppercase tracking-[0.2em] mb-8 text-center"
-    >
-      Vendors We Support
-    </h2>
-    <div class="flex flex-wrap items-center justify-center gap-10">
+<section class="home-band home-reveal" aria-label="Vendors we support">
+  <div class="mx-auto max-w-6xl px-4">
+    <h2 class="text-concrete text-sm font-medium mb-10">Vendors we support</h2>
+    <div class="flex flex-wrap items-center gap-x-12 gap-y-8">
       {
         vendors.map(({ name, href, logo }) => (
           <a
@@ -32,15 +31,10 @@ const vendors = [
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`${name} (opens in a new tab)`}
-            class="opacity-50 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-300
-                 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ball"
+            class="opacity-60 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0
+                   focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ball"
           >
-            <Image
-              src={logo}
-              alt=""
-              height={48}
-              class="h-14 rounded-2xl w-auto"
-            />
+            <Image src={logo} alt={name} height={48} class="h-12 w-auto" />
           </a>
         ))
       }

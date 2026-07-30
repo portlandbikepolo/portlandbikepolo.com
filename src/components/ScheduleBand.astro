@@ -1,0 +1,110 @@
+---
+// Band 3 — Play / when-and-where. THE SIGNATURE.
+// The quiet typographic payoff to the loud photographic hero: oversized day
+// names, a single neutral court-line hairline as the edge cue, and exactly one
+// orange interactive link (Get directions). Schedule content is passed in from
+// the `play` Keystatic singleton (index.astro) — no clock times are invented;
+// only the day + description + location the content actually provides is shown.
+interface Props {
+  schedule: readonly { day: string; description: string }[];
+  location: { name: string; address: string };
+}
+
+const { schedule, location } = Astro.props;
+
+const mapsQuery = encodeURIComponent(`${location.name} ${location.address}`);
+const mapsHref = `https://www.google.com/maps/search/?api=1&query=${mapsQuery}`;
+---
+
+<section class="home-band home-reveal bg-asphalt-raised" aria-labelledby="play-heading">
+  <div class="mx-auto max-w-6xl px-4">
+    <p id="play-heading" class="text-concrete text-sm font-medium mb-8">
+      When and where
+    </p>
+
+    <ol class="sched-list">
+      {
+        schedule.map(({ day, description }) => (
+          <li class="sched-row">
+            <span class="sched-day tabular-nums text-chalk">{day}</span>
+            <span class="sched-desc text-concrete text-pretty">{description}</span>
+          </li>
+        ))
+      }
+    </ol>
+
+    <div class="sched-footer">
+      <div>
+        <p class="text-chalk">{location.name}</p>
+        <p class="text-concrete text-sm">{location.address}</p>
+      </div>
+      <a
+        href={mapsHref}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="sched-directions text-ball transition-colors hover:text-ball-hover
+               focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ball"
+      >
+        Get directions →
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Exactly ONE neutral chalk-toned hairline — the deliberate court boundary. */
+  .sched-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--color-line);
+  }
+
+  .sched-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.5rem 2rem;
+    padding-block: clamp(1.25rem, 3vw, 2.25rem);
+    align-items: baseline;
+  }
+
+  .sched-day {
+    font-size: clamp(2.75rem, 8vw, 6rem);
+    font-weight: 500;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .sched-desc {
+    font-size: clamp(1rem, 1.6vw, 1.125rem);
+    line-height: 1.5;
+    justify-self: start;
+  }
+
+  @media (min-width: 48rem) {
+    .sched-row {
+      grid-template-columns: minmax(0, auto) 1fr;
+      align-items: end;
+    }
+    .sched-desc {
+      justify-self: end;
+      text-align: right;
+      padding-bottom: 0.35rem;
+    }
+  }
+
+  .sched-footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin-top: clamp(2rem, 4vw, 3.5rem);
+  }
+
+  .sched-directions {
+    font-size: 1rem;
+    font-weight: 500;
+  }
+</style>

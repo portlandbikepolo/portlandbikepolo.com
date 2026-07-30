@@ -7,11 +7,18 @@ import "@styles/global.css";
 interface Props {
   title?: string;
   description?: string;
+  /**
+   * When true, <main> gets no top padding so a full-bleed hero can sit under
+   * the transparent fixed navbar. When false (default), <main> is offset by the
+   * bar height so page content clears the fixed nav.
+   */
+  hero?: boolean;
 }
 
 const {
   title = "Portland Bike Polo",
   description = "Hardcourt bike polo in Portland, Oregon. All skill levels welcome.",
+  hero = false,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -46,7 +53,10 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
     <SiteNavbar />
 
-    <main id="main-content">
+    <main
+      id="main-content"
+      style={hero ? undefined : "padding-top: var(--nav-h)"}
+    >
       <slot />
     </main>
 
